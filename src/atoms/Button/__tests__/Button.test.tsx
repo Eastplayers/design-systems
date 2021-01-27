@@ -1,10 +1,10 @@
 import React from "react";
-import Icon from "../Icon";
+import Button from "../Button";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 test("<Icon /> expect return haha", async () => {
-  render(<Icon />);
+  render(<Button />);
 
   screen.getByText("haha");
 });

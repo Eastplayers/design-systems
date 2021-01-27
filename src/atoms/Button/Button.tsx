@@ -1,40 +1,34 @@
 import React from "react";
+import styled from "styled-components";
 
-enum ButtonTypes {
-    PRIMARY = "PRIMARY",
-    SECONDARY = "SECONDARY",
-    DISABLED = "DISABLED"
-}
+const ThemeButton = styled.button``;
 
 enum ButtonSizes {
-    LARGE = "L",
-    MEDIUM = "M",
-    SMALL = "S",
-    EXTRA_SMALL = "XS"
+  L,
+  M,
+  S,
+  XS
 }
 
-interface IButton {
-    children: React.ReactNode | string;
-    onClick: (e: React.MouseEvent) => void;
-    type?: ButtonTypes;
-    iconLeft?: string;
-    iconRight?: string;
-    size?: ButtonSizes;
-    disabled?: boolean;
+enum ButtonVariants {
+  Primary,
+  Secondary,
+  Ghost,
+  Link
 }
 
-const Button: React.FC<IButton> = (props) => {
-    return (
-        <button disabled={props.disabled} onClick={props.onClick}>
-            {props.children}
-        </button>
-    );
+interface ButtonProps {
+  size?: ButtonSizes;
+  variants?: ButtonVariants;
+}
+
+const Button: React.FC<ButtonProps> = (props) => {
+  return <ThemeButton>heheheh</ThemeButton>;
 };
 
 Button.defaultProps = {
-    children: "Button",
-    type: ButtonTypes.PRIMARY,
-    size: ButtonSizes.MEDIUM
+  size: ButtonSizes.S,
+  variants: ButtonVariants.Primary
 };
 
 export default Button;
