@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
 test("<Icon /> expect return haha", async () => {
-  render(<Icon />);
+    render(<Icon />);
 
-  screen.getByText("haha");
+    screen.getByText("haha");
 });
