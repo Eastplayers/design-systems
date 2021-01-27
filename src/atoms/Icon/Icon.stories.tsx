@@ -5,6 +5,6 @@ import { Story, Meta } from "@storybook/react/types-6-0";
 import { Icon } from "./index";
 
 export default {
-  title: "123/Header",
-  component: Icon,
+    title: "123/Header",
+    component: Icon
 } as Meta;

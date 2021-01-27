@@ -4,15 +4,15 @@ import { Button } from "./index";
 
 // This default export determines where your story goes in the story list
 export default {
-  title: "Atoms/Button",
-  component: Button,
+    title: "Atoms/Button",
+    component: Button
 } as Meta;
 
 const Template: Story<ComponentProps<typeof Button>> = (args) => (
-  <Button {...args} />
+    <Button {...args} />
 );
 
 export const Primary = Template.bind({});
 Primary.args = {
-  children: "Primary",
+    children: "Primary"
 };
