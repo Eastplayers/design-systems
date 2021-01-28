@@ -1,18 +1,31 @@
-import React, { ComponentProps } from "react";
-import { Story, Meta } from "@storybook/react/types-6-0";
-import { Button } from "./index";
+import React from "react";
+import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
+import "@storybook/addon-knobs/register";
 
-// This default export determines where your story goes in the story list
+import { Button } from ".";
+import { ButtonSizes, ButtonVariants, ButtonProps } from "./Button";
+
+export const ButtonStory = (): React.ReactElement<ButtonProps> => {
+  const label = text("Label", "Button Title");
+  const isDisabled = boolean("disable", true);
+  const buttonSize = select("Button Size", ButtonSizes, ButtonSizes.L);
+  const buttonVariant = select(
+    "Button Size",
+    ButtonVariants,
+    ButtonVariants.Primary
+  );
+
+  return (
+    <Button
+      label={label}
+      disabled={isDisabled}
+      size={buttonSize}
+      variant={buttonVariant}
+    />
+  );
+};
+
 export default {
-    title: "Atoms/Button",
-    component: Button
-} as Meta;
-
-const Template: Story<ComponentProps<typeof Button>> = (args) => (
-    <Button {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {
-    children: "Primary"
+  title: "Atoms/Button",
+  decorators: [withKnobs]
 };
