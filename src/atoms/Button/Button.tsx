@@ -1,5 +1,6 @@
 import React from "react";
 
+import styles from "./Button.scss";
 export enum ButtonSizes {
   L = "L",
   M = "M",
@@ -28,7 +29,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     variant = ButtonVariants.Primary
   } = props;
 
-  return <button>{label}</button>;
+  return <button className={styles.colored}>{label}</button>;
 };
 
 export default Button;

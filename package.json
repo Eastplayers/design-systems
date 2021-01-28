@@ -44,6 +44,7 @@
     "@types/classnames": "^2.2.11",
     "@types/jest": "^26.0.20",
     "babel-loader": "^8.2.2",
+    "css-modules-typescript-loader": "^4.0.1",
     "eslint": "^7.18.0",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
