@@ -1,45 +1,38 @@
 @import "../../styles/main.scss";
 
-.body-1 {
-  @include generate-font($font-weight-normal, 1.25rem, 28px);
-}
-.body-2 {
-  @include generate-font($font-weight-normal, 1rem, 24px);
-}
-.body-3 {
-  @include generate-font($font-weight-normal, 0.875rem, 22px);
-}
-.body-4 {
-  @include generate-font($font-weight-normal, 0.75rem, 20px);
+$bodySizes: 1, 2, 3, 4;
+$headingSizes: 1, 2, 3, 4, 5, 6;
+$displaySizes: 1, 2, 3;
+
+@function size-calc($baseNum, $step, $type) {
+  @if $type == 1 {
+    @return $baseNum;
+  }
+  @return $baseNum - ($step * $type);
 }
 
-.heading-1 {
-  @include generate-font($font-weight-bold, 1.875rem, 30px);
-}
-.heading-2 {
-  @include generate-font($font-weight-bold, 1.5rem, 24px);
-}
-.heading-3 {
-  @include generate-font($font-weight-bold, 1.25rem, 20px);
-}
-.heading-4 {
-  @include generate-font($font-weight-bold, 1rem, 16px);
-}
-.heading-5 {
-  @include generate-font($font-weight-bold, 0.875rem, 14px);
-}
-.heading-6 {
-  @include generate-font($font-weight-bold, 0.75rem, 12px);
+@each $bodySize in $bodySizes {
+  .body-#{$bodySize} {
+    $lineHeight: size-calc(28, 2, $bodySize) + px;
+    $fontSize: size-calc(1.25, 0.125, $bodySize) + rem;
+    @include generate-font($font-weight-normal, $fontSize, $lineHeight);
+  }
 }
 
-.display-1 {
-  @include generate-font($font-weight-extra-bold, 3.5rem, 56px);
+@each $headingSize in $headingSizes {
+  .heading-#{$headingSize} {
+    $lineHeight: size-calc(38, 2, $headingSize) + px;
+    $fontSize: size-calc(1.875, 0.1875, $headingSize) + rem;
+    @include generate-font($font-weight-bold, $fontSize, $lineHeight);
+  }
 }
-.display-2 {
-  @include generate-font($font-weight-extra-bold, 2.875rem, 46px);
-}
-.display-3 {
-  @include generate-font($font-weight-extra-bold, 2.375rem, 38px);
+
+@each $displaySize in $displaySizes {
+  .display-#{$displaySize} {
+    $lineHeight: size-calc(62, 2, $displaySize) + px;
+    $fontSize: size-calc(3.5, 0.3125, $displaySize) + rem;
+    @include generate-font($font-weight-bold, $fontSize, $lineHeight);
+  }
 }
 
 .text-no-decoration {
