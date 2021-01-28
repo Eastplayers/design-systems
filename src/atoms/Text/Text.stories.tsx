@@ -1,18 +1,26 @@
-import React, { ComponentProps } from "react";
-import { Story, Meta } from "@storybook/react/types-6-0";
-import { Text } from "./index";
+import React from "react";
+import { withKnobs, text } from "@storybook/addon-knobs";
+import "@storybook/addon-knobs/register";
 
-// This default export determines where your story goes in the story list
+import { Text } from ".";
+import { FontTypes, TextProps } from "./Text";
+
+export const All = (): React.ReactElement<TextProps> => {
+  const content = text("Content", "Sample content");
+
+  return (
+    <div>
+      {Object.values(FontTypes).map((fontType) => (
+        <div key={fontType} style={{ marginBottom: 20 }}>
+          <Text type={fontType}>{fontType.split("-").join(" ")}</Text>
+          <Text type={fontType}>{content}</Text>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export default {
   title: "Atoms/Text",
-  component: Text
-} as Meta;
-
-const Template: Story<ComponentProps<typeof Text>> = (args) => (
-  <Text {...args} />
-);
-
-export const Body = Template.bind({});
-Body.args = {
-  children: "Hahahah"
+  decorators: [withKnobs]
 };
