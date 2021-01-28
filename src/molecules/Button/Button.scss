@@ -1,0 +1,20 @@
+@import "../../styles/abstracts/functions";
+@import "../../styles/variables/colors";
+
+:root {
+  --buttonWidth: rem(136);
+  --buttonHeight: rem(48);
+  --buttonBorderRadius: rem(8);
+}
+
+.btn__base {
+  width: var(--buttonWidth);
+  height: var(--buttonHeight);
+  border-color: transparent;
+  cursor: pointer;
+  border-radius: var(--buttonBorderRadius);
+}
+
+.btn--primary {
+  color: $indigo500;
+}

@@ -1,4 +1,7 @@
 import React from "react";
+import classNames from "classnames";
+
+import { Text } from "../../atoms";
 
 import styles from "./Button.scss";
 
@@ -30,7 +33,11 @@ const Button: React.FC<ButtonProps> = (props) => {
     variant = ButtonVariants.Primary
   } = props;
 
-  return <button className={styles.red}>{label}</button>;
+  return (
+    <button className={classNames(styles.btn__base, styles["btn--primary"])}>
+      <Text>{label}</Text>
+    </button>
+  );
 };
 
 export default Button;
