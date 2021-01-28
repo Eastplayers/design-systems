@@ -15,20 +15,20 @@ export enum ButtonVariants {
 }
 
 export interface ButtonProps {
+  label: string;
   size?: ButtonSizes;
   variant?: ButtonVariants;
-  title?: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
-    title,
+    label,
     size = ButtonSizes.S,
     variant = ButtonVariants.Primary
   } = props;
 
-  return <button>{title}</button>;
+  return <button>{label}</button>;
 };
 
 export default Button;
