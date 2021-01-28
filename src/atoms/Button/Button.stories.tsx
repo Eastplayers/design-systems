@@ -17,7 +17,7 @@ export const ButtonStory = (): React.ReactElement<ButtonProps> => {
 
   return (
     <Button
-      title={label}
+      label={label}
       disabled={isDisabled}
       size={buttonSize}
       variant={buttonVariant}
