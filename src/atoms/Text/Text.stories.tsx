@@ -12,7 +12,7 @@ const Template: Story<ComponentProps<typeof Text>> = (args) => (
   <Text {...args} />
 );
 
-export const Sample = Template.bind({});
-Sample.args = {
+export const Body = Template.bind({});
+Body.args = {
   children: "Hahahah"
 };

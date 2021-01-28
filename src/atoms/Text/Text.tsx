@@ -2,7 +2,7 @@ import React from "react";
 import ClassNames from "classnames";
 import "../../styles/main.scss";
 
-enum FontTypes {
+export enum FontTypes {
   BODY_1 = "body-1",
   BODY_2 = "body-2",
   BODY_3 = "body-3",
@@ -37,12 +37,22 @@ interface IText {
 }
 
 const Text: React.FC<IText> = (props) => {
-  const { className, children } = props;
-  return <p className={ClassNames("text", className)}>{children}</p>;
-};
+  const { className, children, type = FontTypes.BODY_2 } = props;
 
-Text.defaultProps = {
-  type: FontTypes.BODY_2
+  const renderTag = (): string => {
+    const typeList: string[] = type?.split("-") || [];
+    if (typeList[0] === "heading") return `h${typeList[1]}`;
+    if (typeList[0] === "display") return "h1";
+    return "p";
+  };
+
+  const CustomTag = renderTag() as keyof JSX.IntrinsicElements;
+
+  return (
+    <CustomTag className={ClassNames("text", type, className)}>
+      {children}
+    </CustomTag>
+  );
 };
 
 export default Text;
