@@ -1,7 +1,5 @@
-.red {
-  color: red;
-}
+@import "../../styles/abstracts/functions";
 
-.blue {
-  color: blue;
+.red {
+  font-size: rem(12);
 }
