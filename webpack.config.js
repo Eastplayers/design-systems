@@ -1,8 +1,8 @@
-import path from "path";
-import webpack from "webpack";
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require("path");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-const config: webpack.Configuration = {
+module.exports = {
   mode: "development",
   entry: "./src/index.tsx",
   module: {
@@ -16,10 +16,10 @@ const config: webpack.Configuration = {
             presets: [
               "@babel/preset-env",
               "@babel/preset-react",
-              "@babel/preset-typescript",
-            ],
-          },
-        },
+              "@babel/preset-typescript"
+            ]
+          }
+        }
       },
       {
         test: /\.s[ac]ss$/i,
@@ -29,31 +29,29 @@ const config: webpack.Configuration = {
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS
-          "sass-loader",
-        ],
-      },
-    ],
+          "sass-loader"
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"]
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    filename: "bundle.js"
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
-        files: "./src/**/*",
-      },
-    }),
+        files: "./src/**/*"
+      }
+    })
   ],
   devServer: {
     contentBase: path.join(__dirname, "build"),
     compress: true,
-    port: 4000,
-  },
+    port: 4000
+  }
 };
-
-export default config;

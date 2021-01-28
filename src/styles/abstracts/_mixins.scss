@@ -1,0 +1,7 @@
+@mixin generate-font($weight, $size, $lineHeight) {
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $lineHeight;
+  font-feature-settings: "cv05" on, "cv06" on, "cv08" on, "cv10" on, "cv11" on,
+    "isol" on, "salt" on, "kern" off;
+}
