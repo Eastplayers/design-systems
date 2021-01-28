@@ -1,9 +1,5 @@
 @import "../../styles/main.scss";
 
-$bodySizes: 1, 2, 3, 4;
-$headingSizes: 1, 2, 3, 4, 5, 6;
-$displaySizes: 1, 2, 3;
-
 @function size-calc($baseNum, $step, $type) {
   @if $type == 1 {
     @return $baseNum;
@@ -11,6 +7,7 @@ $displaySizes: 1, 2, 3;
   @return $baseNum - ($step * $type);
 }
 
+$bodySizes: 1, 2, 3, 4;
 @each $bodySize in $bodySizes {
   .body-#{$bodySize} {
     $lineHeight: size-calc(28, 2, $bodySize) + px;
@@ -19,6 +16,7 @@ $displaySizes: 1, 2, 3;
   }
 }
 
+$headingSizes: 1, 2, 3, 4, 5, 6;
 @each $headingSize in $headingSizes {
   .heading-#{$headingSize} {
     $lineHeight: size-calc(38, 2, $headingSize) + px;
@@ -27,22 +25,18 @@ $displaySizes: 1, 2, 3;
   }
 }
 
+$displaySizes: 1, 2, 3;
 @each $displaySize in $displaySizes {
   .display-#{$displaySize} {
-    $lineHeight: size-calc(62, 2, $displaySize) + px;
+    $lineHeight: size-calc(62, 4, $displaySize) + px;
     $fontSize: size-calc(3.5, 0.3125, $displaySize) + rem;
     @include generate-font($font-weight-bold, $fontSize, $lineHeight);
   }
 }
 
-.text-no-decoration {
-  text-decoration: none;
-}
-
-.text-underline {
-  text-decoration: underline;
-}
-
-.text-line-through {
-  text-decoration: line-through;
+$decorations: none, underline, line-through;
+@each $decoration in $decorations {
+  .#{$decoration} {
+    text-decoration: $decoration;
+  }
 }

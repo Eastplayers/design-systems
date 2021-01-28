@@ -25,9 +25,9 @@ enum FontWeights {
 }
 
 export enum TextDecorations {
-  NONE = "text-no-decoration",
-  UNDERLINE = "text-underline",
-  LINE_THROUGH = "text-line-through"
+  NONE = "none",
+  UNDERLINE = "underline",
+  LINE_THROUGH = "line-through"
 }
 
 export interface TextProps {
@@ -61,12 +61,7 @@ const Text: React.FC<TextProps> = (props) => {
 
   return (
     <CustomTag
-      className={ClassNames(
-        "text",
-        styles[type],
-        styles[decoration],
-        className
-      )}
+      className={ClassNames(styles[type], styles[decoration], className)}
       style={{ color }}
     >
       {children}
