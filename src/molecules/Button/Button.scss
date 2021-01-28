@@ -2,19 +2,60 @@
 @import "../../styles/variables/colors";
 
 :root {
-  --buttonWidth: rem(136);
-  --buttonHeight: rem(48);
-  --buttonBorderRadius: rem(8);
+  --buttonLgMinWidth: #{rem(136)};
+  --buttonLgMinHeight: #{rem(48)};
+
+  --buttonMdMinWidth: #{rem(120)};
+  --buttonMdMinHeight: #{rem(40)};
+
+  --buttonSmMinWidth: #{rem(110)};
+  --buttonSmMinHeight: #{rem(34)};
+
+  --buttonXsMinWidth: #{rem(110)};
+  --buttonXsMinHeight: #{rem(30)};
+
+  --buttonBorderRadius: #{rem(8)};
 }
 
-.btn__base {
-  width: var(--buttonWidth);
-  height: var(--buttonHeight);
+.btn {
+  border-radius: var(--buttonBorderRadius);
   border-color: transparent;
   cursor: pointer;
-  border-radius: var(--buttonBorderRadius);
-}
 
-.btn--primary {
-  color: $indigo500;
+  &--primary {
+    color: $indigo500;
+    background-color: $indigo500;
+  }
+
+  &--secondary {
+    color: $indigo100;
+  }
+
+  &--ghost {
+    color: $gray600;
+  }
+
+  &--link {
+    color: $indigo600;
+  }
+
+  &--lg {
+    min-width: var(--buttonLgMinWidth);
+    min-height: var(--buttonLgMinHeight);
+  }
+
+  &--md {
+    min-width: var(--buttonMdMinWidth);
+    min-height: var(--buttonMdMinHeight);
+  }
+
+  &--sm {
+    min-width: var(--buttonSmMinWidth);
+    min-height: var(--buttonSmMinHeight);
+  }
+
+  &--xs {
+    min-width: var(--buttonXsMinWidth);
+    min-height: var(--buttonXsMinHeight);
+  }
 }

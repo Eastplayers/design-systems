@@ -10,7 +10,7 @@ export const ButtonStory = (): React.ReactElement<ButtonProps> => {
   const isDisabled = boolean("disable", true);
   const buttonSize = select("Button Size", ButtonSizes, ButtonSizes.L);
   const buttonVariant = select(
-    "Button Size",
+    "Button Variant",
     ButtonVariants,
     ButtonVariants.Primary
   );
