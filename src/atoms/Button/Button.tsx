@@ -1,34 +1,34 @@
 import React from "react";
-import styled from "styled-components";
 
-const ThemeButton = styled.button``;
-
-enum ButtonSizes {
-  L,
-  M,
-  S,
-  XS
+export enum ButtonSizes {
+  L = "L",
+  M = "M",
+  S = "S",
+  XS = "XS"
 }
 
-enum ButtonVariants {
-  Primary,
-  Secondary,
-  Ghost,
-  Link
+export enum ButtonVariants {
+  Primary = "Primary",
+  Secondary = "Secondary",
+  Ghost = "Ghost",
+  Link = "Link"
 }
 
-interface ButtonProps {
+export interface ButtonProps {
   size?: ButtonSizes;
-  variants?: ButtonVariants;
+  variant?: ButtonVariants;
+  title?: string;
+  disabled: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  return <ThemeButton>heheheh</ThemeButton>;
-};
+  const {
+    title,
+    size = ButtonSizes.S,
+    variant = ButtonVariants.Primary
+  } = props;
 
-Button.defaultProps = {
-  size: ButtonSizes.S,
-  variants: ButtonVariants.Primary
+  return <button>{title}</button>;
 };
 
 export default Button;
