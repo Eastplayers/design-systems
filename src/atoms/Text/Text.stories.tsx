@@ -1,19 +1,29 @@
 import React from "react";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, text, select, color } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 
 import { Text } from ".";
-import { FontTypes, TextProps } from "./Text";
+import { FontTypes, TextDecorations, TextProps } from "./Text";
 
 export const All = (): React.ReactElement<TextProps> => {
   const content = text("Content", "Sample content");
+  const decoration = select(
+    "Decoration",
+    TextDecorations,
+    TextDecorations.NONE
+  );
+  const textColor = color("Color", "black");
 
   return (
     <div>
       {Object.values(FontTypes).map((fontType) => (
         <div key={fontType} style={{ marginBottom: 20 }}>
-          <Text type={fontType}>{fontType.split("-").join(" ")}</Text>
-          <Text type={fontType}>{content}</Text>
+          <Text type={fontType} color={textColor}>
+            {fontType.split("-").join(" ")}
+          </Text>
+          <Text type={fontType} decoration={decoration} color={textColor}>
+            {content}
+          </Text>
         </div>
       ))}
     </div>

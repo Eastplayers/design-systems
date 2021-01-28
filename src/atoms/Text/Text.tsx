@@ -1,6 +1,6 @@
 import React from "react";
 import ClassNames from "classnames";
-import styles from "../../styles/main.scss";
+import styles from "./Text.scss";
 
 export enum FontTypes {
   BODY_1 = "body-1",
@@ -24,6 +24,12 @@ enum FontWeights {
   EXTRA_BOLD = 800
 }
 
+export enum TextDecorations {
+  NONE = "text-no-decoration",
+  UNDERLINE = "text-underline",
+  LINE_THROUGH = "text-line-through"
+}
+
 export interface TextProps {
   children: React.ReactNode | string;
   className?: string;
@@ -32,12 +38,17 @@ export interface TextProps {
   size?: number;
   lineHeight?: number;
   color?: string;
-  underline?: boolean;
-  strikeThrough?: boolean;
+  decoration?: TextDecorations;
 }
 
 const Text: React.FC<TextProps> = (props) => {
-  const { className, children, type = FontTypes.BODY_2 } = props;
+  const {
+    className,
+    children,
+    type = FontTypes.BODY_2,
+    decoration = TextDecorations.NONE,
+    color
+  } = props;
 
   const renderTag = (): string => {
     const typeList: string[] = type?.split("-") || [];
@@ -49,7 +60,15 @@ const Text: React.FC<TextProps> = (props) => {
   const CustomTag = renderTag() as keyof JSX.IntrinsicElements;
 
   return (
-    <CustomTag className={ClassNames("text", styles[type], className)}>
+    <CustomTag
+      className={ClassNames(
+        "text",
+        styles[type],
+        styles[decoration],
+        className
+      )}
+      style={{ color }}
+    >
       {children}
     </CustomTag>
   );
