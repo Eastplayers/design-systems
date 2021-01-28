@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     variant = ButtonVariants.Primary
   } = props;
 
-  const buttonClasses = classNames({
+  const buttonClasses = classNames(styles.btn, {
     [styles["btn--primary"]]: variant === ButtonVariants.Primary,
     [styles["btn--secondary"]]: variant === ButtonVariants.Secondary,
     [styles["btn--ghost"]]: variant === ButtonVariants.Ghost,
