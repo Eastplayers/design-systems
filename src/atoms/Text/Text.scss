@@ -1,4 +1,4 @@
-@import "../../styles/main.scss";
+@use "../../styles/main.scss" as *;
 
 @function size-calc($baseNum, $step, $type) {
   @if $type == 1 {
