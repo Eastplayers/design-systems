@@ -1,10 +1,3 @@
-export interface ButtonProps {
-  label: string;
-  size?: ButtonSizes;
-  variant?: ButtonVariants;
-  disabled?: boolean;
-}
-
 export enum ButtonSizes {
   L = "L",
   M = "M",
