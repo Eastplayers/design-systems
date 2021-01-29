@@ -1,6 +1,6 @@
 import React from "react";
 import ClassNames from "classnames";
-import "../../styles/main.scss";
+import styles from "./Text.scss";
 
 export enum FontTypes {
   BODY_1 = "body-1",
@@ -18,13 +18,19 @@ export enum FontTypes {
   DISPLAY_3 = "display-3"
 }
 
-enum FontWeights {
+export enum FontWeights {
   NORMAL = 400,
   BOLD = 700,
   EXTRA_BOLD = 800
 }
 
-interface IText {
+export enum TextDecorations {
+  NONE = "none",
+  UNDERLINE = "underline",
+  LINE_THROUGH = "line-through"
+}
+
+export interface TextProps {
   children: React.ReactNode | string;
   className?: string;
   type?: FontTypes;
@@ -32,12 +38,18 @@ interface IText {
   size?: number;
   lineHeight?: number;
   color?: string;
-  underline?: boolean;
-  strikeThrough?: boolean;
+  decoration?: TextDecorations;
 }
 
-const Text: React.FC<IText> = (props) => {
-  const { className, children, type = FontTypes.BODY_2 } = props;
+const Text: React.FC<TextProps> = (props) => {
+  const {
+    className,
+    children,
+    type = FontTypes.BODY_2,
+    decoration = TextDecorations.NONE,
+    color,
+    weight
+  } = props;
 
   const renderTag = (): string => {
     const typeList: string[] = type?.split("-") || [];
@@ -49,7 +61,15 @@ const Text: React.FC<IText> = (props) => {
   const CustomTag = renderTag() as keyof JSX.IntrinsicElements;
 
   return (
-    <CustomTag className={ClassNames("text", type, className)}>
+    <CustomTag
+      className={ClassNames(
+        styles[type],
+        styles[decoration],
+        // weight && styles[[`text-${weight}`]],
+        className
+      )}
+      style={{ color }}
+    >
       {children}
     </CustomTag>
   );

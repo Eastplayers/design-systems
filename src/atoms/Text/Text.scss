@@ -1,0 +1,55 @@
+@use "../../styles/main.scss" as *;
+
+@function size-calc($baseNum, $step, $type) {
+  @if $type == 1 {
+    @return $baseNum;
+  }
+
+  @if $type > 3 {
+    @if $baseNum > 1.5 {
+      @return ($baseNum - 0.375) - (($step - 0.0625) * $type);
+    }
+  }
+  @return $baseNum - ($step * $type);
+}
+
+$bodySizes: 1, 2, 3, 4;
+@each $bodySize in $bodySizes {
+  .body-#{$bodySize} {
+    $lineHeight: size-calc(28, 2, $bodySize) + px;
+    $fontSize: size-calc(1.25, 0.125, $bodySize) + rem;
+    @include generate-font($font-weight-normal, $fontSize, $lineHeight);
+  }
+}
+
+$headingSizes: 1, 2, 3, 4, 5, 6;
+@each $headingSize in $headingSizes {
+  .heading-#{$headingSize} {
+    $lineHeight: size-calc(38, 3, $headingSize) + px;
+    $fontSize: size-calc(1.875, 0.1875, $headingSize) + rem;
+    @include generate-font($font-weight-bold, $fontSize, $lineHeight);
+  }
+}
+
+$displaySizes: 1, 2, 3;
+@each $displaySize in $displaySizes {
+  .display-#{$displaySize} {
+    $lineHeight: size-calc(62, 4, $displaySize) + px;
+    $fontSize: size-calc(3.5, 0.375, $displaySize) + rem;
+    @include generate-font($font-weight-bold, $fontSize, $lineHeight);
+  }
+}
+
+$decorations: none, underline, line-through;
+@each $decoration in $decorations {
+  .#{$decoration} {
+    text-decoration: $decoration;
+  }
+}
+
+$weights: 400, 700, 800;
+@each $weight in $weights {
+  .text-#{$weight} {
+    font-weight: $weight;
+  }
+}
