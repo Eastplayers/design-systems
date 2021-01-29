@@ -3,7 +3,7 @@ import { withKnobs, text, select, color } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 
 import { Text } from ".";
-import { FontTypes, TextDecorations, TextProps } from "./Text";
+import { FontTypes, TextDecorations, TextProps, FontWeights } from "./Text";
 
 export const All = (): React.ReactElement<TextProps> => {
   const content = text("Content", "Sample content");
@@ -13,6 +13,7 @@ export const All = (): React.ReactElement<TextProps> => {
     TextDecorations.NONE
   );
   const textColor = color("Color", "black");
+  // const weight = select("Weight", FontWeights, FontWeights.NORMAL);
 
   return (
     <div>
@@ -21,7 +22,12 @@ export const All = (): React.ReactElement<TextProps> => {
           <Text type={fontType} color={textColor}>
             {fontType.split("-").join(" ")}
           </Text>
-          <Text type={fontType} decoration={decoration} color={textColor}>
+          <Text
+            type={fontType}
+            decoration={decoration}
+            color={textColor}
+            // weight={weight}
+          >
             {content}
           </Text>
         </div>

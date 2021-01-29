@@ -18,7 +18,7 @@ export enum FontTypes {
   DISPLAY_3 = "display-3"
 }
 
-enum FontWeights {
+export enum FontWeights {
   NORMAL = 400,
   BOLD = 700,
   EXTRA_BOLD = 800
