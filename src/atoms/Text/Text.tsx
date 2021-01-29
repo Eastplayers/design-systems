@@ -47,7 +47,8 @@ const Text: React.FC<TextProps> = (props) => {
     children,
     type = FontTypes.BODY_2,
     decoration = TextDecorations.NONE,
-    color
+    color,
+    weight
   } = props;
 
   const renderTag = (): string => {
@@ -61,7 +62,12 @@ const Text: React.FC<TextProps> = (props) => {
 
   return (
     <CustomTag
-      className={ClassNames(styles[type], styles[decoration], className)}
+      className={ClassNames(
+        styles[type],
+        styles[decoration],
+        // weight && styles[[`text-${weight}`]],
+        className
+      )}
       style={{ color }}
     >
       {children}

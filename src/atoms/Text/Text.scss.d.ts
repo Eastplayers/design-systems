@@ -16,6 +16,9 @@ interface CssExports {
   'heading-6': string;
   'line-through': string;
   'none': string;
+  'text-400': string;
+  'text-700': string;
+  'text-800': string;
   'underline': string;
 }
 export const cssExports: CssExports;
