@@ -18,10 +18,11 @@
 }
 
 .btn {
-  border-radius: var(--buttonBorderRadius);
-  border-color: transparent;
   cursor: pointer;
-
+  border: {
+    radius: var(--buttonBorderRadius);
+    color: transparent;
+  }
   &--primary {
     color: $white;
     background-color: $indigo500;
