@@ -26,6 +26,6 @@ export const ButtonStory = (): React.ReactElement<ButtonProps> => {
 };
 
 export default {
-  title: "Atoms/Button",
+  title: "Molecules/Button",
   decorators: [withKnobs]
 };
