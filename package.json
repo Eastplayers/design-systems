@@ -8,7 +8,7 @@
     "start": "webpack serve --open",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token 4d17c7c6d3ea"
+    "chromatic": "npx chromatic --project-token 4d17c7c6d3ea --exit-zero-on-changes"
   },
   "author": "",
   "license": "ISC",
