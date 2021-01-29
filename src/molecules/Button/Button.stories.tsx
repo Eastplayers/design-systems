@@ -3,7 +3,8 @@ import { withKnobs, text, boolean, select } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 
 import { Button } from ".";
-import { ButtonSizes, ButtonVariants, ButtonProps } from "./Button";
+import { ButtonProps } from "./Button";
+import { ButtonSizes, ButtonVariants } from "./types";
 
 export const ButtonStory = (): React.ReactElement<ButtonProps> => {
   const label = text("Label", "Button Title");
