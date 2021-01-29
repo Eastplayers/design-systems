@@ -2,11 +2,7 @@ import React from "react";
 import ClassNames from "classnames";
 import "../../styles/main.scss";
 
-<<<<<<< HEAD
 export enum FontTypes {
-=======
-enum FontTypes {
->>>>>>> Add text component
   BODY_1 = "body-1",
   BODY_2 = "body-2",
   BODY_3 = "body-3",

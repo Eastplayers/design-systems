@@ -7,10 +7,10 @@ import { ButtonSizes, ButtonVariants, ButtonProps } from "./Button";
 
 export const ButtonStory = (): React.ReactElement<ButtonProps> => {
   const label = text("Label", "Button Title");
-  const isDisabled = boolean("disable", true);
-  const buttonSize = select("Button Size", ButtonSizes, ButtonSizes.L);
+  const isDisabled = boolean("Disabled", true);
+  const buttonSize = select("Size", ButtonSizes, ButtonSizes.L);
   const buttonVariant = select(
-    "Button Size",
+    "Variant",
     ButtonVariants,
     ButtonVariants.Primary
   );
