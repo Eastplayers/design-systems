@@ -19,9 +19,9 @@ export enum FontTypes {
 }
 
 export enum FontWeights {
-  NORMAL = 400,
-  BOLD = 700,
-  EXTRA_BOLD = 800
+  NORMAL = "400",
+  BOLD = "700",
+  EXTRA_BOLD = "800"
 }
 
 export enum TextDecorations {
@@ -65,7 +65,11 @@ const Text: React.FC<TextProps> = (props) => {
       className={ClassNames(
         styles[type],
         styles[decoration],
-        // weight && styles[[`text-${weight}`]],
+        {
+          [styles["text-400"]]: weight === FontWeights.NORMAL,
+          [styles["text-700"]]: weight === FontWeights.BOLD,
+          [styles["text-800"]]: weight === FontWeights.EXTRA_BOLD
+        },
         className
       )}
       style={{ color }}
