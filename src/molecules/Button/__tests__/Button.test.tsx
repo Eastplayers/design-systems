@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../Button";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
+import { render } from "@testing-library/react";
 
-test("<Button /> expect has haha text", async () => {
-  render(<Button label={"haha"} />);
+describe("Button unit test", () => {
+  test("<Button /> expect has label text", async () => {
+    const { getByText } = render(<Button label={"label"} />);
 
-  screen.getByText("haha");
+    expect(getByText("label").toBeInTheDocument("label"));
+  });
 });
