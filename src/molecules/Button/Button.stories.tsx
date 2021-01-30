@@ -17,12 +17,23 @@ export const ButtonStory = (): React.ReactElement<ButtonProps> => {
   );
 
   return (
-    <Button
-      label={label}
-      disabled={isDisabled}
-      size={buttonSize}
-      variant={buttonVariant}
-    />
+    <>
+      {Object.values(ButtonSizes).map((size) => (
+        <div key={size} style={{ marginBottom: 20 }}>
+          {Object.values(ButtonVariants).map((variant, i) => (
+            <div key={variant} style={{ marginBottom: 20 }}>
+              <Button
+                key={`${variant} ${i}`}
+                label={label}
+                disabled={isDisabled}
+                size={size}
+                variant={variant}
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
   );
 };
 
