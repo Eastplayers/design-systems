@@ -6,6 +6,6 @@ describe("Button unit test", () => {
   test("<Button /> expect has label text", async () => {
     const { getByText } = render(<Button label={"label"} />);
 
-    expect(getByText("label").toBeInTheDocument("label"));
+    expect(getByText("label"));
   });
 });
