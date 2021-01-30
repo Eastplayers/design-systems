@@ -1,23 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 
-import { Text } from "../../atoms";
+import { ButtonSizes, ButtonVariants } from "./types";
+import { Text, FontTypes } from "../../atoms";
 
 import styles from "./Button.scss";
-
-export enum ButtonSizes {
-  L = "L",
-  M = "M",
-  S = "S",
-  XS = "XS"
-}
-
-export enum ButtonVariants {
-  Primary = "Primary",
-  Secondary = "Secondary",
-  Ghost = "Ghost",
-  Link = "Link"
-}
 
 export interface ButtonProps {
   label: string;
@@ -25,6 +12,13 @@ export interface ButtonProps {
   variant?: ButtonVariants;
   disabled?: boolean;
 }
+
+const ButtonFontMapping = new Map<ButtonSizes, FontTypes>([
+  [ButtonSizes.L, FontTypes.HEADING_4],
+  [ButtonSizes.M, FontTypes.HEADING_4],
+  [ButtonSizes.S, FontTypes.HEADING_5],
+  [ButtonSizes.XS, FontTypes.HEADING_6]
+]);
 
 const Button: React.FC<ButtonProps> = (props) => {
   const {
@@ -46,7 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button className={buttonClasses}>
-      <Text>{label}</Text>
+      <Text type={ButtonFontMapping.get(size)}>{label}</Text>
     </button>
   );
 };

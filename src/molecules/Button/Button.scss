@@ -29,15 +29,20 @@
   }
 
   &--secondary {
-    color: $indigo100;
+    color: $indigo800;
+    background-color: $indigo100;
   }
 
   &--ghost {
     color: $gray600;
+    background-color: $white;
+    border: 1px solid #cbd5e1;
   }
 
   &--link {
     color: $indigo600;
+    border: none;
+    background-color: transparent;
   }
 
   &--lg {
