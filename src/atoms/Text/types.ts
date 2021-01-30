@@ -15,9 +15,9 @@ export enum FontTypes {
 }
 
 export enum FontWeights {
-  NORMAL = 400,
-  BOLD = 700,
-  EXTRA_BOLD = 800
+  NORMAL = "NORMAL",
+  BOLD = "BOLD",
+  EXTRA_BOLD = "EXTRA_BOLD"
 }
 
 export enum TextDecorations {

@@ -20,9 +20,9 @@ const Text: React.FC<TextProps> = (props) => {
     className,
     children,
     type = FontTypes.BODY_2,
+    weight = FontWeights.NORMAL,
     decoration = TextDecorations.NONE,
-    color,
-    weight
+    color
   } = props;
 
   const renderTag = (): string => {

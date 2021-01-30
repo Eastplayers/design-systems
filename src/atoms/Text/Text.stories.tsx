@@ -13,7 +13,7 @@ export const All = (): React.ReactElement<TextProps> => {
     TextDecorations.NONE
   );
   const textColor = color("Color", "black");
-  const weight = select("Weight", FontWeights, undefined);
+  const weight = select("Weight", FontWeights, FontWeights.NORMAL);
 
   return (
     <div>
