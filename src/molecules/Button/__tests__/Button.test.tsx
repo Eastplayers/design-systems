@@ -3,8 +3,8 @@ import Button from "../Button";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-test("<Icon /> expect return haha", async () => {
-  render(<Button />);
+test("<Button /> expect has haha text", async () => {
+  render(<Button label={"haha"} />);
 
   screen.getByText("haha");
 });
