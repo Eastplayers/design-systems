@@ -32,6 +32,7 @@ $checkbox-small-size: 14;
     }
   }
 }
+
 .checkbox {
   $self: &;
   width: fit-content;
@@ -142,7 +143,7 @@ $checkbox-small-size: 14;
       transform: translate(-50%, -50%) scale(0);
       top: 50%;
       left: 50%;
-      z-index: -1;
+      z-index: -99999;
       transition: all 0.25s ease-in-out;
       opacity: 0;
     }

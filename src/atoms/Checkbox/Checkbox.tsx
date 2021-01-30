@@ -28,6 +28,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         className={styles.checkbox__input}
         {...rest}
       />
+
       <span className={styles.checkbox__checkmark__container}>
         <span className={styles.checkbox__checkmark} />
       </span>
