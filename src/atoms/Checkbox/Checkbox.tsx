@@ -1,24 +1,19 @@
 import React from "react";
 import styles from "./Checkbox.scss";
 import ClassNames from "classnames";
-
-interface CheckboxProps {
-  checked?: boolean;
-  label?: string;
-  disabled?: boolean;
-  small?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { CheckboxProps, CheckboxSizes } from "./types";
 
 const Checkbox: React.FC<CheckboxProps> = (props) => {
-  const { label, disabled, onChange } = props;
+  const { label, disabled, onChange, size = CheckboxSizes.NORMAL } = props;
   return (
     <label
+      aria-label={label}
       className={ClassNames(styles.checkbox, {
-        [styles.disabled]: disabled
+        [styles.disabled]: disabled,
+        [styles["checkbox--normal"]]: size === CheckboxSizes.NORMAL,
+        [styles["checkbox--small"]]: size === CheckboxSizes.SMALL
       })}
     >
-      {label}
       <input
         disabled={disabled}
         type="checkbox"
@@ -28,6 +23,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
       <span className={styles.checkbox__checkmark__container}>
         <span className={styles.checkbox__checkmark} />
       </span>
+      {label}
     </label>
   );
 };

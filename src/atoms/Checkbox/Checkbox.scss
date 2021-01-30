@@ -1,28 +1,95 @@
 @use '../../styles/main.scss' as *;
 
+@mixin generate-checkmark($width, $small-height, $big-height, $x, $y) {
+  .checkbox__checkmark {
+    transform: translate($x, $y);
+    width: 100%;
+    height: 100%;
+    display: block;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0.25em;
+      display: table;
+      display: inline-block;
+      width: $width;
+      border-radius: 20px;
+      background: $white;
+      transform-origin: 50% calc(100% - 1px);
+      opacity: 0;
+      transition: all 0.25s ease-in-out;
+    }
+    &::before {
+      height: $big-height;
+      transform: rotate(35deg);
+    }
+    &::after {
+      height: $small-height;
+      transform: rotate(-55deg);
+    }
+  }
+}
+
 .checkbox {
   $self: &;
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  padding-left: rem(32);
+  margin-bottom: rem(12);
   cursor: pointer;
-  font-size: 1.125rem;
+  font-size: rem(16);
+  line-height: 150%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  transition: color 0.25s ease-in-out;
   &:hover &__checkmark__container {
     &::after {
       transform: translate(-50%, -50%) scale(1);
       opacity: 1;
     }
   }
+  &--normal {
+    #{$self}__checkmark__container {
+      margin-top: 2px;
+      width: rem(16);
+      height: rem(16);
+      &::after {
+        width: rem(28);
+        height: rem(28);
+      }
+    }
+    @include generate-checkmark(rem(2), rem(7), rem(12), 40%, 8%);
+  }
+  &--small {
+    #{$self}__checkmark__container {
+      margin-top: 4px;
+      width: rem(12);
+      height: rem(12);
+      &::after {
+        width: rem(24);
+        height: rem(24);
+      }
+    }
+    @include generate-checkmark(rem(2), rem(5), rem(9), 35%, 18%);
+  }
   &.disabled {
-    color: #e2e8f0;
+    color: $gray200;
     cursor: not-allowed;
     #{$self}__checkmark__container {
-      border-color: #e2e8f0;
+      border-color: $gray200;
+    }
+    #{$self}__input:checked ~ #{$self}__checkmark__container {
+      background-color: $gray200;
+      border-color: $gray200;
+      #{$self}__checkmark {
+        &::after,
+        &::before {
+          opacity: 1;
+        }
+      }
     }
     &:hover {
       #{$self}__checkmark__container {
@@ -51,56 +118,23 @@
     }
   }
   &__checkmark__container {
+    // @include absolute-center-vertical;
     position: absolute;
-    top: 50%;
     left: 0;
-    height: 16px;
-    width: 16px;
     border: 1.5px solid $gray400;
     border-radius: 4px;
     transition: all 0.25s ease-in-out;
-    transform: translateY(-50%);
     &::after {
       content: "";
-      width: 28px;
-      height: 28px;
       background-color: $indigo50;
       border-radius: 14px;
       position: absolute;
       transform: translate(-50%, -50%) scale(0);
       top: 50%;
       left: 50%;
-      z-index: -1;
+      z-index: -99999;
       transition: all 0.25s ease-in-out;
       opacity: 0;
-    }
-  }
-  &__checkmark {
-    transform: translate(6px, 2px);
-    width: 16px;
-    height: 16px;
-    display: block;
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      bottom: 0.25em;
-      display: table;
-      display: inline-block;
-      width: 2px;
-      border-radius: 20px;
-      background: $white;
-      transform-origin: 50% calc(100% - 1px);
-      opacity: 0;
-      transition: opacity 0.25s ease-in-out;
-    }
-    &::before {
-      height: 12px;
-      transform: rotate(35deg);
-    }
-    &::after {
-      height: 7px;
-      transform: rotate(-55deg);
     }
   }
 }

@@ -1,18 +1,31 @@
-import React, { ComponentProps } from "react";
-import { Story, Meta } from "@storybook/react/types-6-0";
-import { Checkbox } from ".";
+import React from "react";
+import {
+  withKnobs,
+  text,
+  select,
+  color,
+  boolean
+} from "@storybook/addon-knobs";
+import "@storybook/addon-knobs/register";
 
-// This default export determines where your story goes in the story list
+import { Checkbox } from ".";
+import { CheckboxProps, CheckboxSizes } from "./types";
+
+export const All = (): React.ReactElement<CheckboxProps> => {
+  const label = text("Label", "Sample content");
+  // const decoration = select(
+  //   "Decoration",
+  //   TextDecorations,
+  //   TextDecorations.NONE
+  // );
+  // const textColor = color("Color", "black");
+  const size = select("Weight", CheckboxSizes, CheckboxSizes.NORMAL);
+  const disabled = boolean("Disabled", false);
+
+  return <Checkbox label={label} size={size} disabled={disabled} />;
+};
+
 export default {
   title: "Atoms/Checkbox",
-  component: Checkbox
-} as Meta;
-
-const Template: Story<ComponentProps<typeof Checkbox>> = (args) => (
-  <Checkbox {...args} />
-);
-
-export const Sample = Template.bind({});
-Sample.args = {
-  label: "This is sample checkbox"
+  decorators: [withKnobs]
 };

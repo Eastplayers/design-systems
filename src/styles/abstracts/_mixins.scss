@@ -5,3 +5,22 @@
   font-feature-settings: "cv05" on, "cv06" on, "cv08" on, "cv10" on, "cv11" on,
     "isol" on, "salt" on, "kern" off;
 }
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin absolute-center-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
