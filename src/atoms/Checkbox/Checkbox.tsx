@@ -11,6 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
     inline = false,
     ...rest
   } = props;
+
   return (
     <label
       aria-label={label}

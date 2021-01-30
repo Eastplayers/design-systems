@@ -10,7 +10,6 @@ export const All = (): React.ReactElement<CheckboxProps> => {
   const size = select("Weight", CheckboxSizes, CheckboxSizes.NORMAL);
   const disabled = boolean("Disabled", false);
   const inline = boolean("Inline", false);
-
   return (
     <div>
       <Checkbox label={label} size={size} disabled={disabled} inline={inline} />
