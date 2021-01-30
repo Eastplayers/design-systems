@@ -3,8 +3,8 @@ import { withKnobs, text, select, color } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 
 import { Text } from ".";
-import { FontTypes, TextDecorations, TextProps, FontWeights } from "./Text";
-
+import { TextProps } from "./Text";
+import { FontTypes, TextDecorations, FontWeights } from "./types";
 export const All = (): React.ReactElement<TextProps> => {
   const content = text("Content", "Sample content");
   const decoration = select(
