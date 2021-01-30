@@ -1,0 +1,106 @@
+@use '../../styles/main.scss' as *;
+
+.checkbox {
+  $self: &;
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1.125rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &:hover &__checkmark__container {
+    &::after {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  &.disabled {
+    color: #e2e8f0;
+    cursor: not-allowed;
+    #{$self}__checkmark__container {
+      border-color: #e2e8f0;
+    }
+    &:hover {
+      #{$self}__checkmark__container {
+        &::after {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 0;
+        }
+      }
+    }
+  }
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked ~ #{$self}__checkmark__container {
+      background-color: $indigo500;
+      border-color: $indigo500;
+      #{$self}__checkmark {
+        &::after,
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__checkmark__container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    border: 1.5px solid $gray400;
+    border-radius: 4px;
+    transition: all 0.25s ease-in-out;
+    transform: translateY(-50%);
+    &::after {
+      content: "";
+      width: 28px;
+      height: 28px;
+      background-color: $indigo50;
+      border-radius: 14px;
+      position: absolute;
+      transform: translate(-50%, -50%) scale(0);
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      transition: all 0.25s ease-in-out;
+      opacity: 0;
+    }
+  }
+  &__checkmark {
+    transform: translate(6px, 2px);
+    width: 16px;
+    height: 16px;
+    display: block;
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0.25em;
+      display: table;
+      display: inline-block;
+      width: 2px;
+      border-radius: 20px;
+      background: $white;
+      transform-origin: 50% calc(100% - 1px);
+      opacity: 0;
+      transition: opacity 0.25s ease-in-out;
+    }
+    &::before {
+      height: 12px;
+      transform: rotate(35deg);
+    }
+    &::after {
+      height: 7px;
+      transform: rotate(-55deg);
+    }
+  }
+}
