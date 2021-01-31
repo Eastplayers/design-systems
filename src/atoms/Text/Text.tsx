@@ -20,7 +20,7 @@ const Text: React.FC<TextProps> = (props) => {
     className,
     children,
     type = FontTypes.BODY_2,
-    weight = FontWeights.NORMAL,
+    weight,
     decoration = TextDecorations.NONE,
     color
   } = props;

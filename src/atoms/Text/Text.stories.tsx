@@ -5,6 +5,7 @@ import "@storybook/addon-knobs/register";
 import { Text } from ".";
 import { TextProps } from "./Text";
 import { FontTypes, TextDecorations, FontWeights } from "./types";
+
 export const All = (): React.ReactElement<TextProps> => {
   const content = text("Content", "Sample content");
   const decoration = select(
@@ -13,7 +14,7 @@ export const All = (): React.ReactElement<TextProps> => {
     TextDecorations.NONE
   );
   const textColor = color("Color", "black");
-  const weight = select("Weight", FontWeights, FontWeights.NORMAL);
+  const weight = select("Weight", FontWeights, undefined) as FontWeights;
 
   return (
     <div>
