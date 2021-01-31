@@ -11,6 +11,7 @@ export interface ButtonProps {
   size?: ButtonSizes;
   variant?: ButtonVariants;
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 const ButtonFontMapping = new Map<ButtonSizes, FontTypes>([
@@ -24,7 +25,8 @@ const Button: React.FC<ButtonProps> = (props) => {
   const {
     label,
     size = ButtonSizes.S,
-    variant = ButtonVariants.Primary
+    variant = ButtonVariants.Primary,
+    onClick
   } = props;
 
   const buttonClasses = classNames(styles.btn, {
@@ -39,7 +41,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   });
 
   return (
-    <button className={buttonClasses}>
+    <button onClick={onClick} className={buttonClasses}>
       <Text type={ButtonFontMapping.get(size)}>{label}</Text>
     </button>
   );
