@@ -1,0 +1,4 @@
+/src/**/*.scss
+/src/**/*.css
+
+/src/**/*.*.d.ts
