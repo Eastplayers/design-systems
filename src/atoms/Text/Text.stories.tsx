@@ -13,22 +13,14 @@ export const All = (): React.ReactElement<TextProps> => {
     TextDecorations,
     TextDecorations.NONE
   );
-  const textColor = color("Color", "black");
   const weight = select("Weight", FontWeights, undefined) as FontWeights;
 
   return (
     <div>
       {Object.values(FontTypes).map((fontType) => (
         <div key={fontType} style={{ marginBottom: 20 }}>
-          <Text type={fontType} color={textColor}>
-            {fontType.split("-").join(" ")}
-          </Text>
-          <Text
-            type={fontType}
-            decoration={decoration}
-            color={textColor}
-            weight={weight}
-          >
+          <Text type={fontType}>{fontType.split("-").join(" ")}</Text>
+          <Text type={fontType} decoration={decoration} weight={weight}>
             {content}
           </Text>
         </div>
