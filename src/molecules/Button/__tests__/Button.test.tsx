@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import { ButtonVariants, ButtonSizes } from "../types";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import "@testing-library/jest-dom/extend-expect";
 
@@ -73,4 +73,19 @@ test("Secondary Button has btn--link class", () => {
   );
 
   expect(getByRole("button")).toHaveClass("btn--link");
+});
+
+test("Button Click", (done) => {
+  function handleClick() {
+    done();
+  }
+  const { getByRole } = render(
+    <Button
+      onClick={handleClick}
+      label={"Submit"}
+      variant={ButtonVariants.Link}
+    />
+  );
+
+  fireEvent.click(getByRole("button"));
 });
