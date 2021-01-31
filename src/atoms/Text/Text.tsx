@@ -11,7 +11,6 @@ export interface TextProps {
   weight?: FontWeights;
   size?: number;
   lineHeight?: number;
-  color?: string;
   decoration?: TextDecorations;
 }
 
@@ -21,7 +20,6 @@ const Text: React.FC<TextProps> = (props) => {
     children,
     type = FontTypes.BODY_2,
     decoration = TextDecorations.NONE,
-    color,
     weight
   } = props;
 
@@ -46,7 +44,6 @@ const Text: React.FC<TextProps> = (props) => {
         },
         className
       )}
-      style={{ color }}
     >
       {children}
     </CustomTag>
