@@ -75,10 +75,9 @@ test("Secondary Button has btn--link class", () => {
   expect(getByRole("button")).toHaveClass("btn--link");
 });
 
-test("Button Click", (done) => {
-  function handleClick() {
-    done();
-  }
+test("Button Click", () => {
+  const handleClick = jest.fn();
+
   const { getByRole } = render(
     <Button
       onClick={handleClick}
@@ -86,6 +85,8 @@ test("Button Click", (done) => {
       variant={ButtonVariants.Link}
     />
   );
-
   fireEvent.click(getByRole("button"));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+  fireEvent.click(getByRole("button"));
+  expect(handleClick).toHaveBeenCalledTimes(2);
 });
