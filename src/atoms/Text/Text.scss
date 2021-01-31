@@ -49,7 +49,7 @@ $decorations: none, underline, line-through;
 
 $weights: 400, 700, 800;
 @each $weight in $weights {
-  .text-#{$weight} {
+  .text--#{$weight} {
     font-weight: $weight;
   }
 }

@@ -38,9 +38,9 @@ const Text: React.FC<TextProps> = (props) => {
         styles[type],
         styles[decoration],
         {
-          [styles["text-400"]]: weight === FontWeights.NORMAL,
-          [styles["text-700"]]: weight === FontWeights.BOLD,
-          [styles["text-800"]]: weight === FontWeights.EXTRA_BOLD
+          [styles["text--400"]]: weight === FontWeights.NORMAL,
+          [styles["text--700"]]: weight === FontWeights.BOLD,
+          [styles["text--800"]]: weight === FontWeights.EXTRA_BOLD
         },
         className
       )}
