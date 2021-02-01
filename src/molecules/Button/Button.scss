@@ -19,30 +19,65 @@
 
 .btn {
   cursor: pointer;
+  transition: background-color 0.3s ease-out;
+
   border: {
     radius: var(--buttonBorderRadius);
     color: transparent;
   }
+
+  &:focus {
+    outline: 0;
+  }
+
   &--primary {
     color: $white;
     background-color: $indigo500;
+    &:focus {
+      background-color: $indigo600;
+    }
+
+    &:hover {
+      background-color: $indigo600;
+    }
   }
 
   &--secondary {
     color: $indigo800;
     background-color: $indigo100;
+    &:focus {
+      background-color: $indigo200;
+    }
+
+    &:hover {
+      background-color: $indigo200;
+    }
   }
 
   &--ghost {
     color: $gray600;
     background-color: $white;
     border: 1px solid #cbd5e1;
+    &:focus {
+      background-color: $gray100;
+    }
+
+    &:hover {
+      background-color: $gray100;
+    }
   }
 
   &--link {
     color: $indigo600;
     border: none;
     background-color: transparent;
+    &:focus {
+      color: $indigo700;
+    }
+
+    &:hover {
+      color: $indigo700;
+    }
   }
 
   &--lg {
