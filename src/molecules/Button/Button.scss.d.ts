@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'btn': string;
+  'btn--disabled': string;
   'btn--ghost': string;
   'btn--lg': string;
   'btn--link': string;

@@ -26,7 +26,14 @@ module.exports = {
         use: [
           "style-loader",
           "css-modules-typescript-loader",
-          { loader: "css-loader", options: { modules: true } },
+          { 
+            loader: "css-loader", options: 
+            {  
+              modules: { 
+                localIdentName: '[local]' 
+              } 
+            } 
+          },
           "sass-loader"
         ]
       }

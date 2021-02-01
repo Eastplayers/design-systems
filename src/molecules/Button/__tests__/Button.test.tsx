@@ -75,6 +75,14 @@ test("Secondary Button has btn--link class", () => {
   expect(getByRole("button")).toHaveClass("btn--link");
 });
 
+test("Disabled Button has btn--disabled class", () => {
+  const { getByRole } = render(
+    <Button label={"Submit"} variant={ButtonVariants.Link} disabled />
+  );
+
+  expect(getByRole("button")).toHaveClass("btn--disabled");
+});
+
 test("Button Click", () => {
   const handleClick = jest.fn();
 
