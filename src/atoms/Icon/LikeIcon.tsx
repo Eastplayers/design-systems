@@ -5,14 +5,13 @@ import iconSet from "./selection.json";
 export interface IconProps {
   color?: string;
   size?: number | string;
-  icon: string;
   className?: string;
   stroke?: string;
   style?: React.CSSProperties;
 }
 
-const Icon: React.FC<IconProps> = (props) => {
-  const { style, color = "", size = 28, icon, className = "" } = props;
+const LikeIcon: React.FC<IconProps> = (props) => {
+  const { style, color = "", size = 28, className = "" } = props;
 
   return (
     <div>
@@ -21,11 +20,11 @@ const Icon: React.FC<IconProps> = (props) => {
         iconSet={iconSet}
         color={color}
         size={size}
-        icon={icon}
+        icon="like"
         style={style}
       />
     </div>
   );
 };
 
-export default Icon;
+export default LikeIcon;
