@@ -65,6 +65,17 @@
     &:hover {
       background-color: $gray100;
     }
+
+    &.btn--disabled {
+      color: $gray400;
+      background-color: transparent;
+      user-select: none;
+      &:hover,
+      &:focus {
+        cursor: not-allowed;
+        background-color: transparent;
+      }
+    }
   }
 
   &--link {
@@ -98,5 +109,16 @@
   &--xs {
     min-width: var(--buttonXsMinWidth);
     min-height: var(--buttonXsMinHeight);
+  }
+
+  &--disabled {
+    color: $gray400;
+    background-color: $gray200;
+    user-select: none;
+    &:hover,
+    &:focus {
+      cursor: not-allowed;
+      background-color: $gray200;
+    }
   }
 }

@@ -26,6 +26,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     label,
     size = ButtonSizes.S,
     variant = ButtonVariants.Primary,
+    disabled,
     onClick
   } = props;
 
@@ -37,7 +38,8 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--lg"]]: size === ButtonSizes.L,
     [styles["btn--md"]]: size === ButtonSizes.M,
     [styles["btn--sm"]]: size === ButtonSizes.S,
-    [styles["btn--xs"]]: size === ButtonSizes.XS
+    [styles["btn--xs"]]: size === ButtonSizes.XS,
+    [styles["btn--disabled"]]: disabled
   });
 
   return (
