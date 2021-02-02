@@ -3,7 +3,7 @@ import Button from "../Button";
 import { ButtonVariants, ButtonSizes } from "../types";
 import { render, fireEvent } from "@testing-library/react";
 
-import "@testing-library/jest-dom/extend-expect";
+import "../../../atoms/Icon/__tests__/node_modules/@testing-library/jest-dom/extend-expect";
 
 test("Button expect has Submit text", () => {
   const { getByText } = render(<Button label={"Submit"} />);

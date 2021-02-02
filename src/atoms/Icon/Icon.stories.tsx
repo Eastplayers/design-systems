@@ -6,7 +6,6 @@ import "@storybook/addon-knobs/register";
 import { Icon } from ".";
 import { IconProps } from "./Icon";
 import iconSet from "./selection.json";
-import LikeIcon from "./LikeIcon";
 
 export const Icons = (): React.ReactElement<IconProps> => {
   // const iconList = select("Icon", IconList, IconList.LIKE);
@@ -36,7 +35,8 @@ export const Icons = (): React.ReactElement<IconProps> => {
   );
 };
 
-export const LikeIcons = (): React.ReactElement<IconProps> => {
+
+export const AllStories = (): React.ReactElement<IconProps> => {
   // const iconList = select("Icon", IconList, IconList.LIKE);
   const size = number("Size", 28);
   const fillColor = color("Fill Color", "");
@@ -48,12 +48,18 @@ export const LikeIcons = (): React.ReactElement<IconProps> => {
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
-      <LikeIcon
-        size={size}
-        color={fillColor}
-        style={{ display: "inline" }}
-        stroke="blue"
-      />
+      {iconList.map((value) => {
+        return (
+          <Icon
+            key={value}
+            icon={value}
+            size={size}
+            color={fillColor}
+            style={{ display: "inline" }}
+            stroke="blue"
+          />
+        );
+      })}
     </div>
   );
 };
