@@ -2,6 +2,7 @@
 // Please do not change this file!
 interface CssExports {
   'checkbox': string;
+  'checkbox--inline': string;
   'checkbox--normal': string;
   'checkbox--small': string;
   'checkbox__checkmark': string;

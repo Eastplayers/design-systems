@@ -4,6 +4,9 @@ export interface CheckboxProps {
   disabled?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   size?: CheckboxSizes;
+  defaultChecked?: boolean;
+  name?: string;
+  inline?: boolean;
 }
 
 export enum CheckboxSizes {
