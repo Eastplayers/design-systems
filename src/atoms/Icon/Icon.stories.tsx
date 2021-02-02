@@ -7,36 +7,38 @@ import { Icon } from ".";
 import { IconProps } from "./Icon";
 import iconSet from "./selection.json";
 import "./Icon.scss";
+import { bold } from "../../../fileMocks";
 
 export const Icons = (): React.ReactElement<IconProps> => {
   // const iconList = select("Icon", IconList, IconList.LIKE);
   const size = number("Size", 28);
-  const fillColor = color("Fill Color", "");
-
-  const iconList = [];
-  for (let i = 0; i < iconSet.icons.length; i++) {
-    iconList.push(iconSet.icons[i].icon.tags[0]);
-  }
+  const fillColor = color("Fill Color", "#334155");
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {iconList.map((value) => {
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(6, 1fr)",
+        gridAutoRows: "1fr",
+        gap: 10
+      }}
+    >
+      {iconSet.icons.map((icon) => {
+        const iconName = icon.properties.name;
         return (
           <div
             style={{
-              width: 110,
-              height: 80,
               display: "flex",
-              margin: 5,
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              border: "1px solid #a6a9b6 ",
+              border: "1px solid lightgray",
+              padding: "10px 20px"
             }}
-            key={value}
+            key={iconName}
           >
             <Icon
-              icon={value}
+              icon={iconName}
               size={size}
               color={fillColor}
               style={{ display: "inline" }}
@@ -45,46 +47,20 @@ export const Icons = (): React.ReactElement<IconProps> => {
             <div
               style={{
                 borderRadius: 4,
-                backgroundColor: "#f4f5db",
-                color: "#a6a9b6",
-                padding: 4,
-                fontSize: 12,
-                marginTop: 10,
+                backgroundColor: "#f1f5f9",
+                color: "#64748b",
+                padding: "5px 10px",
+                fontSize: "0.875rem",
+                marginTop: 20,
                 width: "90%",
                 textAlign: "center",
+                fontFamily: "monospace",
+                fontWeight: "bold"
               }}
             >
-              {value}
+              {iconName}
             </div>
           </div>
-        );
-      })}
-    </div>
-  );
-};
-
-export const AllStories = (): React.ReactElement<IconProps> => {
-  // const iconList = select("Icon", IconList, IconList.LIKE);
-  const size = number("Size", 28);
-  const fillColor = color("Fill Color", "");
-
-  const iconList = [];
-  for (let i = 0; i < iconSet.icons.length; i++) {
-    iconList.push(iconSet.icons[i].icon.tags[0]);
-  }
-
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
-      {iconList.map((value) => {
-        return (
-          <Icon
-            key={value}
-            icon={value}
-            size={size}
-            color={fillColor}
-            style={{ display: "inline" }}
-            stroke="blue"
-          />
         );
       })}
     </div>
