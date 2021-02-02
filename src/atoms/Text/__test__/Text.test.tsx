@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import "../../Icon/__tests__/node_modules/@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom/extend-expect";
 import Text from "../Text";
 import { FontTypes, FontWeights, TextDecorations } from "../types";
 
