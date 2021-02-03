@@ -2,16 +2,17 @@
 
 $radio-normal-size: 16;
 $radio-small-size: 14;
+$spacing-between-input-and-label: 12;
 
 @mixin generate-radio($size) {
   font-size: rem($size);
-  padding-left: rem($size + 12);
+  padding-left: rem($size + $spacing-between-input-and-label);
   .radio__checkmark-container {
     width: rem($size);
     height: rem($size);
     &::after {
-      width: rem($size * 2.5);
-      height: rem($size * 2.5);
+      width: rem($size * 2.2);
+      height: rem($size * 2.2);
     }
     .radio__checkmark {
       &::after {
@@ -104,10 +105,10 @@ $radio-small-size: 14;
     }
   }
   &__checkmark-container {
-    margin-top: 2px;
+    margin-top: rem(2);
     position: absolute;
     left: 0;
-    border: 2px solid $gray400;
+    border: rem(2) solid $gray400;
     border-radius: 100%;
     transition: all 0.25s ease-in-out;
     &::after {

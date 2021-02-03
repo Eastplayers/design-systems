@@ -2,23 +2,22 @@
 
 $checkbox-normal-size: 16;
 $checkbox-small-size: 14;
+$checkmark-width: 1.7;
+$spacing-between-input-and-label: 12;
 
-@mixin generate-checkmark($width, $small-height, $big-height) {
+@mixin generate-checkmark($small-height, $big-height) {
   .checkbox__checkmark {
-    transform: translate(38%, 5%);
-    width: 100%;
-    height: 100%;
-    display: block;
     &::before,
     &::after {
       content: "";
       position: absolute;
-      bottom: rem(4);
+      left: 40%;
+      bottom: 20%;
       display: inline-block;
-      width: $width;
+      width: rem($checkmark-width);
       border-radius: rem(20);
       background: $white;
-      transform-origin: 50% calc(100% - 1px);
+      transform-origin: 50% calc(100% - 0.8px);
       opacity: 0;
       transition: all 0.25s ease-in-out;
     }
@@ -30,6 +29,24 @@ $checkbox-small-size: 14;
       height: $small-height;
       transform: rotate(-55deg);
     }
+  }
+}
+
+@mixin generate-checkbox($size) {
+  font-size: rem($size);
+  padding-left: rem($spacing-between-input-and-label + $size);
+  .checkbox__checkmark__container {
+    width: rem($size);
+    height: rem($size);
+    &::after {
+      width: rem($size * 2.2);
+      height: rem($size * 2.2);
+    }
+  }
+  @if $size == $checkbox-normal-size {
+    @include generate-checkmark(rem(7), rem(12));
+  } @else {
+    @include generate-checkmark(rem(5), rem(9));
   }
 }
 
@@ -58,30 +75,10 @@ $checkbox-small-size: 14;
     }
   }
   &--normal {
-    font-size: rem($checkbox-normal-size);
-    padding-left: rem(12 + $checkbox-normal-size);
-    #{$self}__checkmark__container {
-      width: rem($checkbox-normal-size);
-      height: rem($checkbox-normal-size);
-      &::after {
-        width: rem($checkbox-normal-size * 2.5);
-        height: rem($checkbox-normal-size * 2.5);
-      }
-    }
-    @include generate-checkmark(rem(2), rem(7), rem(12));
+    @include generate-checkbox($checkbox-normal-size);
   }
   &--small {
-    font-size: rem($checkbox-small-size);
-    padding-left: rem(12 + $checkbox-small-size);
-    #{$self}__checkmark__container {
-      width: rem($checkbox-small-size);
-      height: rem($checkbox-small-size);
-      &::after {
-        width: rem($checkbox-small-size * 2.5);
-        height: rem($checkbox-small-size * 2.5);
-      }
-    }
-    @include generate-checkmark(rem(2), rem(5), rem(9));
+    @include generate-checkbox($checkbox-small-size);
   }
   &.disabled {
     color: $gray300;
@@ -111,9 +108,9 @@ $checkbox-small-size: 14;
   &__input {
     position: absolute;
     opacity: 0;
-    cursor: pointer;
     height: 0;
     width: 0;
+    cursor: pointer;
     &:checked ~ #{$self}__checkmark__container {
       background-color: $indigo500;
       border-color: $indigo500;
@@ -129,11 +126,11 @@ $checkbox-small-size: 14;
     }
   }
   &__checkmark__container {
-    margin-top: 2px;
+    margin-top: rem(2);
     position: absolute;
     left: 0;
     border: 2px solid $gray400;
-    border-radius: 3px;
+    border-radius: rem(3);
     transition: all 0.25s ease-in-out;
     &::after {
       content: "";
