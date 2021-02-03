@@ -7,11 +7,9 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
   const {
     label,
     disabled,
-    onChange,
     size = CheckboxSizes.NORMAL,
-    defaultChecked = false,
-    name,
-    inline = false
+    inline = false,
+    ...rest
   } = props;
   return (
     <label
@@ -27,9 +25,7 @@ const Checkbox: React.FC<CheckboxProps> = (props) => {
         disabled={disabled}
         type="checkbox"
         className={styles.checkbox__input}
-        onChange={onChange}
-        defaultChecked={defaultChecked}
-        name={name}
+        {...rest}
       />
       <span className={styles.checkbox__checkmark__container}>
         <span className={styles.checkbox__checkmark} />
