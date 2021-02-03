@@ -14,7 +14,6 @@ $checkbox-small-size: 14;
       content: "";
       position: absolute;
       bottom: rem(4);
-      display: table;
       display: inline-block;
       width: $width;
       border-radius: rem(20);
@@ -61,7 +60,6 @@ $checkbox-small-size: 14;
     font-size: rem($checkbox-normal-size);
     padding-left: rem(12 + $checkbox-normal-size);
     #{$self}__checkmark__container {
-      margin-top: 2px;
       width: rem($checkbox-normal-size);
       height: rem($checkbox-normal-size);
       &::after {
@@ -75,7 +73,6 @@ $checkbox-small-size: 14;
     font-size: rem($checkbox-small-size);
     padding-left: rem(12 + $checkbox-small-size);
     #{$self}__checkmark__container {
-      margin-top: 2px;
       width: rem($checkbox-small-size);
       height: rem($checkbox-small-size);
       &::after {
@@ -131,7 +128,7 @@ $checkbox-small-size: 14;
     }
   }
   &__checkmark__container {
-    // @include absolute-center-vertical;
+    margin-top: 2px;
     position: absolute;
     left: 0;
     border: 2px solid $gray400;
