@@ -2,4 +2,6 @@ html {
   font-family: "Inter", sans-serif;
   font-size: 16px;
   font-style: normal;
+  font-feature-settings: "cv05" on, "cv06" on, "cv08" on, "cv10" on, "cv11" on,
+    "isol" on, "salt" on, "kern" off;
 }
