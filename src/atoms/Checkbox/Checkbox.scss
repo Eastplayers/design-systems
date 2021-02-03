@@ -1,5 +1,8 @@
 @use '../../styles/main.scss' as *;
 
+$checkbox-normal-size: 16;
+$checkbox-small-size: 14;
+
 @mixin generate-checkmark($width, $small-height, $big-height) {
   .checkbox__checkmark {
     transform: translate(38%, 5%);
@@ -59,11 +62,11 @@
   &--normal {
     #{$self}__checkmark__container {
       margin-top: 2px;
-      width: rem(16);
-      height: rem(16);
+      width: rem($checkbox-normal-size);
+      height: rem($checkbox-normal-size);
       &::after {
-        width: rem(36);
-        height: rem(36);
+        width: rem($checkbox-normal-size * 2.5);
+        height: rem($checkbox-normal-size * 2.5);
       }
     }
     @include generate-checkmark(rem(2), rem(7), rem(12));
@@ -71,11 +74,11 @@
   &--small {
     #{$self}__checkmark__container {
       margin-top: 4px;
-      width: rem(14);
-      height: rem(14);
+      width: rem($checkbox-small-size);
+      height: rem($checkbox-small-size);
       &::after {
-        width: rem(30);
-        height: rem(30);
+        width: rem($checkbox-small-size * 2.5);
+        height: rem($checkbox-small-size * 2.5);
       }
     }
     @include generate-checkmark(rem(2), rem(5), rem(9));
