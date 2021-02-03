@@ -46,6 +46,7 @@ $checkbox-small-size: 14;
   -ms-user-select: none;
   user-select: none;
   transition: color 0.25s ease-in-out;
+  white-space: pre-wrap;
   &--inline {
     display: inline-block;
     margin-right: rem(40);
