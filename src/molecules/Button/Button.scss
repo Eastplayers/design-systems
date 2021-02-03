@@ -16,7 +16,7 @@
 
   --buttonBorderRadius: #{rem(8)};
 
-  --buttonGhostBorder: rem(1) solid $gray300;
+  --buttonGhostBorder: #{rem(1) solid $gray300};
 }
 
 .btn {
