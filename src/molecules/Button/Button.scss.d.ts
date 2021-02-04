@@ -11,6 +11,7 @@ interface CssExports {
   'btn--secondary': string;
   'btn--sm': string;
   'btn--xs': string;
+  'container': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

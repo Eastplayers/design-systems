@@ -19,10 +19,16 @@
   --buttonGhostBorder: #{rem(1) solid $gray300};
 }
 
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .btn {
   cursor: pointer;
   transition: background-color 0.3s ease-out;
-
+  padding: 12px 24px;
   border: {
     radius: var(--buttonBorderRadius);
     color: transparent;
@@ -40,7 +46,7 @@
     }
 
     &:hover {
-      background-color: $indigo600;
+      background-color: $indigo500;
     }
   }
 

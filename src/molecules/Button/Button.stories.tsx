@@ -5,6 +5,7 @@ import "@storybook/addon-knobs/register";
 import { Button } from ".";
 import { ButtonProps } from "./Button";
 import { ButtonSizes, ButtonVariants } from "./types";
+import { Icon } from "../../atoms";
 
 export const SingleStory = (): React.ReactElement<ButtonProps> => {
   const label = text("Label", "Button Title");
@@ -15,9 +16,17 @@ export const SingleStory = (): React.ReactElement<ButtonProps> => {
     ButtonVariants,
     ButtonVariants.Primary
   );
-
+  const icon = (
+    <Icon
+      icon={"chevron-down"}
+      color={"white"}
+      style={{ display: "inline" }}
+      stroke="blue"
+    />
+  );
   return (
     <Button
+      icon={icon}
       label={label}
       disabled={isDisabled}
       size={buttonSize}

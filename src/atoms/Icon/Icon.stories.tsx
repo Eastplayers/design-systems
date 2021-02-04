@@ -3,14 +3,14 @@
 import React from "react";
 import { withKnobs, number, color } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
+
 import { Icon } from ".";
 import { IconProps } from "./Icon";
 import iconSet from "./selection.json";
+
 import "./Icon.scss";
-import { bold } from "../../../fileMocks";
 
 export const Icons = (): React.ReactElement<IconProps> => {
-  // const iconList = select("Icon", IconList, IconList.LIKE);
   const size = number("Size", 28);
   const fillColor = color("Fill Color", "#334155");
 
