@@ -15,6 +15,20 @@ export interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+enum IconSizes {
+  L = 20,
+  M = 20,
+  S = 18,
+  XS = 16
+}
+
+const IconSizeMapping = new Map<ButtonSizes, IconSizes>([
+  [ButtonSizes.L, IconSizes.L],
+  [ButtonSizes.M, IconSizes.M],
+  [ButtonSizes.S, IconSizes.S],
+  [ButtonSizes.XS, IconSizes.XS]
+]);
+
 const ButtonFontMapping = new Map<ButtonSizes, FontTypes>([
   [ButtonSizes.L, FontTypes.HEADING_4],
   [ButtonSizes.M, FontTypes.HEADING_4],
@@ -42,7 +56,10 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--xs"]]: size === ButtonSizes.XS,
     [styles["btn--disabled"]]: disabled
   });
-
+  if (icon) {
+    const iconSize = IconSizeMapping.get(size);
+    const Icon = React.cloneElement(icon, { size: iconSize });
+  }
   return (
     <button onClick={onClick} className={buttonClasses}>
       <div className={styles.container}>
