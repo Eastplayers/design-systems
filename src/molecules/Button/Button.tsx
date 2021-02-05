@@ -36,7 +36,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--primary"]]: variant === ButtonVariants.Primary,
     [styles["btn--secondary"]]: variant === ButtonVariants.Secondary,
     [styles["btn--ghost"]]: variant === ButtonVariants.Ghost,
-    [styles["btn--link"]]: variant === ButtonVariants.Link,
     [styles["btn--lg"]]: size === ButtonSizes.L,
     [styles["btn--md"]]: size === ButtonSizes.M,
     [styles["btn--sm"]]: size === ButtonSizes.S,

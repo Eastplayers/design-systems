@@ -86,19 +86,6 @@
     }
   }
 
-  &--link {
-    color: $indigo600;
-    border: none;
-    background-color: transparent;
-    &:focus {
-      color: $indigo700;
-    }
-
-    &:hover {
-      color: $indigo700;
-    }
-  }
-
   &--disabled {
     color: $gray400;
     background-color: $gray200;
