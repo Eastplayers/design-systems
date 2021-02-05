@@ -16,10 +16,10 @@ export interface ButtonProps {
 }
 
 enum IconSizes {
-  L = 20,
-  M = 20,
-  S = 18,
-  XS = 16
+  L = 16,
+  M = 10,
+  S = 8,
+  XS = 6
 }
 
 const IconSizeMapping = new Map<ButtonSizes, IconSizes>([
@@ -45,6 +45,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     icon,
     onClick
   } = props;
+
   const buttonClasses = classNames(styles.btn, {
     [styles["btn--primary"]]: variant === ButtonVariants.Primary,
     [styles["btn--secondary"]]: variant === ButtonVariants.Secondary,
@@ -55,6 +56,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--xs"]]: size === ButtonSizes.XS,
     [styles["btn--disabled"]]: disabled
   });
+
   if (icon) {
     const iconSize = IconSizeMapping.get(size);
     const Icon: React.ReactElement = React.cloneElement(icon, {

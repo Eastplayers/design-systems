@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button";
+import Icon from "../../../atoms";
 import { ButtonVariants, ButtonSizes } from "../types";
 import { render, fireEvent } from "@testing-library/react";
 
@@ -85,7 +86,6 @@ test("Disabled Button has btn--disabled class", () => {
 
 test("Button Click", () => {
   const handleClick = jest.fn();
-
   const { getByRole } = render(
     <Button
       onClick={handleClick}
@@ -97,4 +97,18 @@ test("Button Click", () => {
   expect(handleClick).toHaveBeenCalledTimes(1);
   fireEvent.click(getByRole("button"));
   expect(handleClick).toHaveBeenCalledTimes(2);
+});
+
+test("Expect icon on Component Icon", () => {
+  const icon = (
+    <Icon
+      icon={"chevron-down"}
+      color={"white"}
+      style={{ display: "inline" }}
+      stroke="blue"
+    />
+  );
+  const { getByRole } = render(
+    <Button icon={icon} label={"Submit"} variant={ButtonVariants.Link} />
+  );
 });
