@@ -45,7 +45,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     icon,
     onClick
   } = props;
-
   const buttonClasses = classNames(styles.btn, {
     [styles["btn--primary"]]: variant === ButtonVariants.Primary,
     [styles["btn--secondary"]]: variant === ButtonVariants.Secondary,
@@ -58,13 +57,22 @@ const Button: React.FC<ButtonProps> = (props) => {
   });
   if (icon) {
     const iconSize = IconSizeMapping.get(size);
-    const Icon = React.cloneElement(icon, { size: iconSize });
+    const Icon: React.ReactElement = React.cloneElement(icon, {
+      size: iconSize
+    });
+    return (
+      <button onClick={onClick} className={buttonClasses}>
+        <div className={styles.container}>
+          <Text type={ButtonFontMapping.get(size)}>{label}</Text>
+          {Icon}
+        </div>
+      </button>
+    );
   }
   return (
     <button onClick={onClick} className={buttonClasses}>
       <div className={styles.container}>
         <Text type={ButtonFontMapping.get(size)}>{label}</Text>
-        {icon}
       </div>
     </button>
   );
