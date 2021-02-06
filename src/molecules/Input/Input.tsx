@@ -13,8 +13,8 @@ export interface InputProps {
   state?: string;
   label?: string;
   children?: string;
-  iconColor?:string,
-  icon?:string
+  iconColor?: string;
+  icon?: string | undefined;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
@@ -46,7 +46,12 @@ const Input: React.FC<InputProps> = (props) => {
       <div className="input-border">
         <div className={containedLabel}>{label}</div>
         <div className={iconPosition}>
-          <Icon className="input-icon" icon={icon} size="16px" color={iconColor} />
+          <Icon
+            className="input-icon"
+            icon={icon}
+            size="16px"
+            color={iconColor}
+          />
           <Text className="placeholder-text">{children}</Text>
         </div>
       </div>

@@ -9,6 +9,7 @@
 
 .top-label {
     display: block;
+    margin-bottom: 4px
 }
 
 .contained-label {
@@ -58,7 +59,7 @@
     & .input-icon {
         position: absolute;
         right: 16px;
-        margin-right:0
+        margin-right: 0
     }
 }
 
