@@ -1,0 +1,67 @@
+.input-label {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 20px;
+    display: none
+}
+
+.top-label {
+    display: block;
+}
+
+.contained-label {
+    display: block
+}
+
+.input-border {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 16px 6px 12px;
+    width: 252px;
+    background: #FFFFFF;
+    border: 1px solid #94A3B8;
+    box-sizing: border-box;
+    border-radius: 6px;
+    position: relative
+}
+
+.placeholder-text {
+    //styleName: Body/2-Regular;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #94A3B8;
+
+}
+
+.input-icon {
+    display: none;
+    margin-right: 12px
+}
+
+.prefix {
+    display: flex;
+}
+
+.suffix {
+    display: flex;
+    flex-direction: row-reverse;
+
+    & .input-icon {
+        position: absolute;
+        right: 16px;
+        margin-right:0
+    }
+}
+
+.none .input-icon {
+    display: none !important;
+}

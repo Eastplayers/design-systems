@@ -15,6 +15,7 @@ const Icon: React.FC<IconProps> = (props) => {
   const { style, color = "", size = 28, icon, className = "" } = props;
 
   return (
+    <div style={{ display: "flex", alignItems: "center" }}>
       <IcomoonReact
         className={className}
         iconSet={iconSet}
@@ -23,6 +24,7 @@ const Icon: React.FC<IconProps> = (props) => {
         icon={icon}
         style={style}
       />
+    </div>
   );
 };
 
