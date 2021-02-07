@@ -5,7 +5,7 @@ import iconSet from "./selection.json";
 export interface IconProps {
   color?: string;
   size?: number | string;
-  icon: string;
+  icon: string | undefined;
   className?: string;
   stroke?: string;
   style?: React.CSSProperties;

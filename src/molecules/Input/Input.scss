@@ -1,68 +1,120 @@
-.input-label {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 20px;
-    display: none
-}
-
-.top-label {
-    display: block;
-    margin-bottom: 4px
-}
-
-.contained-label {
-    display: block
-}
-
-.input-border {
+.input-component {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 6px 16px 6px 12px;
-    width: 252px;
-    background: #FFFFFF;
-    border: 1px solid #94A3B8;
-    box-sizing: border-box;
-    border-radius: 6px;
-    position: relative
-}
 
-.placeholder-text {
-    //styleName: Body/2-Regular;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #94A3B8;
-
-}
-
-.input-icon {
-    display: none;
-    margin-right: 12px
-}
-
-.prefix {
-    display: flex;
-}
-
-.suffix {
-    display: flex;
-    flex-direction: row-reverse;
-
-    & .input-icon {
-        position: absolute;
-        right: 16px;
-        margin-right: 0
+    @mixin before-input-icon {
+        margin-right: 12px;
+        display: inline-flex !important;
+        align-items: center;
     }
-}
 
-.none .input-icon {
-    display: none !important;
+    @mixin after-input-icon {
+        margin-right: 0;
+        display: inline-flex !important;
+        align-items: center;
+    }
+
+    .after-input-icon-container {
+        justify-content: space-between !important;
+
+    }
+
+    .input-label {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 20px;
+        display: none
+    }
+
+    .top-label {
+        display: block;
+        margin-bottom: 4px
+    }
+
+    .contained-label {
+        display: block
+    }
+
+    .input-border {
+        display: flex;
+        padding: 6px 16px 6px 12px;
+        width: 252px;
+        background: #FFFFFF;
+        border: 1px solid #94A3B8;
+        box-sizing: border-box;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    .placeholder-text {
+        //styleName: Body/2-Regular;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #94A3B8;
+
+    }
+
+    .content-container {
+        display: flex;
+    }
+
+    .input-icon {
+        display: none !important
+    }
+
+    .suffix .suffix-input-icon {
+        @include after-input-icon()
+    }
+
+    .prefix .prefix-input-icon {
+        @include before-input-icon()
+    }
+
+    .both {
+        justify-content: space-between !important;
+
+        & .prefix-input-icon {
+            @include before-input-icon();
+            margin-right: 0;
+        }
+
+        & .suffix-input-icon {
+            @include after-input-icon()
+        }
+
+    }
+
+    .leading .leading-input-icon-container {
+        display: flex !important;
+        align-items: center;
+        margin-right: 15px
+    }
+
+    .trailing .trailing-input-icon-container {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .helper-text {
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 20px;
+        /* identical to box height, or 167% */
+
+        font-feature-settings: 'ss01'on, 'cv05'on, 'cv06'on, 'cv08'on, 'cv10'on, 'cv11'on, 'kern'off;
+
+        /* Gray/700 */
+
+        color: #334155;
+    }
+
 }

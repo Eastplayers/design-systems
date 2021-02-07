@@ -4,8 +4,15 @@ export enum InputStyles {
   NO_LABEL = "no label"
 }
 
-export enum InputPosition {
+export enum InputPositions {
   PREFIX = "prefix",
   SUFFIX = "suffix",
+  BOTH = "both",
+  NONE = "none"
+}
+
+export enum InputTypes {
+  LEADING = "leading",
+  TRAILING = "trailing",
   NONE = "none"
 }

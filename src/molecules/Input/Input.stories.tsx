@@ -1,7 +1,7 @@
 import { color, select, text, withKnobs } from "@storybook/addon-knobs";
 import React from "react";
 import { Input } from ".";
-import { InputPosition, InputStyles } from "./types";
+import { InputPositions, InputStyles, InputTypes } from "./types";
 import iconSet from "../../atoms/Icon/selection.json";
 
 export const InputStory = (): React.ReactElement => {
@@ -13,18 +13,24 @@ export const InputStory = (): React.ReactElement => {
     InputStyles.CONTAINED_LABEL
   );
   const iconColor = color("Icon Color", "black");
-  const position = select("Icon Position", InputPosition, InputPosition.PREFIX);
+  const position = select("Icon Position", InputPositions, InputPositions.NONE);
   const iconsList = iconSet.icons.map((icon) => {
     return icon.properties.name;
   });
-  const listIcon = select("Icons List", iconsList, iconsList[0]);
+  const prefixIcon = select("Prefix Icon", iconsList, iconsList[0]);
+  const suffixIcon = select("Suffix Icon", iconsList, iconsList[0]);
+  const type = select("Input Types", InputTypes, InputTypes.LEADING)
+  const helper = text("Helper Text","")
   return (
     <Input
       label={label}
       style={style}
       position={position}
       iconColor={iconColor}
-      icon={listIcon}
+      prefixIcon={prefixIcon}
+      suffixIcon={suffixIcon}
+      type={type}
+      helper={helper}
     >
       {placeHolder}
     </Input>
