@@ -2,7 +2,8 @@
 // Please do not change this file!
 interface CssExports {
   'after-input-icon-container': string;
-  'both': string;
+  'both-position': string;
+  'both-type': string;
   'contained-label': string;
   'content-container': string;
   'helper-text': string;

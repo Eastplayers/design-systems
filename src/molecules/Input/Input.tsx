@@ -2,7 +2,7 @@ import React from "react";
 import { Text } from "../../atoms";
 import styles from "./Input.scss";
 import classNames from "classnames";
-import { InputStyles, InputTypes } from "./types";
+import { InputPositions, InputStyles, InputTypes } from "./types";
 import { Icon } from "../../atoms/Icon";
 
 export interface InputProps {
@@ -14,8 +14,9 @@ export interface InputProps {
   label?: string;
   children?: string;
   iconColor?: string;
-  prefixIcon?: string | undefined;
-  suffixIcon?: string | undefined;
+  prefixIcon?: string;
+  suffixIcon?: string;
+  width: string;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
@@ -26,9 +27,10 @@ const Input: React.FC<InputProps> = (props) => {
     state,
     children = "Placeholder Text",
     iconColor,
-    prefixIcon,
-    suffixIcon,
-    type
+    prefixIcon = "trash",
+    suffixIcon = "trash",
+    type,
+    width = "50px"
   } = props;
   const topAllignedLabel = classNames(styles["input-label"], {
     [styles["top-label"]]: style === InputStyles.TOP_LABEL
@@ -37,25 +39,26 @@ const Input: React.FC<InputProps> = (props) => {
     [styles["contained-label"]]: style === InputStyles.CONTAINED_LABEL
   });
   const iconPosition = classNames(styles["content-container"], {
-    [styles["prefix"]]: position === "prefix",
-    [styles["suffix"]]: position === "suffix",
-    [styles["after-input-icon-container"]]: position === "suffix",
-    [styles["both"]]: position === "both"
+    [styles["prefix"]]: position === InputPositions.PREFIX,
+    [styles["suffix"]]: position === InputPositions.SUFFIX,
+    [styles["after-input-icon-container"]]: position === InputPositions.SUFFIX,
+    [styles["both-position"]]: position === InputPositions.BOTH
   });
 
   const typeIcon = classNames(styles["input-border"], {
     [styles["leading"]]: type === InputTypes.LEADING,
-    [styles["trailing"]]: type === InputTypes.TRAILING
+    [styles["trailing"]]: type === InputTypes.TRAILING,
+    [styles["both-type"]]: type === InputTypes.BOTH
   });
 
   const helperText = classNames({
     [styles["helper-text"]]: helper !== ""
   });
-
+  // document.getElementById("input-border")?.style.width? : width;
   return (
     <div className="input-component">
       <div className={topAllignedLabel}>{label}</div>
-      <div className={typeIcon}>
+      <div id="input-border" className={typeIcon}>
         <div className="  input-icon leading-input-icon-container ">
           <Icon icon={prefixIcon} size={18} color={iconColor} />
         </div>

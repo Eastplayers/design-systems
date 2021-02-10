@@ -14,5 +14,6 @@ export enum InputPositions {
 export enum InputTypes {
   LEADING = "leading",
   TRAILING = "trailing",
+  BOTH = "both",
   NONE = "none"
 }
