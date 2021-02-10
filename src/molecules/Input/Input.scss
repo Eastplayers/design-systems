@@ -1,142 +1,141 @@
-@use "../../styles/abstracts/functions"as *;
+@use "../../styles/main.scss"as *;
+@use "../../atoms/Text/Text.scss"as *;
 
-.input-component {
+
+$before-icon-margin-right: rem(12);
+$top-label-margin-bottom: rem(4);
+$input-border-margin-bottom:rem(4);
+$input-border-radius: rem(6);
+$placeholder-text-height: rem(24);
+$placeholder-min-height:rem(26);
+
+@mixin before-input-icon {
+    margin-right: $before-icon-margin-right;
+    display: inline-flex;
+    align-items: center;
+}
+
+@mixin after-input-icon {
+    display: inline-flex;
+    align-items: center;
+}
+
+.input {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
 
-    @mixin before-input-icon {
-        margin-right: 12px;
-        display: inline-flex !important;
-        align-items: center;
+    &-label {
+        @extend .heading-6;
+        display: none;
+
+        &.top-label {
+            display: block;
+            margin-bottom: $top-label-margin-bottom;
+        }
+
+        &.contained-label {
+            display: block
+        }
     }
 
-    @mixin after-input-icon {
-        margin-right: 0;
-        margin-left: 20px;
-        display: inline-flex !important;
-        align-items: center;
-    }
-
-    @mixin leading-input-icon-container {
-        display: flex !important;
-        align-items: center;
-        margin-right: 15px
-    }
-
-    @mixin trailing-input-icon-container {
-        display: flex !important;
-        align-items: center;
-        margin-left: 20px;
-
-    }
-
-    .after-input-icon-container {
-        justify-content: space-between !important;
-
-    }
-
-    .input-label {
-        font-family: Inter;
-        font-style: normal;
-        font-weight: bold;
-        font-size: rem(12);
-        line-height: 20px;
-        display: none
-    }
-
-    .top-label {
-        display: block;
-        margin-bottom: 4px
-    }
-
-    .contained-label {
-        display: block
-    }
-
-    .input-border {
+    &-border {
         display: flex;
         padding: 6px 16px 6px 12px;
-        background: #FFFFFF;
-        border: 1px solid #94A3B8;
+        border: 1px solid $gray400;
         box-sizing: border-box;
-        border-radius: 6px;
+        border-radius: $input-border-radius;
         position: relative;
+        margin-bottom: $input-border-margin-bottom;
+
+        &:focus {
+            border-color: $indigo600;
+        }
+
+        .mid-part {
+            width: 100%;
+
+            .content-container {
+                display: flex;
+
+                .placeholder-text {
+                    color: $gray400;
+                    @extend .body-2;
+                    width: 100%;
+                    border: none;
+                    height: $placeholder-text-height;
+                    min-height: $placeholder-min-height;
+                    resize: none;
+
+                    &:focus {
+                        outline: none
+                    }
+
+                    &.paragraph {
+                        resize: vertical;
+                    }
+
+                }
+
+            }
+        }
+
     }
 
-    .placeholder-text {
-        font-family: Inter;
-        font-size: rem(16);
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px;
-        letter-spacing: 0em;
-        text-align: left;
-        color: #94A3B8;
-
+    &-icon {
+        display: none;
     }
 
-    .content-container {
-        display: flex;
-    }
-
-    .input-icon {
-        display: none !important
-    }
-
-    .suffix .suffix-input-icon {
-        @include after-input-icon()
-    }
-
-    .prefix .prefix-input-icon {
+    .leading .leading-icon-container,
+    .prefix .prefix-icon-container {
         @include before-input-icon()
     }
 
-    .both-position {
-        justify-content: space-between !important;
+    .trailing .trailing-icon-container,
+    .suffix .suffix-icon-container {
+        @include after-input-icon()
+    }
 
-        & .prefix-input-icon {
+    .both-position {
+        justify-content: space-between;
+
+        & .prefix-icon-container {
             @include before-input-icon();
-            margin-right: 0;
         }
 
-        & .suffix-input-icon {
+        & .suffix-icon-container {
             @include after-input-icon()
         }
-
-    }
-
-
-
-    .leading .leading-input-icon-container {
-        @include leading-input-icon-container()
-    }
-
-    .trailing .trailing-input-icon-container {
-        @include trailing-input-icon-container()
     }
 
     .both-type {
-        justify-content: space-between !important;
+        justify-content: space-between;
 
-        & .leading-input-icon-container {
-            @include leading-input-icon-container();
-            margin-right: 15px;
+        & .leading-icon-container {
+            @include before-input-icon()
         }
 
-        & .trailing-input-icon-container {
-            @include trailing-input-icon-container()
+        & .trailing-icon-container {
+            @include after-input-icon()
         }
-
     }
 
-    .helper-text {
-        font-family: Inter;
-        font-style: normal;
-        font-weight: normal;
-        font-size: rem(12);
-        line-height: 20px;
-        font-feature-settings: 'ss01'on, 'cv05'on, 'cv06'on, 'cv08'on, 'cv10'on, 'cv11'on, 'kern'off;
-        color: #334155;
+    .footer {
+        display: flex;
+        justify-content: space-between;
+
+        .helper-text {
+            @extend .body-4;
+            font-feature-settings: 'ss01'on, 'cv05'on, 'cv06'on, 'cv08'on, 'cv10'on, 'cv11'on, 'kern'off;
+            color: $gray700;
+        }
+
+        .character-count {
+            @extend .body-4;
+            font-feature-settings: 'ss01'on, 'cv05'on, 'cv06'on, 'cv08'on, 'cv10'on, 'cv11'on, 'kern'off;
+            color: $gray700;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode, useState } from "react";
 import { Text } from "../../atoms";
 import styles from "./Input.scss";
 import classNames from "classnames";
@@ -16,76 +16,124 @@ export interface InputProps {
   iconColor?: string;
   prefixIcon?: string;
   suffixIcon?: string;
-  width: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void | undefined;
+  maxLength?: number;
+  paragraph?: boolean;
+  placeholder?: string;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
-    style = "contained label",
+    style = InputStyles.NO_LABEL,
     label = "Label",
-    position = "prefix",
-    helper,
-    state,
-    children = "Placeholder Text",
+    position = InputPositions.PREFIX,
+    helper = "Helper Text",
     iconColor,
     prefixIcon = "trash",
     suffixIcon = "trash",
     type,
-    width = "50px"
+    onChange,
+    maxLength,
+    paragraph,
+    placeholder
   } = props;
-  const topAllignedLabel = classNames(styles["input-label"], {
+
+  const topLabel = classNames(styles["input-label"], {
     [styles["top-label"]]: style === InputStyles.TOP_LABEL
   });
+
   const containedLabel = classNames(styles["input-label"], {
     [styles["contained-label"]]: style === InputStyles.CONTAINED_LABEL
   });
-  const iconPosition = classNames(styles["content-container"], {
-    [styles["prefix"]]: position === InputPositions.PREFIX,
-    [styles["suffix"]]: position === InputPositions.SUFFIX,
-    [styles["after-input-icon-container"]]: position === InputPositions.SUFFIX,
-    [styles["both-position"]]: position === InputPositions.BOTH
-  });
 
-  const typeIcon = classNames(styles["input-border"], {
-    [styles["leading"]]: type === InputTypes.LEADING,
-    [styles["trailing"]]: type === InputTypes.TRAILING,
-    [styles["both-type"]]: type === InputTypes.BOTH
+  const contentContainer = paragraph
+    ? styles["content-container"]
+    : classNames(styles["content-container"], {
+        [styles["prefix"]]: position === InputPositions.PREFIX,
+        [styles["suffix"]]: position === InputPositions.SUFFIX,
+        [styles["both-position"]]: position === InputPositions.BOTH
+      });
+
+  const inputBorder = paragraph
+    ? styles["input-border"]
+    : classNames(styles["input-border"], {
+        [styles["leading"]]: type === InputTypes.LEADING,
+        [styles["trailing"]]: type === InputTypes.TRAILING,
+        [styles["both-type"]]: type === InputTypes.BOTH
+      });
+
+  const placeholderText = classNames(styles["placeholder-text"], {
+    [styles["paragraph"]]: paragraph === true
   });
 
   const helperText = classNames({
     [styles["helper-text"]]: helper !== ""
   });
-  // document.getElementById("input-border")?.style.width? : width;
+
+  const characterCount = classNames(styles["character-count"]);
+
+  const prefixIconContainer = classNames(
+    styles["input-icon"],
+    styles["prefix-icon-container"]
+  );
+
+  const suffixIconContainer = classNames(
+    styles["input-icon"],
+    styles["suffix-icon-container"]
+  );
+
+  const leadingIconContainer = classNames(
+    styles["input-icon"],
+    styles["leading-icon-container"]
+  );
+
+  const trailingIconContainer = classNames(
+    styles["input-icon"],
+    styles["trailing-icon-container"]
+  );
+  const [count, setCount] = useState<number>(0);
+  const CountCharacter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCount(e.target.value.length);
+  };
+
   return (
-    <div className="input-component">
-      <div className={topAllignedLabel}>{label}</div>
-      <div id="input-border" className={typeIcon}>
-        <div className="  input-icon leading-input-icon-container ">
-          <Icon icon={prefixIcon} size={18} color={iconColor} />
+    <div className={styles["input"]}>
+      <div className={topLabel}>{label}</div>
+      <div className={inputBorder}>
+        <div className={leadingIconContainer}>
+          <Icon icon={prefixIcon} size={22} color={iconColor} />
         </div>
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center"
-          }}
-        >
+        <div className={styles["mid-part"]}>
           <div className={containedLabel}>{label}</div>
-          <div className={iconPosition}>
-            <div className="input-icon prefix-input-icon ">
-              <Icon icon={prefixIcon} size={18} color={iconColor} />
+          <div className={contentContainer}>
+            <div className={prefixIconContainer}>
+              <Icon icon={prefixIcon} size={22} color={iconColor} />
             </div>
-            <Text className="placeholder-text">{children}</Text>
-            <div className="input-icon suffix-input-icon ">
-              <Icon icon={suffixIcon} size={18} color={iconColor} />
+            <textarea
+              maxLength={maxLength}
+              placeholder={placeholder}
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+                onChange ? onChange(e) : null;
+                CountCharacter(e);
+              }}
+              className={placeholderText}
+            />
+            <div className={suffixIconContainer}>
+              <Icon icon={suffixIcon} size={22} color={iconColor} />
             </div>
           </div>
         </div>
-        <div className=" input-icon trailing-input-icon-container ">
-          <Icon icon={suffixIcon} size={18} color={iconColor} />
+        <div className={trailingIconContainer}>
+          <Icon icon={suffixIcon} size={22} color={iconColor} />
         </div>
       </div>
-      <div className={helperText}>{helper}</div>
+      <div className={styles["footer"]}>
+        <div className={helperText}>{helper}</div>
+        {maxLength ? (
+          <div className={characterCount}>
+            {count}/{maxLength}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };
