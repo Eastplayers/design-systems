@@ -15,8 +15,8 @@ const App = () => {
         prefixIcon="setting"
         suffixIcon="calendar"
         position="both"
+        type="leading"
         onChange={handleChange}
-        maxLength={100}
         placeholder="type something"
       />
     </div>

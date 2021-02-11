@@ -1,5 +1,4 @@
-import React, { ReactNode, useState } from "react";
-import { Text } from "../../atoms";
+import React, { useState } from "react";
 import styles from "./Input.scss";
 import classNames from "classnames";
 import { InputPositions, InputStyles, InputTypes } from "./types";
@@ -20,6 +19,7 @@ export interface InputProps {
   maxLength?: number;
   paragraph?: boolean;
   placeholder?: string;
+  disabled?: boolean;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
@@ -34,14 +34,17 @@ const Input: React.FC<InputProps> = (props) => {
     onChange,
     maxLength,
     paragraph,
-    placeholder
+    placeholder,
+    disabled
   } = props;
 
   const topLabel = classNames(styles["input-label"], {
+    [styles["disabled-text"]]: disabled === true,
     [styles["top-label"]]: style === InputStyles.TOP_LABEL
   });
 
   const containedLabel = classNames(styles["input-label"], {
+    [styles["disabled-text"]]: disabled === true,
     [styles["contained-label"]]: style === InputStyles.CONTAINED_LABEL
   });
 
@@ -54,41 +57,52 @@ const Input: React.FC<InputProps> = (props) => {
       });
 
   const inputBorder = paragraph
-    ? styles["input-border"]
+    ? classNames(styles["input-border"], {
+        [styles["disabled"]]: disabled === true
+      })
     : classNames(styles["input-border"], {
+        [styles["disabled"]]: disabled === true,
         [styles["leading"]]: type === InputTypes.LEADING,
         [styles["trailing"]]: type === InputTypes.TRAILING,
         [styles["both-type"]]: type === InputTypes.BOTH
       });
 
   const placeholderText = classNames(styles["placeholder-text"], {
+    [styles["disabled-text"]]: disabled === true,
     [styles["paragraph"]]: paragraph === true
   });
 
   const helperText = classNames({
-    [styles["helper-text"]]: helper !== ""
+    [styles["helper-text"]]: helper !== "",
+    [styles["disabled-text"]]: disabled === true
   });
 
-  const characterCount = classNames(styles["character-count"]);
+  const characterCount = classNames(styles["character-count"], {
+    [styles["show-character-count"]]: !disabled && maxLength
+  });
 
   const prefixIconContainer = classNames(
     styles["input-icon"],
-    styles["prefix-icon-container"]
+    styles["prefix-icon-container"],
+    { [styles["input-icon-disabled"]]: disabled === true }
   );
 
   const suffixIconContainer = classNames(
     styles["input-icon"],
-    styles["suffix-icon-container"]
+    styles["suffix-icon-container"],
+    { [styles["input-icon-disabled"]]: disabled === true }
   );
 
   const leadingIconContainer = classNames(
     styles["input-icon"],
-    styles["leading-icon-container"]
+    styles["leading-icon-container"],
+    { [styles["input-icon-disabled"]]: disabled === true }
   );
 
   const trailingIconContainer = classNames(
     styles["input-icon"],
-    styles["trailing-icon-container"]
+    styles["trailing-icon-container"],
+    { [styles["input-icon-disabled"]]: disabled === true }
   );
   const [count, setCount] = useState<number>(0);
   const CountCharacter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -100,15 +114,24 @@ const Input: React.FC<InputProps> = (props) => {
       <div className={topLabel}>{label}</div>
       <div className={inputBorder}>
         <div className={leadingIconContainer}>
-          <Icon icon={prefixIcon} size={22} color={iconColor} />
+          <Icon
+            icon={prefixIcon}
+            size={22}
+            color={disabled ? styles.disabledColor : iconColor}
+          />
         </div>
         <div className={styles["mid-part"]}>
           <div className={containedLabel}>{label}</div>
           <div className={contentContainer}>
             <div className={prefixIconContainer}>
-              <Icon icon={prefixIcon} size={22} color={iconColor} />
+              <Icon
+                icon={prefixIcon}
+                size={22}
+                color={disabled ? styles.disabledColor : iconColor}
+              />
             </div>
             <textarea
+              disabled={disabled}
               maxLength={maxLength}
               placeholder={placeholder}
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -118,21 +141,27 @@ const Input: React.FC<InputProps> = (props) => {
               className={placeholderText}
             />
             <div className={suffixIconContainer}>
-              <Icon icon={suffixIcon} size={22} color={iconColor} />
+              <Icon
+                icon={suffixIcon}
+                size={22}
+                color={disabled ? styles.disabledColor : iconColor}
+              />
             </div>
           </div>
         </div>
         <div className={trailingIconContainer}>
-          <Icon icon={suffixIcon} size={22} color={iconColor} />
+          <Icon
+            icon={suffixIcon}
+            size={22}
+            color={disabled ? styles.disabledColor : iconColor}
+          />
         </div>
       </div>
-      <div className={styles["footer"]}>
+      <div className={styles["input-footer"]}>
         <div className={helperText}>{helper}</div>
-        {maxLength ? (
-          <div className={characterCount}>
-            {count}/{maxLength}
-          </div>
-        ) : null}
+        <div className={characterCount}>
+          {count}/{maxLength}
+        </div>
       </div>
     </div>
   );

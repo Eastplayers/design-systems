@@ -7,7 +7,6 @@ import { Icon } from ".";
 import { IconProps } from "./Icon";
 import iconSet from "./selection.json";
 import "./Icon.scss";
-import { bold } from "../../../fileMocks";
 
 export const Icons = (): React.ReactElement<IconProps> => {
   // const iconList = select("Icon", IconList, IconList.LIKE);

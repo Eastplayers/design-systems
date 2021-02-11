@@ -10,10 +10,12 @@ interface CssExports {
   'character-count': string;
   'contained-label': string;
   'content-container': string;
+  'disabled': string;
+  'disabled-text': string;
+  'disabledColor': string;
   'display-1': string;
   'display-2': string;
   'display-3': string;
-  'footer': string;
   'heading-1': string;
   'heading-2': string;
   'heading-3': string;
@@ -23,7 +25,10 @@ interface CssExports {
   'helper-text': string;
   'input': string;
   'input-border': string;
+  'input-footer': string;
   'input-icon': string;
+  'input-icon-default': string;
+  'input-icon-disabled': string;
   'input-label': string;
   'leading': string;
   'leading-icon-container': string;
@@ -34,6 +39,7 @@ interface CssExports {
   'placeholder-text': string;
   'prefix': string;
   'prefix-icon-container': string;
+  'show-character-count': string;
   'suffix': string;
   'suffix-icon-container': string;
   'text--400': string;

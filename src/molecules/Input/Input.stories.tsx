@@ -29,8 +29,9 @@ export const InputStory = (): React.ReactElement => {
   const type = select("Input Types", InputTypes, InputTypes.LEADING);
   const helper = text("Helper Text", "");
   const width = number("Width of Input", 255);
-  const maxLength = number("Max length", 0);
+  const maxLength = number("Max length", 30);
   const paragraph = boolean("Paragraph", false);
+  const disabled = boolean("Disabled", false);
   return (
     <div style={{ width: width }}>
       <Input
@@ -45,6 +46,7 @@ export const InputStory = (): React.ReactElement => {
         maxLength={maxLength}
         placeholder={placeholder}
         paragraph={paragraph}
+        disabled={disabled}
       />
     </div>
   );
