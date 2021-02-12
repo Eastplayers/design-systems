@@ -5,7 +5,7 @@
     disabledColor: $gray400;
 }
 
-$before-icon-margin-right: rem(10);
+$before-icon-width:rem(30);
 
 $input-label-height:rem(20);
 
@@ -22,15 +22,17 @@ $text-area-padding:rem(4) rem(2) rem(0) rem(2);
 
 $contained-label-padding-left:rem(2);
 
-@mixin before-input-icon {
-    margin-right: $before-icon-margin-right;
+@mixin before-input-icon-container {
+    width: $before-icon-width;
     display: inline-flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
-@mixin after-input-icon {
+@mixin after-input-icon-container {
     display: inline-flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .input {
@@ -41,23 +43,23 @@ $contained-label-padding-left:rem(2);
 
     .leading .leading-icon-container,
     .prefix .prefix-icon-container {
-        @include before-input-icon()
+        @include before-input-icon-container()
     }
 
     .trailing .trailing-icon-container,
     .suffix .suffix-icon-container {
-        @include after-input-icon()
+        @include after-input-icon-container()
     }
 
     .both-position {
         justify-content: space-between;
 
         .prefix-icon-container {
-            @include before-input-icon();
+            @include before-input-icon-container();
         }
 
         .suffix-icon-container {
-            @include after-input-icon()
+            @include after-input-icon-container()
         }
     }
 
@@ -65,15 +67,15 @@ $contained-label-padding-left:rem(2);
         justify-content: space-between;
 
         .leading-icon-container {
-            @include before-input-icon()
+            @include before-input-icon-container()
         }
 
         .trailing-icon-container {
-            @include after-input-icon()
+            @include after-input-icon-container()
         }
     }
 
-    .disabled {
+    .disabled-container {
         background-color: $gray100;
         border: 1px solid $gray200;
     }
@@ -118,6 +120,10 @@ $contained-label-padding-left:rem(2);
         border-radius: $input-border-radius;
         position: relative;
         margin-bottom: $input-border-margin-bottom;
+
+        &-focus {
+            border: 1px solid $indigo600;
+        }
 
         .mid-part {
             width: 100%;

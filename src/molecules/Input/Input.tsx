@@ -38,6 +38,11 @@ const Input: React.FC<InputProps> = (props) => {
     disabled
   } = props;
 
+  const [count, setCount] = useState<number>(0);
+  const CountCharacter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCount(e.target.value.length);
+  };
+
   const topLabel = classNames(styles["input-label"], {
     [styles["disabled-text"]]: disabled === true,
     [styles["top-label"]]: style === InputStyles.TOP_LABEL
@@ -58,10 +63,10 @@ const Input: React.FC<InputProps> = (props) => {
 
   const inputBorder = paragraph
     ? classNames(styles["input-border"], {
-        [styles["disabled"]]: disabled === true
+        [styles["disabled-container"]]: disabled === true
       })
     : classNames(styles["input-border"], {
-        [styles["disabled"]]: disabled === true,
+        [styles["disabled-container"]]: disabled === true,
         [styles["leading"]]: type === InputTypes.LEADING,
         [styles["trailing"]]: type === InputTypes.TRAILING,
         [styles["both-type"]]: type === InputTypes.BOTH
@@ -104,10 +109,18 @@ const Input: React.FC<InputProps> = (props) => {
     styles["trailing-icon-container"],
     { [styles["input-icon-disabled"]]: disabled === true }
   );
-  const [count, setCount] = useState<number>(0);
-  const CountCharacter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCount(e.target.value.length);
+
+  const FocusInputBorder = () => {
+    // console.log(e);
+    // e.nativeEvent?.path[3].className  ;
+    // console.log(textArea);
+    document
+      .getElementById("input-text-area")
+      ?.closest("input-border")
+      ?.classList.add("input-border-focus");
   };
+
+
 
   return (
     <div className={styles["input"]}>
@@ -131,6 +144,7 @@ const Input: React.FC<InputProps> = (props) => {
               />
             </div>
             <textarea
+              id="input-text-area"
               disabled={disabled}
               maxLength={maxLength}
               placeholder={placeholder}
@@ -139,6 +153,7 @@ const Input: React.FC<InputProps> = (props) => {
                 CountCharacter(e);
               }}
               className={placeholderText}
+              onClick={FocusInputBorder}
             />
             <div className={suffixIconContainer}>
               <Icon

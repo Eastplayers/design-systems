@@ -10,7 +10,7 @@ interface CssExports {
   'character-count': string;
   'contained-label': string;
   'content-container': string;
-  'disabled': string;
+  'disabled-container': string;
   'disabled-text': string;
   'disabledColor': string;
   'display-1': string;
@@ -25,6 +25,7 @@ interface CssExports {
   'helper-text': string;
   'input': string;
   'input-border': string;
+  'input-border-focus': string;
   'input-footer': string;
   'input-icon': string;
   'input-icon-default': string;

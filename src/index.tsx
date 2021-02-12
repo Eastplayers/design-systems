@@ -19,6 +19,26 @@ const App = () => {
         onChange={handleChange}
         placeholder="type something"
       />
+      <Input
+        label="when do u want?"
+        style="contained label"
+        prefixIcon="setting"
+        suffixIcon="calendar"
+        position="both"
+        type="leading"
+        onChange={handleChange}
+        placeholder="type something"
+      />
+      <Input
+        label="when do u want?"
+        style="contained label"
+        prefixIcon="setting"
+        suffixIcon="calendar"
+        position="both"
+        type="leading"
+        onChange={handleChange}
+        placeholder="type something"
+      />
     </div>
   );
 };
