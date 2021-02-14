@@ -11,8 +11,8 @@ $spacing-between-input-and-label: 12;
     width: rem($size);
     height: rem($size);
     &::after {
-      width: rem($size * 2.2);
-      height: rem($size * 2.2);
+      width: rem($size * 2.2); // Size of hover area
+      height: rem($size * 2.2); // Size of hover area
     }
     .radio__checkmark {
       &::after {
@@ -33,6 +33,9 @@ $spacing-between-input-and-label: 12;
 }
 
 .radio {
+  // & will returns ".radio". So I assign it for $self.
+  // This one will makes the class hard to search but helps us have the right order of selectors.
+  // Anw, still in testing, if it makes any obstacles for teammates, I will change it.
   $self: &;
   display: block;
   position: relative;
