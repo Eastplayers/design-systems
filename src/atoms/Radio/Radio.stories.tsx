@@ -7,13 +7,14 @@ import { RadioProps, RadioSizes } from "./types";
 
 export const All = (): React.ReactElement<RadioProps> => {
   const label = text("Label", "Sample content");
-  const size = select("Weight", RadioSizes, RadioSizes.NORMAL);
+  const size = select("Size", RadioSizes, RadioSizes.NORMAL);
   const disabled = boolean("Disabled", false);
   const inline = boolean("Inline", false);
 
   return (
     <div>
       <Radio
+        defaultChecked
         label={label}
         name="testing"
         size={size}

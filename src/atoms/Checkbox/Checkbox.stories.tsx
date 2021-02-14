@@ -7,7 +7,7 @@ import { CheckboxProps, CheckboxSizes } from "./types";
 
 export const All = (): React.ReactElement<CheckboxProps> => {
   const label = text("Label", "Sample content");
-  const size = select("Weight", CheckboxSizes, CheckboxSizes.NORMAL);
+  const size = select("Size", CheckboxSizes, CheckboxSizes.NORMAL);
   const disabled = boolean("Disabled", false);
   const inline = boolean("Inline", false);
 
