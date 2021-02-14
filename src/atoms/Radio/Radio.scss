@@ -1,0 +1,130 @@
+@use '../../styles/main.scss' as *;
+
+$radio-normal-size: 16;
+$radio-small-size: 14;
+$spacing-between-input-and-label: 12;
+
+@mixin generate-radio($size) {
+  font-size: rem($size);
+  padding-left: rem($size + $spacing-between-input-and-label);
+  .radio__checkmark-container {
+    width: rem($size);
+    height: rem($size);
+    &::after {
+      width: rem($size * 2.2); // Size of hover area
+      height: rem($size * 2.2); // Size of hover area
+    }
+    .radio__checkmark {
+      &::after {
+        content: "";
+        position: absolute;
+        width: rem($size - 4);
+        height: rem($size - 4);
+        border-radius: rem(20);
+        background: $indigo500;
+        opacity: 0;
+        transition: all 0.25s ease-in-out;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+    }
+  }
+}
+
+.radio {
+  // & will returns ".radio". So I assign it for $self.
+  // This one will makes the class hard to search but helps us have the right order of selectors.
+  // Anw, still in testing, if it makes any obstacles for teammates, I will change it.
+  $self: &;
+  display: block;
+  position: relative;
+  margin-bottom: rem(12);
+  line-height: 150%;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: color 0.25s ease-in-out;
+  white-space: pre-wrap;
+  cursor: pointer;
+  &:hover &__checkmark-container {
+    &::after {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  &--normal {
+    @include generate-radio($radio-normal-size);
+  }
+  &--small {
+    @include generate-radio($radio-small-size);
+  }
+  &--inline {
+    display: inline-block;
+    margin-right: rem(40);
+  }
+  &.disabled {
+    color: $gray300;
+    cursor: not-allowed;
+    #{$self}__checkmark-container {
+      border-color: $gray300;
+    }
+    #{$self}__input:checked ~ #{$self}__checkmark-container {
+      border-color: $gray300;
+      #{$self}__checkmark {
+        &::after {
+          opacity: 1;
+          background-color: $gray300;
+        }
+      }
+    }
+    &:hover {
+      #{$self}__checkmark-container {
+        &::after {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 0;
+        }
+      }
+    }
+  }
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked ~ #{$self}__checkmark-container {
+      border-color: $indigo500;
+      &::after {
+        background-color: $indigo100;
+      }
+      #{$self}__checkmark {
+        &::after,
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &__checkmark-container {
+    margin-top: rem(2);
+    position: absolute;
+    left: 0;
+    border: rem(2) solid $gray400;
+    border-radius: 100%;
+    transition: all 0.25s ease-in-out;
+    &::after {
+      content: "";
+      background-color: $gray100;
+      border-radius: 100%;
+      position: absolute;
+      transform: translate(-50%, -50%) scale(0);
+      top: 50%;
+      left: 50%;
+      z-index: -1;
+      transition: all 0.25s ease-in-out;
+      opacity: 0;
+    }
+  }
+}
