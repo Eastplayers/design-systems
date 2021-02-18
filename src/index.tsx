@@ -1,46 +1,9 @@
-import React, { ChangeEventHandler } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { Input } from "./molecules/Input";
 import "./styles/main.scss";
 
 const App = () => {
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log(e.target.value);
-  };
-  return (
-    <div style={{ margin: "50px 50px", width: 256, height: 200 }}>
-      <Input
-        label="when do u want?"
-        style="contained label"
-        prefixIcon="setting"
-        suffixIcon="calendar"
-        position="both"
-        type="leading"
-        onChange={handleChange}
-        placeholder="type something"
-      />
-      <Input
-        label="when do u want?"
-        style="contained label"
-        prefixIcon="setting"
-        suffixIcon="calendar"
-        position="both"
-        type="leading"
-        onChange={handleChange}
-        placeholder="type something"
-      />
-      <Input
-        label="when do u want?"
-        style="contained label"
-        prefixIcon="setting"
-        suffixIcon="calendar"
-        position="both"
-        type="leading"
-        onChange={handleChange}
-        placeholder="type something"
-      />
-    </div>
-  );
+  return <div>Hello World!</div>;
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));

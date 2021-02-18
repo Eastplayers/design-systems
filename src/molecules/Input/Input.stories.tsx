@@ -8,7 +8,7 @@ import {
 } from "@storybook/addon-knobs";
 import React from "react";
 import { Input } from ".";
-import { InputPositions, InputStyles, InputTypes } from "./types";
+import { InputPositions, InputStates, InputStyles, InputTypes } from "./types";
 import iconSet from "../../atoms/Icon/selection.json";
 
 export const InputStory = (): React.ReactElement => {
@@ -31,7 +31,7 @@ export const InputStory = (): React.ReactElement => {
   const width = number("Width of Input", 255);
   const maxLength = number("Max length", 30);
   const paragraph = boolean("Paragraph", false);
-  const disabled = boolean("Disabled", false);
+const state = select("State",InputStates,InputStates.DEFAULT)
   return (
     <div style={{ width: width }}>
       <Input
@@ -46,7 +46,7 @@ export const InputStory = (): React.ReactElement => {
         maxLength={maxLength}
         placeholder={placeholder}
         paragraph={paragraph}
-        disabled={disabled}
+        state={state}
       />
     </div>
   );

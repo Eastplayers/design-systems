@@ -17,3 +17,10 @@ export enum InputTypes {
   BOTH = "both",
   NONE = "none"
 }
+
+export enum InputStates {
+  DEFAULT = "default",
+  DISABLED = "disabled",
+  FOCUS = "focus",
+  ERROR = "error"
+}

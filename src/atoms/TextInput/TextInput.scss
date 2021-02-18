@@ -1,0 +1,60 @@
+@use "../../styles/main.scss"as *;
+@use "../../atoms/Text/Text.scss"as *;
+
+$placeholder-text-height: rem(24);
+$placeholder-min-height:rem(26);
+
+$text-area-padding:rem(4) rem(2) rem(0) rem(2);
+
+.disabled-text {
+    color: $gray400 !important
+}
+
+input {
+    padding: $text-area-padding;
+
+    &:focus {
+        color: $gray700
+    }
+
+    &::-webkit-input-placeholder {
+        color: $gray400;
+    }
+
+    &::placeholder {
+        color: $gray400;
+    }
+
+    &::-moz-placeholder {
+        color: $gray400;
+    }
+}
+
+.placeholder-text {
+    @extend .body-2;
+    width: 100%;
+    border: none;
+    height: $placeholder-text-height;
+    min-height: $placeholder-min-height;
+    color: $gray400;
+    resize: vertical;
+    height: auto;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+        color: $gray700
+    }
+
+    &::-webkit-input-placeholder {
+        color: $gray400;
+    }
+
+    &::placeholder {
+        color: $gray400;
+    }
+
+    &::-moz-placeholder {
+        color: $gray400;
+    }
+}

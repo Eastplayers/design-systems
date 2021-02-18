@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from "./Input.scss";
 import classNames from "classnames";
-import { InputPositions, InputStyles, InputTypes } from "./types";
+import { InputPositions, InputStates, InputStyles, InputTypes } from "./types";
 import { Icon } from "../../atoms/Icon";
+import MidPart from "./Input Component/MidPart";
 
 export interface InputProps {
   style?: string;
@@ -15,11 +16,12 @@ export interface InputProps {
   iconColor?: string;
   prefixIcon?: string;
   suffixIcon?: string;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void | undefined;
+  onChange?: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void | undefined;
   maxLength?: number;
   paragraph?: boolean;
   placeholder?: string;
-  disabled?: boolean;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
@@ -35,140 +37,96 @@ const Input: React.FC<InputProps> = (props) => {
     maxLength,
     paragraph,
     placeholder,
-    disabled
+    state = InputStates.DEFAULT
   } = props;
 
   const [count, setCount] = useState<number>(0);
-  const CountCharacter = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const CountCharacter = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setCount(e.target.value.length);
   };
 
+  const [focus, setFocus] = useState<boolean>(false);
+  const onFocus = () => {
+    setFocus(true);
+  };
+  const onUnFocus = () => {
+    setFocus(false);
+  };
+
   const topLabel = classNames(styles["input-label"], {
-    [styles["disabled-text"]]: disabled === true,
+    [styles["disabled-text"]]: state === "disabled",
     [styles["top-label"]]: style === InputStyles.TOP_LABEL
   });
 
-  const containedLabel = classNames(styles["input-label"], {
-    [styles["disabled-text"]]: disabled === true,
-    [styles["contained-label"]]: style === InputStyles.CONTAINED_LABEL
-  });
-
-  const contentContainer = paragraph
-    ? styles["content-container"]
-    : classNames(styles["content-container"], {
-        [styles["prefix"]]: position === InputPositions.PREFIX,
-        [styles["suffix"]]: position === InputPositions.SUFFIX,
-        [styles["both-position"]]: position === InputPositions.BOTH
-      });
-
-  const inputBorder = paragraph
-    ? classNames(styles["input-border"], {
-        [styles["disabled-container"]]: disabled === true
-      })
-    : classNames(styles["input-border"], {
-        [styles["disabled-container"]]: disabled === true,
-        [styles["leading"]]: type === InputTypes.LEADING,
-        [styles["trailing"]]: type === InputTypes.TRAILING,
-        [styles["both-type"]]: type === InputTypes.BOTH
-      });
-
-  const placeholderText = classNames(styles["placeholder-text"], {
-    [styles["disabled-text"]]: disabled === true,
-    [styles["paragraph"]]: paragraph === true
+  const inputBorder = classNames(styles["input-border"], {
+    [styles["disabled-container"]]: state === "disabled",
+    [styles["input-border-focus"]]: focus === true,
+    [styles["input-border-error"]]: state === "error",
+    [styles["leading"]]: !paragraph && type === InputTypes.LEADING,
+    [styles["trailing"]]: !paragraph && type === InputTypes.TRAILING,
+    [styles["both-type"]]: !paragraph && type === InputTypes.BOTH
   });
 
   const helperText = classNames({
     [styles["helper-text"]]: helper !== "",
-    [styles["disabled-text"]]: disabled === true
+    [styles["disabled-text"]]: state === "disabled",
+    [styles["error-text"]]: state === "error"
   });
 
   const characterCount = classNames(styles["character-count"], {
-    [styles["show-character-count"]]: !disabled && maxLength
+    [styles["show-character-count"]]: state !== "disabled" && maxLength
   });
-
-  const prefixIconContainer = classNames(
-    styles["input-icon"],
-    styles["prefix-icon-container"],
-    { [styles["input-icon-disabled"]]: disabled === true }
-  );
-
-  const suffixIconContainer = classNames(
-    styles["input-icon"],
-    styles["suffix-icon-container"],
-    { [styles["input-icon-disabled"]]: disabled === true }
-  );
 
   const leadingIconContainer = classNames(
     styles["input-icon"],
     styles["leading-icon-container"],
-    { [styles["input-icon-disabled"]]: disabled === true }
+    { [styles["input-icon-disabled"]]: state === "disabled" }
   );
 
   const trailingIconContainer = classNames(
     styles["input-icon"],
     styles["trailing-icon-container"],
-    { [styles["input-icon-disabled"]]: disabled === true }
+    { [styles["input-icon-disabled"]]: state === "disabled" }
   );
-
-  const FocusInputBorder = () => {
-    // console.log(e);
-    // e.nativeEvent?.path[3].className  ;
-    // console.log(textArea);
-    document
-      .getElementById("input-text-area")
-      ?.closest("input-border")
-      ?.classList.add("input-border-focus");
-  };
-
-
 
   return (
     <div className={styles["input"]}>
-      <div className={topLabel}>{label}</div>
+      <label htmlFor={label} className={topLabel}>
+        {label}
+      </label>
       <div className={inputBorder}>
         <div className={leadingIconContainer}>
           <Icon
             icon={prefixIcon}
             size={22}
-            color={disabled ? styles.disabledColor : iconColor}
+            color={state === "disabled" ? styles.disabledColor : iconColor}
           />
         </div>
         <div className={styles["mid-part"]}>
-          <div className={containedLabel}>{label}</div>
-          <div className={contentContainer}>
-            <div className={prefixIconContainer}>
-              <Icon
-                icon={prefixIcon}
-                size={22}
-                color={disabled ? styles.disabledColor : iconColor}
-              />
-            </div>
-            <textarea
-              id="input-text-area"
-              disabled={disabled}
-              maxLength={maxLength}
-              placeholder={placeholder}
-              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
-                onChange ? onChange(e) : null;
-                CountCharacter(e);
-              }}
-              className={placeholderText}
-              onClick={FocusInputBorder}
-            />
-            <div className={suffixIconContainer}>
-              <Icon
-                icon={suffixIcon}
-                size={22}
-                color={disabled ? styles.disabledColor : iconColor}
-              />
-            </div>
-          </div>
+          <MidPart
+            style={style}
+            position={position}
+            prefixIcon={prefixIcon}
+            suffixIcon={suffixIcon}
+            iconColor={iconColor}
+            paragraph={paragraph}
+            label={label}
+            state={state}
+            maxLength={maxLength}
+            placeholder={placeholder}
+            onChange={onChange}
+            CountCharacter={CountCharacter}
+            onFocus={onFocus}
+            onUnFocus={onUnFocus}
+          />
         </div>
         <div className={trailingIconContainer}>
           <Icon
             icon={suffixIcon}
             size={22}
-            color={disabled ? styles.disabledColor : iconColor}
+            color={state === "disabled" ? styles.disabledColor : iconColor}
           />
         </div>
       </div>

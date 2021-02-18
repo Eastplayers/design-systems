@@ -7,18 +7,13 @@
 
 $before-icon-width:rem(30);
 
-$input-label-height:rem(20);
+$input-label-height:rem(22);
 
 $top-label-margin-bottom: rem(4);
 
 $input-border-margin-bottom:rem(4);
 $input-border-padding: rem(6) rem(12);
 $input-border-radius: rem(6);
-
-$placeholder-text-height: rem(24);
-$placeholder-min-height:rem(26);
-
-$text-area-padding:rem(4) rem(2) rem(0) rem(2);
 
 $contained-label-padding-left:rem(2);
 
@@ -84,6 +79,10 @@ $contained-label-padding-left:rem(2);
         color: $gray400 !important
     }
 
+    .error-text {
+        color: $red600 !important
+    }
+
     &-icon {
         display: none;
 
@@ -125,55 +124,17 @@ $contained-label-padding-left:rem(2);
             border: 1px solid $indigo600;
         }
 
+        &-error {
+            border: 1px solid $red600;
+        }
+
         .mid-part {
             width: 100%;
 
             .content-container {
                 display: flex;
-
-                textarea {
-                    padding: $text-area-padding;
-
-                    &:focus {
-                        color: $gray700
-                    }
-
-                    &::-webkit-input-placeholder {
-                        color: $gray400;
-                    }
-
-                    &::placeholder {
-                        color: $gray400;
-                    }
-
-                    &::-moz-placeholder {
-                        color: $gray400;
-                    }
-                }
-
-                .placeholder-text {
-                    @extend .body-2;
-                    width: 100%;
-                    border: none;
-                    height: $placeholder-text-height;
-                    min-height: $placeholder-min-height;
-                    resize: none;
-                    color: $gray400;
-
-                    &:focus {
-                        outline: none
-                    }
-
-                    &.paragraph {
-                        resize: vertical;
-                        height: auto
-                    }
-
-                }
-
             }
         }
-
     }
 
     &-footer {
