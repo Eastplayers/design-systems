@@ -1,9 +1,11 @@
+$font-family:"Inter", sans-serif;
+
 html {
-  font-family: "Inter", sans-serif;
+  font-family: $font-family;
   font-size: 16px;
   font-style: normal;
-  font-feature-settings: "cv05" on, "cv06" on, "cv08" on, "cv10" on, "cv11" on,
-    "isol" on, "salt" on, "kern" off;
+  font-feature-settings: "cv05"on, "cv06"on, "cv08"on, "cv10"on, "cv11"on,
+    "isol"on, "salt"on, "kern"off;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
