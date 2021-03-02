@@ -1,0 +1,54 @@
+@use "../../styles/main.scss"as *;
+@use "../../atoms/Text/Text.scss"as *;
+
+:export {
+    disabledColor: $gray400;
+}
+
+$input-border-margin-bottom:rem(4);
+$input-border-padding: rem(6) rem(12);
+$input-border-radius: rem(6);
+
+
+
+.input {
+
+    &-label {
+        @extend .heading-6;
+
+        &-disabled {
+            color: $gray400
+        }
+
+        &-error {
+            color: $red600
+        }
+    }
+
+    &-border {
+        display: flex;
+        flex-direction: column;
+        padding: $input-border-padding;
+        border: 1px solid $gray400;
+        box-sizing: border-box;
+        border-radius: $input-border-radius;
+        position: relative;
+        margin-bottom: $input-border-margin-bottom;
+
+        &-focus {
+            border: 1px solid $indigo600;
+        }
+
+        &-error {
+            border: 1px solid $red600;
+        }
+
+        &-disabled {
+            border: 1px solid $gray100;
+            background-color: $gray100;
+
+        }
+    }
+
+
+}

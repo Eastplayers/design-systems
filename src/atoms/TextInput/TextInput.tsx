@@ -16,7 +16,7 @@ export interface TextInputProps {
   ) => void | undefined;
   onFocus?: () => void;
   onBlur?: () => void;
-  style?: Record<string, unknown>;
+  style?: React.CSSProperties;
   disabled?: boolean;
   className?: string;
   prefixIcon?: string;
