@@ -5,9 +5,9 @@ import classNames from "classnames";
 import { InputLabelStyles } from "./types";
 
 export interface InputProps {
+  filled?: boolean;
   labelStyle?: string;
   error?: boolean;
-
   type?: string;
   label?: string;
   maxLength?: number;
@@ -25,10 +25,14 @@ export interface InputProps {
   className?: string;
   prefixIcon?: string;
   suffixIcon?: string;
+  leadingIcon?: string;
+  trailingIcon?: string;
   iconColor?: string;
+  helperText?: string;
 }
 const Input: React.FC<InputProps> = (props) => {
   const {
+    filled,
     labelStyle,
     label,
     type,
@@ -39,10 +43,8 @@ const Input: React.FC<InputProps> = (props) => {
     textStyle,
     disabled,
     className,
-    prefixIcon,
-    suffixIcon,
-    iconColor,
-    error
+    error,
+    helperText
   } = props;
   const [isFocus, setFocus] = useState(false);
   const OnFocusHandler = () => {
@@ -53,13 +55,17 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   const inputBorder = classNames(styles["input-border"], {
-    [styles["input-border-error"]]: error,
+    [styles["input-border-filled"]]: filled,
     [styles["input-border-disabled"]]: disabled,
-    [styles["input-border-focus"]]: isFocus
+    [styles["input-border-focus"]]: isFocus,
+    [styles["input-border-error"]]: !disabled && error
   });
   const inputLabel = classNames(styles["input-label"], {
     [styles["input-label-disabled"]]: disabled,
-    [styles["input-label-error"]]: error
+    [styles["input-label-error"]]: !disabled && error
+  });
+  const inputHelperText = classNames(styles["input-helper-text"], {
+    [styles["input-helper-text-error"]]: error
   });
   return (
     <>
@@ -86,11 +92,9 @@ const Input: React.FC<InputProps> = (props) => {
           style={textStyle}
           disabled={disabled}
           className={className}
-          prefixIcon={prefixIcon}
-          suffixIcon={suffixIcon}
-          iconColor={iconColor}
         />
       </div>
+      <div className={inputHelperText}>{helperText}</div>
     </>
   );
 };

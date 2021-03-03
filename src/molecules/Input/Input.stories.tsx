@@ -1,5 +1,11 @@
 import React from "react";
-import { boolean, select, text, withKnobs } from "@storybook/addon-knobs";
+import {
+  boolean,
+  number,
+  select,
+  text,
+  withKnobs
+} from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 import { InputProps } from "./Input";
 import { Input } from ".";
@@ -7,7 +13,10 @@ import { TextInputType } from "../../atoms/TextInput/types";
 import { InputLabelStyles } from "./types";
 
 export const InputStory = (): React.ReactElement<InputProps> => {
+  const label = text("Label", "Label");
+  const placeholder = text("Placeholder", "Placeholder text");
   const type = select("Input Types", TextInputType, TextInputType.INPUT);
+  const filled = boolean("Filled Input", false);
   const disabled = boolean("Disabled", false);
   const error = boolean("Error", false);
   const labelStyle = select(
@@ -15,16 +24,21 @@ export const InputStory = (): React.ReactElement<InputProps> => {
     InputLabelStyles,
     InputLabelStyles.CONTAINED_LABEL
   );
-  const label = text("Label", "");
+  const width = number("Input Width", 250);
+  const helperText = text("Helper Text", "Helper Text");
   return (
-    <Input
-      label={label}
-      labelStyle={labelStyle}
-      disabled={disabled}
-      placeholder="write something"
-      type={type}
-      error={error}
-    />
+    <div style={{ width: width }}>
+      <Input
+        filled={filled}
+        label={label}
+        labelStyle={labelStyle}
+        disabled={disabled}
+        placeholder={placeholder}
+        type={type}
+        error={error}
+        helperText={helperText}
+      />
+    </div>
   );
 };
 
