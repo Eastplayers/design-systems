@@ -8,7 +8,8 @@ $placeholder-min-height:rem(26);
 .text-input,
 textarea {
     @extend .body-2;
-    padding:0;
+    padding-right:rem(4);
+    text-overflow: ellipsis;
     font-family: $font-family;
     width: 100%;
     border: none;

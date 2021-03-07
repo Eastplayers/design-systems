@@ -27,8 +27,10 @@ export const InputStory = (): React.ReactElement<InputProps> => {
   );
   const width = number("Input Width", 250);
   const helperText = text("Helper Text", "Helper Text");
-  const prefixIcon = select("Prefix Icon", IconsList, IconsList.NONE)
-  const suffixIcon = select("Suffix Icon", IconsList, IconsList.NONE)
+  const leadingIcon = select("Leading Icon", IconsList, IconsList.CALENDAR)
+  const prefixIcon = select("Prefix Icon", IconsList, IconsList.CHEVRON_RIGHT)
+  const suffixIcon = select("Suffix Icon", IconsList, IconsList.EDIT)
+  const trailingIcon = select("Trailing Icon", IconsList, IconsList.SEARCH)
   return (
     <div style={{ width: width }}>
       <Input
@@ -42,6 +44,8 @@ export const InputStory = (): React.ReactElement<InputProps> => {
         helperText={helperText}
         prefixIcon={prefixIcon}
         suffixIcon={suffixIcon}
+        leadingIcon={leadingIcon}
+        trailingIcon={trailingIcon}
       />
     </div>
   );

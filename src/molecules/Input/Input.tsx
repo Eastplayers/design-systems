@@ -49,6 +49,8 @@ const Input: React.FC<InputProps> = (props) => {
     helperText,
     prefixIcon,
     suffixIcon,
+    leadingIcon,
+    trailingIcon,
     iconColor = styles.defaultColor
   } = props;
   const [isFocus, setFocus] = useState(false);
@@ -73,7 +75,6 @@ const Input: React.FC<InputProps> = (props) => {
   const inputHelperText = classNames(styles["input-helper-text"], {
     [styles["input-helper-text-error"]]: error,
     [styles["input-helper-text-disabled"]]: disabled
-
   });
   return (
     <>
@@ -86,40 +87,54 @@ const Input: React.FC<InputProps> = (props) => {
         </>
       )}
       <div className={inputBorder}>
-        {labelStyle === InputLabelStyles.CONTAINED_LABEL && (
-          <label className={inputLabel} htmlFor={label}>
-            {label}
-          </label>
-        )}
-        <div className={styles["input-border-content"]}>
-          <Icon
-            size="18"
-            className={styles["input-border-icon-prefix"]}
-            // will not display icon if input type is paragraph, same to suffixIcon
-            icon={type === TextInputType.PARAGRAPH ? "" : prefixIcon}
-            //import disabledColor $gray400 from scss
-            color={disabled ? styles.disabledColor : iconColor}
-          />
-          <TextInput
-            label={label}
-            type={type}
-            maxLength={maxLength}
-            placeholder={placeholder}
-            onChange={onChange}
-            CountCharacter={CountCharacter}
-            onFocus={OnFocusHandler}
-            onBlur={OnBlurHandler}
-            style={textStyle}
-            disabled={disabled}
-            className={className}
-          />
-          <Icon
-            size="18"
-            className={styles["input-border-icon-suffix"]}
-            icon={type === TextInputType.PARAGRAPH ? "" : suffixIcon}
-            color={disabled ? styles.disabledColor : iconColor}
-          />
+        <Icon
+          size="22"
+          className={styles["input-border-icon-leading"]}
+          // will not display icon if input type is paragraph
+          icon={type === TextInputType.PARAGRAPH ? "" : leadingIcon}
+          //import disabledColor $gray400 from scss
+          color={disabled ? styles.disabledColor : iconColor}
+        />
+        <div style={{width:"100%"}}>
+          {labelStyle === InputLabelStyles.CONTAINED_LABEL && (
+            <label className={inputLabel} htmlFor={label}>
+              {label}
+            </label>
+          )}
+          <div className={styles["input-border-content"]}>
+            <Icon
+              size="18"
+              className={styles["input-border-icon-prefix"]}
+              icon={type === TextInputType.PARAGRAPH ? "" : prefixIcon}
+              color={disabled ? styles.disabledColor : iconColor}
+            />
+            <TextInput
+              label={label}
+              type={type}
+              maxLength={maxLength}
+              placeholder={placeholder}
+              onChange={onChange}
+              CountCharacter={CountCharacter}
+              onFocus={OnFocusHandler}
+              onBlur={OnBlurHandler}
+              style={textStyle}
+              disabled={disabled}
+              className={className}
+            />
+            <Icon
+              size="18"
+              className={styles["input-border-icon-suffix"]}
+              icon={type === TextInputType.PARAGRAPH ? "" : suffixIcon}
+              color={disabled ? styles.disabledColor : iconColor}
+            />
+          </div>
         </div>
+        <Icon
+          size="22"
+          className={styles["input-border-icon-trailing"]}
+          icon={type === TextInputType.PARAGRAPH ? "" : trailingIcon}
+          color={disabled ? styles.disabledColor : iconColor}
+        />
       </div>
       <div className={inputHelperText}>{helperText}</div>
     </>

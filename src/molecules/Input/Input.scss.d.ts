@@ -22,8 +22,10 @@ interface CssExports {
   'input-border-error': string;
   'input-border-filled': string;
   'input-border-focus': string;
+  'input-border-icon-leading': string;
   'input-border-icon-prefix': string;
   'input-border-icon-suffix': string;
+  'input-border-icon-trailing': string;
   'input-border-paragraph': string;
   'input-helper-text': string;
   'input-helper-text-disabled': string;
