@@ -5,6 +5,9 @@
     disabledColor: $gray400;
 }
 
+:export {
+    defaultColor: $gray700;
+}
 
 .input {
 
@@ -33,6 +36,21 @@
         position: relative;
         margin-bottom: rem(4);
         border: 1px solid $gray400;
+
+        &-icon {
+            &-prefix {
+                margin-right: rem(8);
+                align-self: center;
+            }
+
+            &-suffix {
+                align-self: center;
+            }
+        }
+
+        &-content {
+            display: flex;
+        }
 
         &-paragraph {
             padding: rem(6) rem(4) rem(4) rem(12)
@@ -71,6 +89,10 @@
         &-error {
             color: $red600;
 
+        }
+
+        &-disabled {
+            color: $gray400
         }
     }
 }

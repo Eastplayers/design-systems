@@ -5,6 +5,7 @@ interface CssExports {
   'body-2': string;
   'body-3': string;
   'body-4': string;
+  'defaultColor': string;
   'disabledColor': string;
   'display-1': string;
   'display-2': string;
@@ -16,12 +17,16 @@ interface CssExports {
   'heading-5': string;
   'heading-6': string;
   'input-border': string;
+  'input-border-content': string;
   'input-border-disabled': string;
   'input-border-error': string;
   'input-border-filled': string;
   'input-border-focus': string;
+  'input-border-icon-prefix': string;
+  'input-border-icon-suffix': string;
   'input-border-paragraph': string;
   'input-helper-text': string;
+  'input-helper-text-disabled': string;
   'input-helper-text-error': string;
   'input-label': string;
   'input-label-disabled': string;

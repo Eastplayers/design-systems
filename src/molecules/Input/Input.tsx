@@ -4,6 +4,7 @@ import styles from "./Input.scss";
 import classNames from "classnames";
 import { InputLabelStyles } from "./types";
 import { TextInputType } from "../../atoms/TextInput/types";
+import { Icon } from "../../atoms/Icon";
 
 export interface InputProps {
   filled?: boolean;
@@ -25,8 +26,8 @@ export interface InputProps {
   disabled?: boolean;
   className?: string;
   prefixIcon?: string;
-  suffixIcon?: string;
-  leadingIcon?: string;
+  suffixIcon?: string | undefined;
+  leadingIcon?: string | undefined;
   trailingIcon?: string;
   iconColor?: string;
   helperText?: string;
@@ -45,7 +46,10 @@ const Input: React.FC<InputProps> = (props) => {
     disabled,
     className,
     error,
-    helperText
+    helperText,
+    prefixIcon,
+    suffixIcon,
+    iconColor = styles.defaultColor
   } = props;
   const [isFocus, setFocus] = useState(false);
   const OnFocusHandler = () => {
@@ -67,7 +71,9 @@ const Input: React.FC<InputProps> = (props) => {
     [styles["input-label-error"]]: !disabled && error
   });
   const inputHelperText = classNames(styles["input-helper-text"], {
-    [styles["input-helper-text-error"]]: error
+    [styles["input-helper-text-error"]]: error,
+    [styles["input-helper-text-disabled"]]: disabled
+
   });
   return (
     <>
@@ -85,19 +91,35 @@ const Input: React.FC<InputProps> = (props) => {
             {label}
           </label>
         )}
-        <TextInput
-          label={label}
-          type={type}
-          maxLength={maxLength}
-          placeholder={placeholder}
-          onChange={onChange}
-          CountCharacter={CountCharacter}
-          onFocus={OnFocusHandler}
-          onBlur={OnBlurHandler}
-          style={textStyle}
-          disabled={disabled}
-          className={className}
-        />
+        <div className={styles["input-border-content"]}>
+          <Icon
+            size="18"
+            className={styles["input-border-icon-prefix"]}
+            // will not display icon if input type is paragraph, same to suffixIcon
+            icon={type === TextInputType.PARAGRAPH ? "" : prefixIcon}
+            //import disabledColor $gray400 from scss
+            color={disabled ? styles.disabledColor : iconColor}
+          />
+          <TextInput
+            label={label}
+            type={type}
+            maxLength={maxLength}
+            placeholder={placeholder}
+            onChange={onChange}
+            CountCharacter={CountCharacter}
+            onFocus={OnFocusHandler}
+            onBlur={OnBlurHandler}
+            style={textStyle}
+            disabled={disabled}
+            className={className}
+          />
+          <Icon
+            size="18"
+            className={styles["input-border-icon-suffix"]}
+            icon={type === TextInputType.PARAGRAPH ? "" : suffixIcon}
+            color={disabled ? styles.disabledColor : iconColor}
+          />
+        </div>
       </div>
       <div className={inputHelperText}>{helperText}</div>
     </>

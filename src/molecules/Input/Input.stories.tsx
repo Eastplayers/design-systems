@@ -11,6 +11,7 @@ import { InputProps } from "./Input";
 import { Input } from ".";
 import { TextInputType } from "../../atoms/TextInput/types";
 import { InputLabelStyles } from "./types";
+import { IconsList } from "../../atoms/Icon/types";
 
 export const InputStory = (): React.ReactElement<InputProps> => {
   const label = text("Label", "Label");
@@ -26,6 +27,8 @@ export const InputStory = (): React.ReactElement<InputProps> => {
   );
   const width = number("Input Width", 250);
   const helperText = text("Helper Text", "Helper Text");
+  const prefixIcon = select("Prefix Icon", IconsList, IconsList.NONE)
+  const suffixIcon = select("Suffix Icon", IconsList, IconsList.NONE)
   return (
     <div style={{ width: width }}>
       <Input
@@ -37,6 +40,8 @@ export const InputStory = (): React.ReactElement<InputProps> => {
         type={type}
         error={error}
         helperText={helperText}
+        prefixIcon={prefixIcon}
+        suffixIcon={suffixIcon}
       />
     </div>
   );
