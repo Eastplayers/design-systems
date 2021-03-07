@@ -5,15 +5,11 @@
     disabledColor: $gray400;
 }
 
-$input-border-margin-bottom:rem(4);
-$input-border-padding: rem(6) rem(12);
-$input-border-radius: rem(6);
 
 .input {
 
     &-label {
         @extend .heading-6;
-        height: rem(20);
 
         &-disabled {
             color: $gray400
@@ -24,15 +20,23 @@ $input-border-radius: rem(6);
         }
     }
 
+    &-top-label-space {
+        height: rem(4)
+    }
+
     &-border {
         display: flex;
         flex-direction: column;
-        padding: $input-border-padding;
+        padding: rem(6) rem(12);
         box-sizing: border-box;
-        border-radius: $input-border-radius;
+        border-radius: rem(6);
         position: relative;
-        margin-bottom: $input-border-margin-bottom;
+        margin-bottom: rem(4);
         border: 1px solid $gray400;
+
+        &-paragraph {
+            padding: rem(6) rem(4) rem(4) rem(12)
+        }
 
         &-filled {
             background-color: $gray100;
@@ -62,6 +66,7 @@ $input-border-radius: rem(6);
     &-helper-text {
         @extend .body-4;
         color: $gray700;
+        margin-top: rem(4);
 
         &-error {
             color: $red600;

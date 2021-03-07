@@ -3,6 +3,7 @@ import { TextInput } from "../../atoms/TextInput";
 import styles from "./Input.scss";
 import classNames from "classnames";
 import { InputLabelStyles } from "./types";
+import { TextInputType } from "../../atoms/TextInput/types";
 
 export interface InputProps {
   filled?: boolean;
@@ -55,6 +56,7 @@ const Input: React.FC<InputProps> = (props) => {
   };
 
   const inputBorder = classNames(styles["input-border"], {
+    [styles["input-border-paragraph"]]: type === TextInputType.PARAGRAPH,
     [styles["input-border-filled"]]: filled,
     [styles["input-border-disabled"]]: disabled,
     [styles["input-border-focus"]]: isFocus,
@@ -70,9 +72,12 @@ const Input: React.FC<InputProps> = (props) => {
   return (
     <>
       {labelStyle === InputLabelStyles.TOP_LABEL && (
-        <label className={inputLabel} htmlFor={label}>
-          {label}
-        </label>
+        <>
+          <label className={inputLabel} htmlFor={label}>
+            {label}
+          </label>
+          <div className={styles["input-top-label-space"]} />
+        </>
       )}
       <div className={inputBorder}>
         {labelStyle === InputLabelStyles.CONTAINED_LABEL && (

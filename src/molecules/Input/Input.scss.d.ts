@@ -20,11 +20,13 @@ interface CssExports {
   'input-border-error': string;
   'input-border-filled': string;
   'input-border-focus': string;
+  'input-border-paragraph': string;
   'input-helper-text': string;
   'input-helper-text-error': string;
   'input-label': string;
   'input-label-disabled': string;
   'input-label-error': string;
+  'input-top-label-space': string;
   'line-through': string;
   'none': string;
   'text--400': string;
