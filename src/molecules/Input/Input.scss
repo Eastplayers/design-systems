@@ -14,17 +14,44 @@
     &-label {
         @extend .heading-6;
 
-        &-disabled {
-            color: $gray400
+        &-state {
+            &-disabled {
+                color: $gray400
+            }
+
+            &-error {
+                color: $red600
+            }
         }
 
-        &-error {
-            color: $red600
-        }
+
     }
 
     &-top-label-space {
         height: rem(4)
+    }
+
+    &-icon {
+
+        &-leading {
+            margin-right: rem(16);
+            align-self: center;
+        }
+
+        &-prefix {
+            margin-right: rem(8);
+            align-self: center;
+
+        }
+
+        &-trailing {
+            align-self: center;
+            margin-left: rem(16)
+        }
+
+        &-suffix {
+            align-self: center;
+        }
     }
 
     &-border {
@@ -36,59 +63,42 @@
         margin-bottom: rem(4);
         border: 1px solid $gray400;
 
-        &-icon {
+        &-mid-part {
+            width: 100%;
 
-            &-leading {
-                margin-right: rem(16);
-                align-self: center;
+            &-content {
+                display: flex;
             }
 
-            &-prefix {
-                margin-right: rem(8);
-                align-self: center;
-
-            }
-
-            &-trailing {
-                align-self: center;
-                margin-left: rem(16)
-            }
-
-            &-suffix {
-                align-self: center;
+            &-paragraph {
+                padding: rem(6) rem(4) rem(4) rem(12)
             }
         }
 
-        &-content {
-            display: flex;
-        }
-
-        &-paragraph {
-            padding: rem(6) rem(4) rem(4) rem(12)
-        }
-
-        &-filled {
-            background-color: $gray100;
-            border: 1px solid $gray100;
-
-            input,
-            textarea {
+        &-state {
+            &-filled {
                 background-color: $gray100;
+                border: 1px solid $gray100;
+
+                input,
+                textarea {
+                    background-color: $gray100;
+                }
             }
-        }
 
-        &-focus {
-            border: 1px solid $indigo600;
-        }
+            &-focus {
+                border: 1px solid $indigo600;
+            }
 
-        &-error {
-            border: 1px solid $red600;
-        }
+            &-error {
+                border: 1px solid $red600;
+            }
 
-        &-disabled {
-            border: 1px solid $gray100;
-            background-color: $gray100;
+            &-disabled {
+                border: 1px solid $gray100;
+                background-color: $gray100;
 
+            }
         }
     }
 
@@ -97,13 +107,17 @@
         color: $gray700;
         margin-top: rem(4);
 
-        &-error {
-            color: $red600;
+        &-state {
 
+            &-error {
+                color: $red600;
+
+            }
+
+            &-disabled {
+                color: $gray400
+            }
         }
 
-        &-disabled {
-            color: $gray400
-        }
     }
 }
