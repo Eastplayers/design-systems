@@ -61,17 +61,14 @@ const Input: React.FC<InputProps> = (props) => {
     setFocus(false);
   };
 
-  const inputBorder =
-    classNames(styles["input-border"], {
-      [styles["input-border-mid-part-paragraph"]]:
-        type === TextInputType.PARAGRAPH,
-      [styles["input-border-state-filled"]]: filled,
-      [styles["input-border-state-disabled"]]: disabled,
-      [styles["input-border-state-focus"]]: isFocus,
-      [styles["input-border-state-error"]]: !disabled && error
-    }) +
-    " " +
-    className;
+  const inputBorder = classNames(className, styles["input-border"], {
+    [styles["input-border-mid-part-paragraph"]]:
+      type === TextInputType.PARAGRAPH,
+    [styles["input-border-state-filled"]]: filled,
+    [styles["input-border-state-disabled"]]: disabled,
+    [styles["input-border-state-focus"]]: isFocus,
+    [styles["input-border-state-error"]]: !disabled && error
+  });
   //can put className for Input Component
   const inputLabel = classNames(styles["input-label"], {
     [styles["input-label-state-disabled"]]: disabled,
