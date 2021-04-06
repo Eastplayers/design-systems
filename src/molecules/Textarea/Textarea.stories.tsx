@@ -7,13 +7,13 @@ import {
   withKnobs
 } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
-import { TextInputProps } from "./Input";
-import { Input } from ".";
+import { TextareaInputProps } from "./Textarea";
+import { Textarea } from ".";
 import { TextInputType } from "../../atoms/InputFields/types";
 import { InputLabelStyles } from "./types";
 import { IconsList } from "../../atoms/Icon/types";
 
-export const InputStory = (): React.ReactElement<TextInputProps> => {
+export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   const label = text("Label", "Label");
   const width = number("Width", 300);
   const placeholder = text("Placeholder", "Placeholder text");
@@ -33,7 +33,7 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
   const trailingIcon = select("Trailing Icon", IconsList, IconsList.SEARCH);
   return (
     <div style={{ width: width }}>
-      <Input
+      <Textarea
         width={width}
         filled={filled}
         label={label}
@@ -53,6 +53,6 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
 };
 
 export default {
-  title: "Molecules/Input",
+  title: "Molecules/Textarea",
   decorators: [withKnobs]
 };

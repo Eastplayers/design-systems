@@ -1,5 +1,5 @@
-@use "../../../styles/main.scss"as *;
-@use "../../../atoms/Text/Text.scss"as *;
+@use '../../../styles/main.scss' as *;
+@use '../../../atoms/Text/Text.scss' as *;
 
 $placeholder-text-height: rem(24);
 $placeholder-min-height: rem(26);
@@ -13,7 +13,7 @@ $placeholder-min-height: rem(26);
   height: $placeholder-text-height;
   min-height: $placeholder-min-height;
   color: $gray700;
-  resize: both;
+  resize: vertical;
   height: auto;
   box-sizing: border-box;
 

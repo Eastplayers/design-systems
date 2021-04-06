@@ -2,15 +2,21 @@ import React from "react";
 import { withKnobs, boolean } from "@storybook/addon-knobs";
 import "@storybook/addon-knobs/register";
 
-import { TextInput } from "./TextInput";
-import { TextInputProps } from "./TextInput/TextInput";
-import { TextareaInput } from "./TextareaInput";
+import { Input } from "./Input";
+import { InputProps } from "./Input/Input";
+import { TextareaProps } from "./Textarea/Textarea";
+import { Textarea } from "./Textarea";
 
-export const Text = (): React.ReactElement<TextInputProps> => {
+export const TextInput = (): React.ReactElement<InputProps | TextareaProps> => {
   const disabled = boolean("Disabled", false);
   return (
     <>
-      <TextInput
+      <Input
+        label="write something"
+        placeholder="write something"
+        disabled={disabled}
+      />
+      <Textarea
         label="write something"
         placeholder="write something"
         disabled={disabled}
@@ -18,18 +24,7 @@ export const Text = (): React.ReactElement<TextInputProps> => {
     </>
   );
 };
-export const Textarea = (): React.ReactElement<TextInputProps> => {
-  const disabled = boolean("Disabled", false);
-  return (
-    <>
-      <TextareaInput
-        label="write something"
-        placeholder="write something"
-        disabled={disabled}
-      />
-    </>
-  );
-};
+
 
 export default {
   title: "Atoms/Inputs",

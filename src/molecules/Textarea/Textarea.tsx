@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Input } from "../../atoms/InputFields/Input";
-import styles from "./Input.scss";
+import { Textarea } from "../../atoms/InputFields/Textarea";
+import styles from "./Textarea.scss";
 import classNames from "classnames";
 import { InputLabelStyles } from "./types";
 import { TextInputType } from "../../atoms/InputFields/types";
 import { Icon } from "../../atoms/Icon";
 
-export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
+export interface TextareaInputProps extends React.HTMLProps<HTMLTextAreaElement> {
   width?: number;
   filled?: boolean;
   labelStyle?: string;
@@ -25,7 +25,7 @@ export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
   iconColor?: string;
   helperText?: string;
 }
-const TextInput: React.FC<TextInputProps> = (props) => {
+const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
     width,
     filled,
@@ -71,7 +71,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     [styles["input-helper-text-state-error"]]: error,
     [styles["input-helper-text-state-disabled"]]: disabled
   });
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
     console.log(e);
   };
 
@@ -107,7 +107,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
               icon={(type !== TextInputType.PARAGRAPH && prefixIcon) || ""}
               color={disabled ? styles.disabledColor : iconColor}
             />
-            <Input
+            <Textarea
               {...rest}
               label={label}
               type={type}
@@ -139,4 +139,4 @@ const TextInput: React.FC<TextInputProps> = (props) => {
   );
 };
 
-export default TextInput;
+export default TextareaInput;
