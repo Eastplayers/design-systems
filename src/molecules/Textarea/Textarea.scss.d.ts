@@ -17,6 +17,7 @@ interface CssExports {
   'heading-5': string;
   'heading-6': string;
   'input-border': string;
+  'input-border-margin-top': string;
   'input-border-mid-part': string;
   'input-border-mid-part-content': string;
   'input-border-mid-part-paragraph': string;
@@ -27,11 +28,6 @@ interface CssExports {
   'input-helper-text': string;
   'input-helper-text-state-disabled': string;
   'input-helper-text-state-error': string;
-  'input-icon-leading': string;
-  'input-icon-prefix': string;
-  'input-icon-suffix': string;
-  'input-icon-trailing': string;
-  'input-label': string;
   'input-label-state-disabled': string;
   'input-label-state-error': string;
   'input-top-label-space': string;

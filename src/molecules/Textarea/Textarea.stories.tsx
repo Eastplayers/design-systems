@@ -11,7 +11,6 @@ import { TextareaInputProps } from "./Textarea";
 import { Textarea } from ".";
 import { TextInputType } from "../../atoms/InputFields/types";
 import { InputLabelStyles } from "./types";
-import { IconsList } from "../../atoms/Icon/types";
 
 export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   const label = text("Label", "Label");
@@ -27,10 +26,6 @@ export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
     InputLabelStyles.CONTAINED_LABEL
   );
   const helperText = text("Helper Text", "Helper Text");
-  const leadingIcon = select("Leading Icon", IconsList, IconsList.CALENDAR);
-  const prefixIcon = select("Prefix Icon", IconsList, IconsList.CHEVRON_RIGHT);
-  const suffixIcon = select("Suffix Icon", IconsList, IconsList.EDIT);
-  const trailingIcon = select("Trailing Icon", IconsList, IconsList.SEARCH);
   return (
     <div style={{ width: width }}>
       <Textarea
@@ -43,10 +38,6 @@ export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
         type={type}
         error={error}
         helperText={helperText}
-        prefixIcon={prefixIcon}
-        suffixIcon={suffixIcon}
-        leadingIcon={leadingIcon}
-        trailingIcon={trailingIcon}
       />
     </div>
   );
