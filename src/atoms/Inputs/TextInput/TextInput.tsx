@@ -1,21 +1,15 @@
 import React from "react";
-import { TextInputType } from "./types";
+import { TextInputType } from "../types";
 import classNames from "classnames";
 import styles from "./TextInput.scss";
 
-export interface TextInputProps {
-  type?: string;
+export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
   label?: string;
   maxLength?: number;
   placeholder?: string;
-  onChange?: (
+  countCharacter?: (
     e: React.ChangeEvent | React.FormEvent<HTMLElement>
   ) => void | undefined;
-  CountCharacter?: (
-    e: React.ChangeEvent | React.FormEvent<HTMLElement>
-  ) => void | undefined;
-  onFocus?: () => void;
-  onBlur?: () => void;
   style?: React.CSSProperties;
   disabled?: boolean;
   className?: string;
@@ -30,30 +24,26 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     maxLength,
     placeholder,
     onChange,
-    CountCharacter,
+    countCharacter,
     onFocus,
     onBlur,
     style,
-    disabled
+    disabled,
+    ...rest
   } = props;
 
-  const renderTag = (): string => {
-    if (type === TextInputType.PARAGRAPH) return "textarea";
-    return "input";
-  };
-
   const textInput = classNames(styles["text-input"]);
-  const CustomTag = renderTag() as keyof JSX.IntrinsicElements;
 
   return (
-    <CustomTag
+    <input
+      {...rest}
       id={label}
       disabled={disabled}
       maxLength={maxLength}
       placeholder={placeholder}
       onChange={(e: any) => {
         onChange && onChange(e);
-        CountCharacter && CountCharacter(e);
+        countCharacter && countCharacter(e);
       }}
       className={textInput}
       onFocus={onFocus}

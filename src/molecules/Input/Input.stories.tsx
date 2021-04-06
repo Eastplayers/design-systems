@@ -9,7 +9,7 @@ import {
 import "@storybook/addon-knobs/register";
 import { InputProps } from "./Input";
 import { Input } from ".";
-import { TextInputType } from "../../atoms/TextInput/types";
+import { TextInputType } from "../../atoms/Inputs/types";
 import { InputLabelStyles } from "./types";
 import { IconsList } from "../../atoms/Icon/types";
 

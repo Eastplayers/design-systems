@@ -1,0 +1,40 @@
+@use "../../../styles/main.scss" as *;
+@use "../../../atoms/Text/Text.scss" as *;
+
+$placeholder-text-height: rem(24);
+$placeholder-min-height: rem(26);
+
+.text-input {
+  @extend .body-2;
+  padding-right: rem(4);
+  text-overflow: ellipsis;
+  font-family: $font-family;
+  width: 100%;
+  border: none;
+  height: $placeholder-text-height;
+  min-height: $placeholder-min-height;
+  color: $gray700;
+  height: auto;
+  box-sizing: border-box;
+
+  &:disabled {
+    color: $gray400;
+    background-color: $gray100;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::-webkit-input-placeholder {
+    color: $gray400;
+  }
+
+  &::placeholder {
+    color: $gray400;
+  }
+
+  &::-moz-placeholder {
+    color: $gray400;
+  }
+}

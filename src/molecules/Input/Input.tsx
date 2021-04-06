@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { TextInput } from "../../atoms/TextInput";
+import { TextInput } from "../../atoms/Inputs/TextInput";
 import styles from "./Input.scss";
 import classNames from "classnames";
 import { InputLabelStyles } from "./types";
-import { TextInputType } from "../../atoms/TextInput/types";
+import { TextInputType } from "../../atoms/Inputs/types";
 import { Icon } from "../../atoms/Icon";
 
 export interface InputProps {
@@ -15,9 +15,6 @@ export interface InputProps {
   maxLength?: number;
   placeholder?: string;
   onChange?: (
-    e: React.ChangeEvent | React.FormEvent<HTMLElement>
-  ) => void | undefined;
-  CountCharacter?: (
     e: React.ChangeEvent | React.FormEvent<HTMLElement>
   ) => void | undefined;
   onFocus?: () => void;
@@ -41,7 +38,6 @@ const Input: React.FC<InputProps> = (props) => {
     maxLength,
     placeholder,
     onChange,
-    CountCharacter,
     textStyle,
     disabled,
     className,
@@ -78,6 +74,9 @@ const Input: React.FC<InputProps> = (props) => {
     [styles["input-helper-text-state-error"]]: error,
     [styles["input-helper-text-state-disabled"]]: disabled
   });
+  const countCharacter = () => {
+    null;
+  };
 
   return (
     <>
@@ -117,7 +116,7 @@ const Input: React.FC<InputProps> = (props) => {
               maxLength={maxLength}
               placeholder={placeholder}
               onChange={onChange}
-              CountCharacter={CountCharacter}
+              countCharacter={countCharacter}
               onFocus={OnFocusHandler}
               onBlur={OnBlurHandler}
               style={textStyle}
