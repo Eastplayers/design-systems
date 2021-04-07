@@ -12,7 +12,6 @@
 .input {
   &-label {
     @extend .heading-6;
-
     &-state {
       &-disabled {
         color: $gray400;
@@ -24,28 +23,15 @@
     }
   }
 
-  &-top-label-space {
-    height: rem(4);
-  }
-
   &-icon {
-    &-leading {
-      margin-right: rem(16);
-      align-self: center;
-    }
-
-    &-prefix {
-      margin-right: rem(8);
-      align-self: center;
-    }
-
-    &-trailing {
-      align-self: center;
-      margin-left: rem(16);
-    }
-
-    &-suffix {
-      align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-disabled {
+      svg {
+        fill: $gray400;
+        stroke: $gray400;
+      }
     }
   }
 
@@ -58,15 +44,28 @@
     margin-bottom: rem(4);
     border: 1px solid $gray400;
 
+    &-margin-top {
+      margin-top: rem(4);
+    }
+
     &-mid-part {
       width: 100%;
+      &-margin {
+        &-left {
+          margin-left: rem(12);
+        }
+        &-right {
+          margin-right: rem(12);
+        }
+      }
 
       &-content {
         display: flex;
-      }
-
-      &-paragraph {
-        padding: rem(6) rem(4) rem(4) rem(12);
+        &-margin-right {
+          input {
+            margin: 0 rem(4);
+          }
+        }
       }
     }
 
@@ -75,8 +74,7 @@
         background-color: $gray100;
         border: 1px solid $gray100;
 
-        input,
-        textarea {
+        input {
           background-color: $gray100;
         }
       }

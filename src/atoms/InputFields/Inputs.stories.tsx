@@ -11,11 +11,13 @@ export const TextInput = (): React.ReactElement<InputProps | TextareaProps> => {
   const disabled = boolean("Disabled", false);
   return (
     <>
+      <p>Input</p>
       <Input
         label="write something"
         placeholder="write something"
         disabled={disabled}
       />
+      <p>Textarea</p>
       <Textarea
         label="write something"
         placeholder="write something"
@@ -24,7 +26,6 @@ export const TextInput = (): React.ReactElement<InputProps | TextareaProps> => {
     </>
   );
 };
-
 
 export default {
   title: "Atoms/Inputs",

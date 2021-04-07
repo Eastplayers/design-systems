@@ -9,7 +9,7 @@
   defaultColor: $gray700;
 }
 
-.input {
+.textarea {
   &-label {
     &-state {
       &-disabled {
@@ -22,13 +22,9 @@
     }
   }
 
-  &-top-label-space {
-    height: rem(4);
-  }
-
   &-border {
     display: flex;
-    padding: rem(6) rem(12);
+    padding: rem(6) rem(6) rem(6) rem(12);
     box-sizing: border-box;
     border-radius: rem(6);
     position: relative;
@@ -45,10 +41,9 @@
       &-content {
         display: flex;
       }
-
-      &-paragraph {
-        padding: rem(6) rem(4) rem(4) rem(12);
-      }
+    }
+    textarea {
+      padding: 0 rem(8) rem(4) 0;
     }
 
     &-state {
@@ -56,7 +51,6 @@
         background-color: $gray100;
         border: 1px solid $gray100;
 
-        input,
         textarea {
           background-color: $gray100;
         }
