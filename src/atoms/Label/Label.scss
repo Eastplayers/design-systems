@@ -1,0 +1,8 @@
+@use '../../styles/main.scss' as *;
+@use '../../atoms/Text/Text.scss' as *;
+
+.label {
+  @extend .heading-6;
+  display: inline-block;
+  width: 100%;
+}

@@ -1,0 +1,89 @@
+@use "../../styles/main.scss" as *;
+@use "../../atoms/Text/Text.scss" as *;
+
+:export {
+  disabledColor: $gray400;
+}
+
+:export {
+  defaultColor: $gray700;
+}
+
+.textarea {
+  &-label {
+    &-state {
+      &-disabled {
+        color: $gray400;
+      }
+
+      &-error {
+        color: $red600;
+      }
+    }
+  }
+
+  &-border {
+    display: flex;
+    padding: rem(6) rem(6) rem(6) rem(12);
+    box-sizing: border-box;
+    border-radius: rem(6);
+    position: relative;
+    margin-bottom: rem(4);
+    border: 1px solid $gray400;
+
+    &-margin-top {
+      margin-top: rem(4);
+    }
+
+    &-mid-part {
+      width: 100%;
+
+      &-content {
+        display: flex;
+      }
+    }
+    textarea {
+      padding: 0 rem(8) rem(4) 0;
+    }
+
+    &-state {
+      &-filled {
+        background-color: $gray100;
+        border: 1px solid $gray100;
+
+        textarea {
+          background-color: $gray100;
+        }
+      }
+
+      &-focus {
+        border: 1px solid $indigo600;
+      }
+
+      &-error {
+        border: 1px solid $red600;
+      }
+
+      &-disabled {
+        border: 1px solid $gray100;
+        background-color: $gray100;
+      }
+    }
+  }
+
+  &-helper-text {
+    @extend .body-4;
+    color: $gray700;
+    margin-top: rem(4);
+
+    &-state {
+      &-error {
+        color: $red600;
+      }
+
+      &-disabled {
+        color: $gray400;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+@use "../../styles/main.scss" as *;
+@use "../../atoms/Text/Text.scss" as *;
+
+:export {
+  disabledColor: $gray400;
+}
+
+:export {
+  defaultColor: $gray700;
+}
+
+.input {
+  &-label {
+    @extend .heading-6;
+    &-state {
+      &-disabled {
+        color: $gray400;
+      }
+
+      &-error {
+        color: $red600;
+      }
+    }
+  }
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-disabled {
+      svg {
+        fill: $gray400;
+        stroke: $gray400;
+      }
+    }
+  }
+
+  &-border {
+    display: flex;
+    padding: rem(6) rem(12);
+    box-sizing: border-box;
+    border-radius: rem(6);
+    position: relative;
+    margin-bottom: rem(4);
+    border: 1px solid $gray400;
+
+    &-margin-top {
+      margin-top: rem(4);
+    }
+
+    &-mid-part {
+      width: 100%;
+      &-margin {
+        &-left {
+          margin-left: rem(12);
+        }
+        &-right {
+          margin-right: rem(12);
+        }
+      }
+
+      &-content {
+        display: flex;
+        &-margin-right {
+          input {
+            margin: 0 rem(4);
+          }
+        }
+      }
+    }
+
+    &-state {
+      &-filled {
+        background-color: $gray100;
+        border: 1px solid $gray100;
+
+        input {
+          background-color: $gray100;
+        }
+      }
+
+      &-focus {
+        border: 1px solid $indigo600;
+      }
+
+      &-error {
+        border: 1px solid $red600;
+      }
+
+      &-disabled {
+        border: 1px solid $gray100;
+        background-color: $gray100;
+      }
+    }
+  }
+
+  &-helper-text {
+    @extend .body-4;
+    color: $gray700;
+    margin-top: rem(4);
+
+    &-state {
+      &-error {
+        color: $red600;
+      }
+
+      &-disabled {
+        color: $gray400;
+      }
+    }
+  }
+}
