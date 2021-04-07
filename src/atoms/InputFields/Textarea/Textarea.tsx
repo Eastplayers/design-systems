@@ -7,9 +7,9 @@ export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement> {
   id?: string;
 }
 const Textarea: React.FC<TextareaProps> = (props) => {
-  const { label, id, ...rest } = props;
+  const { label, id, className, ...rest } = props;
 
-  const textarea = classNames(styles["textarea-input"]);
+  const textarea = classNames(styles["textarea-input"], className);
 
   return <textarea id={id || label} className={textarea} {...rest} />;
 };

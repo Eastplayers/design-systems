@@ -22,6 +22,7 @@ export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
 }
 const TextInput: React.FC<TextInputProps> = (props) => {
   const {
+    id,
     width,
     filled,
     labelStyle,
@@ -60,9 +61,9 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     [styles["input-border-mid-part-margin-left"]]: leadingIcon,
     [styles["input-border-mid-part-margin-right"]]: trailingIcon
   });
-  const contentClass = classNames(styles["input-border-mid-part-content"],{
-    [styles["input-border-mid-part-content-margin-right"]]:prefixIcon
-  })
+  const contentClass = classNames(styles["input-border-mid-part-content"], {
+    [styles["input-border-mid-part-content-margin-right"]]: prefixIcon
+  });
   const inputHelperText = classNames(styles["input-helper-text"], {
     [styles["input-helper-text-state-error"]]: error,
     [styles["input-helper-text-state-disabled"]]: disabled
@@ -76,17 +77,18 @@ const TextInput: React.FC<TextInputProps> = (props) => {
   return (
     <div className={className} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
-        <Label htmlFor={label} value={label} className={labelClass} />
+        <Label htmlFor={id || label} value={label} className={labelClass} />
       )}
       <div className={borderClass}>
         <div className={iconContainerClass}>{leadingIcon}</div>
         <div className={midPartClass}>
           {containedLabel && (
-            <Label htmlFor={label} value={label} className={labelClass} />
+            <Label htmlFor={id || label} value={label} className={labelClass} />
           )}
           <div className={contentClass}>
             <div className={iconContainerClass}>{prefixIcon}</div>
             <Input
+              id={id}
               onFocus={OnFocusHandler}
               onBlur={OnBlurHandler}
               label={label}

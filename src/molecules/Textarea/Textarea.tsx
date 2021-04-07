@@ -19,6 +19,7 @@ export interface TextareaInputProps
 }
 const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
+    id,
     width,
     filled,
     labelStyle,
@@ -60,15 +61,16 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   return (
     <div className={className} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
-        <Label htmlFor={label} value={label} className={inputLabel} />
+        <Label htmlFor={id || label} value={label} className={inputLabel} />
       )}
       <div className={inputBorder}>
         <div className={styles["textarea-border-mid-part"]}>
           {containedLabel && (
-            <Label htmlFor={label} value={label} className={inputLabel} />
+            <Label htmlFor={id || label} value={label} className={inputLabel} />
           )}
           <div className={styles["textarea-border-mid-part-content"]}>
             <Textarea
+              id={id}
               disabled={disabled}
               label={label}
               onFocus={onFocusHandler}
