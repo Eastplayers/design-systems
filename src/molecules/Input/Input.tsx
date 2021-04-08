@@ -6,14 +6,9 @@ import { InputLabelStyles } from "./types";
 import { Label } from "../../atoms/Label";
 
 export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
-  id?: string;
-  width?: number;
   filled?: boolean;
-  labelStyle?: string;
+  labelStyle?: InputLabelStyles;
   error?: boolean;
-  label?: string;
-  disabled?: boolean;
-  className?: string;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
   leadingIcon?: React.ReactNode;
@@ -25,7 +20,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     id,
     width,
     filled,
-    labelStyle,
+    labelStyle = InputLabelStyles.TOP_LABEL,
     label = "",
     disabled,
     className,
@@ -37,70 +32,69 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     trailingIcon,
     ...rest
   } = props;
+
   const [isFocus, setFocus] = useState(false);
-  const OnFocusHandler = () => {
+
+  const onFocusHandler = () => {
     setFocus(true);
   };
-  const OnBlurHandler = () => {
+
+  const onBlurHandler = () => {
     setFocus(false);
   };
 
-  const borderClass = classNames(styles["input-border"], {
-    [styles["input-border-margin-top"]]:
-      labelStyle === InputLabelStyles.TOP_LABEL,
-    [styles["input-border-state-filled"]]: filled,
-    [styles["input-border-state-disabled"]]: disabled,
-    [styles["input-border-state-focus"]]: isFocus,
-    [styles["input-border-state-error"]]: !disabled && error
-  });
-  const labelClass = classNames({
-    [styles["input-label-state-disabled"]]: disabled,
-    [styles["input-label-state-error"]]: !disabled && error
-  });
-  const midPartClass = classNames(styles["input-border-mid-part"], {
-    [styles["input-border-mid-part-margin-left"]]: leadingIcon,
-    [styles["input-border-mid-part-margin-right"]]: trailingIcon
-  });
-  const contentClass = classNames(styles["input-border-mid-part-content"], {
-    [styles["input-border-mid-part-content-margin-right"]]: prefixIcon
-  });
-  const inputHelperText = classNames(styles["input-helper-text"], {
-    [styles["input-helper-text-state-error"]]: error,
-    [styles["input-helper-text-state-disabled"]]: disabled
-  });
-  const iconContainerClass = classNames(styles["input-icon"], {
-    [styles["input-icon-disabled"]]: disabled
-  });
+  const inputClass = classNames(
+    {
+      [styles["input-disabled"]]: disabled,
+      [styles["input-error"]]: !disabled && error,
+      [styles["input-filled"]]: filled,
+      [styles["input-focused"]]: isFocus,
+      [styles["input-leading"]]: leadingIcon,
+      [styles["input-prefix"]]: prefixIcon,
+      [styles["input-trailing"]]: trailingIcon,
+      [styles["input-top"]]: labelStyle === InputLabelStyles.TOP_LABEL
+    },
+    className
+  );
+
   const topLabel = labelStyle === InputLabelStyles.TOP_LABEL;
   const containedLabel = labelStyle === InputLabelStyles.CONTAINED_LABEL;
 
   return (
-    <div className={className} style={{ width: width, minWidth: 300 }}>
+    <div className={inputClass} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
-        <Label htmlFor={id || label} value={label} className={labelClass} />
+        <Label
+          htmlFor={id || label}
+          value={label}
+          className={styles["input-label"]}
+        />
       )}
-      <div className={borderClass}>
-        <div className={iconContainerClass}>{leadingIcon}</div>
-        <div className={midPartClass}>
+      <div className={styles["input-border"]}>
+        <div className={styles["input-icon"]}>{leadingIcon}</div>
+        <div className={styles["input-border-midpart"]}>
           {containedLabel && (
-            <Label htmlFor={id || label} value={label} className={labelClass} />
+            <Label
+              htmlFor={id || label}
+              value={label}
+              className={styles["input-label"]}
+            />
           )}
-          <div className={contentClass}>
-            <div className={iconContainerClass}>{prefixIcon}</div>
+          <div className={styles["input-border-midpart-content"]}>
+            <div className={styles["input-icon"]}>{prefixIcon}</div>
             <Input
               id={id}
-              onFocus={OnFocusHandler}
-              onBlur={OnBlurHandler}
+              onFocus={onFocusHandler}
+              onBlur={onBlurHandler}
               label={label}
               disabled={disabled}
               {...rest}
             />
-            <div className={iconContainerClass}>{suffixIcon}</div>
+            <div className={styles["input-icon"]}>{suffixIcon}</div>
           </div>
         </div>
-        <div className={iconContainerClass}>{trailingIcon}</div>
+        <div className={styles["input-icon"]}>{trailingIcon}</div>
       </div>
-      <div className={inputHelperText}>{helperText}</div>
+      <div className={styles["input-helper"]}>{helperText}</div>
     </div>
   );
 };
