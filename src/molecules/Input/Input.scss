@@ -12,7 +12,7 @@
       }
     }
   }
-  
+
   &-error {
     .input-label {
       color: $red600;
@@ -36,7 +36,7 @@
       color: $gray400;
     }
     .input-icon {
-      svg {
+      svg path {
         fill: $gray400 !important;
         stroke: $gray400 !important;
       }
