@@ -1,24 +1,46 @@
 @use "../../styles/main.scss" as *;
 @use "../../atoms/Text/Text.scss" as *;
 
-:export {
-  disabledColor: $gray400;
-}
-
-:export {
-  defaultColor: $gray700;
-}
-
 .textarea {
-  &-label {
-    &-state {
-      &-disabled {
-        color: $gray400;
-      }
+  &-filled {
+    .textarea-border {
+      background-color: $gray100;
+      border: 1px solid $gray100;
 
-      &-error {
-        color: $red600;
+      textarea {
+        background-color: $gray100;
       }
+    }
+  }
+
+  &-error {
+    .textarea-label {
+      color: $red600;
+    }
+    .textarea-border {
+      border: 1px solid $red600;
+    }
+    .textarea-helper {
+      color: $red600;
+    }
+  }
+
+  &-focused {
+    .textarea-border {
+      border: 1px solid $indigo600;
+    }
+  }
+
+  &-disabled {
+    .textarea-label {
+      color: $gray400;
+    }
+    .textarea-border {
+      border: 1px solid $gray100;
+      background-color: $gray100;
+    }
+    .textarea-helper {
+      color: $gray400;
     }
   }
 
@@ -37,53 +59,15 @@
 
     &-mid-part {
       width: 100%;
-
-      &-content {
-        display: flex;
-      }
     }
     textarea {
       padding: 0 rem(8) rem(4) 0;
     }
-
-    &-state {
-      &-filled {
-        background-color: $gray100;
-        border: 1px solid $gray100;
-
-        textarea {
-          background-color: $gray100;
-        }
-      }
-
-      &-focus {
-        border: 1px solid $indigo600;
-      }
-
-      &-error {
-        border: 1px solid $red600;
-      }
-
-      &-disabled {
-        border: 1px solid $gray100;
-        background-color: $gray100;
-      }
-    }
   }
 
-  &-helper-text {
+  &-helper {
     @extend .body-4;
     color: $gray700;
     margin-top: rem(4);
-
-    &-state {
-      &-error {
-        color: $red600;
-      }
-
-      &-disabled {
-        color: $gray400;
-      }
-    }
   }
 }

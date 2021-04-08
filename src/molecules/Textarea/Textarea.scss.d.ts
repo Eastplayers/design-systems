@@ -5,8 +5,6 @@ interface CssExports {
   'body-2': string;
   'body-3': string;
   'body-4': string;
-  'defaultColor': string;
-  'disabledColor': string;
   'display-1': string;
   'display-2': string;
   'display-3': string;
@@ -24,16 +22,12 @@ interface CssExports {
   'textarea-border': string;
   'textarea-border-margin-top': string;
   'textarea-border-mid-part': string;
-  'textarea-border-mid-part-content': string;
-  'textarea-border-state-disabled': string;
-  'textarea-border-state-error': string;
-  'textarea-border-state-filled': string;
-  'textarea-border-state-focus': string;
-  'textarea-helper-text': string;
-  'textarea-helper-text-state-disabled': string;
-  'textarea-helper-text-state-error': string;
-  'textarea-label-state-disabled': string;
-  'textarea-label-state-error': string;
+  'textarea-disabled': string;
+  'textarea-error': string;
+  'textarea-filled': string;
+  'textarea-focused': string;
+  'textarea-helper': string;
+  'textarea-label': string;
   'underline': string;
 }
 export const cssExports: CssExports;

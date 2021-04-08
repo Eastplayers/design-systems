@@ -9,14 +9,12 @@ import {
 import "@storybook/addon-knobs/register";
 import { TextareaInputProps } from "./Textarea";
 import { Textarea } from ".";
-import { TextInputType } from "../../atoms/InputFields/types";
 import { InputLabelStyles } from "./types";
 
 export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   const label = text("Label", "Label");
   const width = number("Width", 300);
   const placeholder = text("Placeholder", "Placeholder text");
-  const type = select("Input Types", TextInputType, TextInputType.INPUT);
   const filled = boolean("Filled Input", false);
   const disabled = boolean("Disabled", false);
   const error = boolean("Error", false);
@@ -35,7 +33,6 @@ export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
         labelStyle={labelStyle}
         disabled={disabled}
         placeholder={placeholder}
-        type={type}
         error={error}
         helperText={helperText}
       />
