@@ -16,7 +16,7 @@ export interface TextareaInputProps
   disabled?: boolean;
   className?: string;
   helperText?: string;
-  
+  resize?: boolean;
 }
 const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
@@ -29,6 +29,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
     className,
     error,
     helperText,
+    resize,
     ...rest
   } = props;
 
@@ -45,16 +46,12 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
       [styles["textarea-focused"]]: isFocus,
       [styles["textarea-disabled"]]: disabled,
       [styles["textarea-error"]]: error,
-      [styles["textarea-filled"]]: filled
+      [styles["textarea-filled"]]: filled,
+      [styles["textarea-top"]]: labelStyle === InputLabelStyles.TOP_LABEL
     },
     className
   );
 
-  const inputBorder = classNames(styles["textarea-border"], {
-    [styles["textarea-border-margin-top"]]:
-      labelStyle === InputLabelStyles.TOP_LABEL
-  });
-  const inputHelperText = classNames(styles["textarea-helper"]);
   const topLabel = labelStyle === InputLabelStyles.TOP_LABEL;
   const containedLabel = labelStyle === InputLabelStyles.CONTAINED_LABEL;
   return (
@@ -66,7 +63,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
           value={label}
         />
       )}
-      <div className={inputBorder}>
+      <div className={styles["textarea-border"]}>
         <div className={styles["textarea-border-mid-part"]}>
           {containedLabel && (
             <Label
@@ -76,6 +73,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
             />
           )}
           <Textarea
+            resize={resize}
             id={id}
             disabled={disabled}
             label={label}
@@ -85,7 +83,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
           />
         </div>
       </div>
-      <div className={inputHelperText}>{helperText}</div>
+      <div className={styles["textarea-helper"]}>{helperText}</div>
     </div>
   );
 };

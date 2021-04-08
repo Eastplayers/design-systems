@@ -43,6 +43,11 @@
       color: $gray400;
     }
   }
+  &-top {
+    .textarea-border {
+      margin-top: rem(4);
+    }
+  }
 
   &-border {
     display: flex;
@@ -52,10 +57,6 @@
     position: relative;
     margin-bottom: rem(4);
     border: 1px solid $gray400;
-
-    &-margin-top {
-      margin-top: rem(4);
-    }
 
     &-mid-part {
       width: 100%;

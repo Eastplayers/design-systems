@@ -15,6 +15,7 @@ export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   const label = text("Label", "Label");
   const width = number("Width", 300);
   const placeholder = text("Placeholder", "Placeholder text");
+  const resize = boolean("Resize", false);
   const filled = boolean("Filled Input", false);
   const disabled = boolean("Disabled", false);
   const error = boolean("Error", false);
@@ -27,6 +28,7 @@ export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   return (
     <div style={{ width: width }}>
       <Textarea
+        resize={resize}
         width={width}
         filled={filled}
         label={label}

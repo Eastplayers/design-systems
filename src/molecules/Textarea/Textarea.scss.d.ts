@@ -20,7 +20,6 @@ interface CssExports {
   'text--700': string;
   'text--800': string;
   'textarea-border': string;
-  'textarea-border-margin-top': string;
   'textarea-border-mid-part': string;
   'textarea-disabled': string;
   'textarea-error': string;
@@ -28,6 +27,7 @@ interface CssExports {
   'textarea-focused': string;
   'textarea-helper': string;
   'textarea-label': string;
+  'textarea-top': string;
   'underline': string;
 }
 export const cssExports: CssExports;

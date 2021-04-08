@@ -4,7 +4,7 @@
 $placeholder-text-height: rem(24);
 $placeholder-min-height: rem(26);
 
-.textarea-input {
+.textarea {
   @extend .body-2;
   padding-right: rem(4);
   font-family: $font-family;
@@ -13,10 +13,12 @@ $placeholder-min-height: rem(26);
   height: $placeholder-text-height;
   min-height: $placeholder-min-height;
   color: $gray700;
-  resize: vertical;
   height: auto;
+  resize: none;
   box-sizing: border-box;
-
+  &-resize {
+    resize: vertical;
+  }
   &:disabled {
     color: $gray400;
     background-color: $gray100;
