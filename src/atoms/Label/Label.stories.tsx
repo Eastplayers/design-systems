@@ -5,7 +5,12 @@ import Label, { LableProps } from "./Label";
 
 export const All: React.FC<LableProps> = () => {
   const value = text("Label value", "Label");
-  return <Label value={value} />;
+  return (
+    <>
+      <Label value={value} />
+      <Label>helllo</Label>
+    </>
+  );
 };
 
 export default {
