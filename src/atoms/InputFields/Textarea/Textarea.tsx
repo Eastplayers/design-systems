@@ -5,12 +5,16 @@ import styles from "./Textarea.scss";
 export interface TextareaProps extends React.HTMLProps<HTMLTextAreaElement> {
   label?: string;
   id?: string;
-  className?: string;
+  resize?:boolean
 }
 const Textarea: React.FC<TextareaProps> = (props) => {
-  const { label, id, className, ...rest } = props;
+  const { label, id, className, resize, ...rest } = props;
 
-  const textarea = classNames(styles["textarea-input"], className);
+  const textarea = classNames(
+    { [styles["textarea-resize"]]: resize },
+    styles["textarea"],
+    className
+  );
 
   return <textarea id={id || label} className={textarea} {...rest} />;
 };
