@@ -16,9 +16,11 @@ export interface TextareaInputProps
   disabled?: boolean;
   className?: string;
   helperText?: string;
+  resize?: boolean;
 }
 const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
+    id,
     width,
     filled,
     labelStyle,
@@ -27,6 +29,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
     className,
     error,
     helperText,
+    resize,
     ...rest
   } = props;
 
@@ -38,47 +41,49 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const onBlurHandler = () => {
     setFocus(false);
   };
+  const textareaClass = classNames(
+    {
+      [styles["textarea-focused"]]: isFocus,
+      [styles["textarea-disabled"]]: disabled,
+      [styles["textarea-error"]]: error,
+      [styles["textarea-filled"]]: filled,
+      [styles["textarea-top"]]: labelStyle === InputLabelStyles.TOP_LABEL
+    },
+    className
+  );
 
-  const inputBorder = classNames(styles["textarea-border"], {
-    [styles["textarea-border-margin-top"]]:
-      labelStyle === InputLabelStyles.TOP_LABEL,
-    [styles["textarea-border-state-filled"]]: filled,
-    [styles["textarea-border-state-disabled"]]: disabled,
-    [styles["textarea-border-state-focus"]]: isFocus,
-    [styles["textarea-border-state-error"]]: !disabled && error
-  });
-  const inputLabel = classNames({
-    [styles["textarea-label-state-disabled"]]: disabled,
-    [styles["textarea-label-state-error"]]: !disabled && error
-  });
-  const inputHelperText = classNames(styles["textarea-helper-text"], {
-    [styles["textarea-helper-text-state-error"]]: error,
-    [styles["textarea-helper-text-state-disabled"]]: disabled
-  });
   const topLabel = labelStyle === InputLabelStyles.TOP_LABEL;
   const containedLabel = labelStyle === InputLabelStyles.CONTAINED_LABEL;
   return (
-    <div className={className} style={{ width: width, minWidth: 300 }}>
+    <div className={textareaClass} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
-        <Label htmlFor={label} value={label} className={inputLabel} />
+        <Label
+          className={styles["textarea-label"]}
+          htmlFor={id || label}
+          value={label}
+        />
       )}
-      <div className={inputBorder}>
+      <div className={styles["textarea-border"]}>
         <div className={styles["textarea-border-mid-part"]}>
           {containedLabel && (
-            <Label htmlFor={label} value={label} className={inputLabel} />
-          )}
-          <div className={styles["textarea-border-mid-part-content"]}>
-            <Textarea
-              disabled={disabled}
-              label={label}
-              onFocus={onFocusHandler}
-              onBlur={onBlurHandler}
-              {...rest}
+            <Label
+              htmlFor={id || label}
+              value={label}
+              className={styles["textarea-label"]}
             />
-          </div>
+          )}
+          <Textarea
+            resize={resize}
+            id={id}
+            disabled={disabled}
+            label={label}
+            onFocus={onFocusHandler}
+            onBlur={onBlurHandler}
+            {...rest}
+          />
         </div>
       </div>
-      <div className={inputHelperText}>{helperText}</div>
+      <div className={styles["textarea-helper"]}>{helperText}</div>
     </div>
   );
 };

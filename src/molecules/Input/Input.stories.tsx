@@ -46,14 +46,14 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
         error={error}
         helperText={helperText}
         prefixIcon={
-          prefixIcon ? <Icon icon="equalizer" size="18" /> : undefined
+          prefixIcon ? <Icon color="#0F172A" icon="equalizer" size="18" /> : undefined
         }
         suffixIcon={
-          suffixIcon ? <Icon icon="chevron-down" size="18" /> : undefined
+          suffixIcon ? <Icon icon="chevron-down"  size="18" /> : undefined
         }
         leadingIcon={leadingIcon ? <Icon icon="eye" size="24" /> : undefined}
         trailingIcon={
-          trailingIcon ? <Icon icon="search" size="24" /> : undefined
+          trailingIcon ? <Icon icon="search" size="24" color="#0F172A" /> : undefined
         }
       />
     </div>

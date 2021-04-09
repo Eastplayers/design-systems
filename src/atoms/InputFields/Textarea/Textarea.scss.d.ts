@@ -19,7 +19,8 @@ interface CssExports {
   'text--400': string;
   'text--700': string;
   'text--800': string;
-  'textarea-input': string;
+  'textarea': string;
+  'textarea-resize': string;
   'underline': string;
 }
 export const cssExports: CssExports;
