@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { Input } from "../../atoms/InputFields/Input";
 import styles from "./Input.scss";
 import classNames from "classnames";
-import { InputLabelStyles } from "./types";
+import { LabelStyles, Variants } from "../../atoms/InputFields/types";
 import { Label } from "../../atoms/Label";
 
 export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
-  filled?: boolean;
-  labelStyle?: InputLabelStyles;
+  labelStyle?: LabelStyles;
   error?: boolean;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   helperText?: string;
+  variant?: string;
 }
 const TextInput: React.FC<TextInputProps> = (props) => {
   const {
     id,
     width,
-    filled,
-    labelStyle = InputLabelStyles.TOP_LABEL,
+    labelStyle = LabelStyles.TOP_LABEL,
     label = "",
     disabled,
     className,
@@ -30,6 +29,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     suffixIcon,
     leadingIcon,
     trailingIcon,
+    variant = Variants.OUTLINED,
     ...rest
   } = props;
 
@@ -47,18 +47,18 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     {
       [styles["input-disabled"]]: disabled,
       [styles["input-error"]]: !disabled && error,
-      [styles["input-filled"]]: filled,
+      [styles["input-filled"]]: variant === Variants.FILLED,
       [styles["input-focused"]]: isFocus,
       [styles["input-leading"]]: leadingIcon,
       [styles["input-prefix"]]: prefixIcon,
       [styles["input-trailing"]]: trailingIcon,
-      [styles["input-top"]]: labelStyle === InputLabelStyles.TOP_LABEL
+      [styles["input-top"]]: labelStyle === LabelStyles.TOP_LABEL
     },
     className
   );
 
-  const topLabel = labelStyle === InputLabelStyles.TOP_LABEL;
-  const containedLabel = labelStyle === InputLabelStyles.CONTAINED_LABEL;
+  const topLabel = labelStyle === LabelStyles.TOP_LABEL;
+  const containedLabel = labelStyle === LabelStyles.CONTAINED_LABEL;
 
   return (
     <div className={inputClass} style={{ width: width, minWidth: 300 }}>

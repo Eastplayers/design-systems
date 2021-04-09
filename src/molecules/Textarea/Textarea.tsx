@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { Textarea } from "../../atoms/InputFields/Textarea";
 import styles from "./Textarea.scss";
 import classNames from "classnames";
-import { InputLabelStyles } from "./types";
 import { Label } from "../../atoms/Label";
+import { LabelStyles, Variants } from "../../atoms/InputFields/types";
 
 export interface TextareaInputProps
   extends React.HTMLProps<HTMLTextAreaElement> {
   id?: string;
   width?: number;
-  filled?: boolean;
   labelStyle?: string;
   error?: boolean;
   label?: string;
@@ -17,12 +16,12 @@ export interface TextareaInputProps
   className?: string;
   helperText?: string;
   resize?: boolean;
+  variant?: string;
 }
 const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
     id,
     width,
-    filled,
     labelStyle,
     label = "",
     disabled,
@@ -30,6 +29,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
     error,
     helperText,
     resize,
+    variant = Variants.OUTLINED,
     ...rest
   } = props;
 
@@ -46,14 +46,14 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
       [styles["textarea-focused"]]: isFocus,
       [styles["textarea-disabled"]]: disabled,
       [styles["textarea-error"]]: error,
-      [styles["textarea-filled"]]: filled,
-      [styles["textarea-top"]]: labelStyle === InputLabelStyles.TOP_LABEL
+      [styles["textarea-filled"]]: variant === Variants.FILLED,
+      [styles["textarea-top"]]: labelStyle === LabelStyles.TOP_LABEL
     },
     className
   );
 
-  const topLabel = labelStyle === InputLabelStyles.TOP_LABEL;
-  const containedLabel = labelStyle === InputLabelStyles.CONTAINED_LABEL;
+  const topLabel = labelStyle === LabelStyles.TOP_LABEL;
+  const containedLabel = labelStyle === LabelStyles.CONTAINED_LABEL;
   return (
     <div className={textareaClass} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
