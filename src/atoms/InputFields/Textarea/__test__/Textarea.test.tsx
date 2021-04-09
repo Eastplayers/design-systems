@@ -33,3 +33,11 @@ test("Textarea expect has right id", async () => {
     textareaIdContainer.querySelector("textarea")?.getAttribute("Id")
   ).toEqual("Id");
 });
+
+test("Textarea expect can be resized", async () => {
+  const { container: textareaContainer } = render(<Textarea resize />);
+  
+  expect(textareaContainer.querySelector("textarea")).toHaveClass(
+    "textarea-resize"
+  );
+});
