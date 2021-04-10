@@ -11,8 +11,23 @@ export interface ButtonProps {
   size?: ButtonSizes;
   variant?: ButtonVariants;
   disabled?: boolean;
+  icon?: React.ReactElement;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
+
+enum IconSizes {
+  L = 16,
+  M = 10,
+  S = 8,
+  XS = 6
+}
+
+const IconSizeMapping = new Map<ButtonSizes, IconSizes>([
+  [ButtonSizes.L, IconSizes.L],
+  [ButtonSizes.M, IconSizes.M],
+  [ButtonSizes.S, IconSizes.S],
+  [ButtonSizes.XS, IconSizes.XS]
+]);
 
 const ButtonFontMapping = new Map<ButtonSizes, FontTypes>([
   [ButtonSizes.L, FontTypes.HEADING_4],
@@ -27,6 +42,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     size = ButtonSizes.S,
     variant = ButtonVariants.Primary,
     disabled,
+    icon,
     onClick
   } = props;
 
@@ -34,7 +50,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--primary"]]: variant === ButtonVariants.Primary,
     [styles["btn--secondary"]]: variant === ButtonVariants.Secondary,
     [styles["btn--ghost"]]: variant === ButtonVariants.Ghost,
-    [styles["btn--link"]]: variant === ButtonVariants.Link,
     [styles["btn--lg"]]: size === ButtonSizes.L,
     [styles["btn--md"]]: size === ButtonSizes.M,
     [styles["btn--sm"]]: size === ButtonSizes.S,
@@ -42,9 +57,25 @@ const Button: React.FC<ButtonProps> = (props) => {
     [styles["btn--disabled"]]: disabled
   });
 
+  if (icon) {
+    const iconSize = IconSizeMapping.get(size);
+    const Icon: React.ReactElement = React.cloneElement(icon, {
+      size: iconSize
+    });
+    return (
+      <button onClick={onClick} className={buttonClasses}>
+        <div className={styles.container}>
+          <Text type={ButtonFontMapping.get(size)}>{label}</Text>
+          {Icon}
+        </div>
+      </button>
+    );
+  }
   return (
     <button onClick={onClick} className={buttonClasses}>
-      <Text type={ButtonFontMapping.get(size)}>{label}</Text>
+      <div className={styles.container}>
+        <Text type={ButtonFontMapping.get(size)}>{label}</Text>
+      </div>
     </button>
   );
 };

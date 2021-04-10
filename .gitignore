@@ -5,3 +5,6 @@ yarn-error.log
 
 # ignore test coverage folder
 /coverage
+
+.DS_Store
+*/.DS_Store

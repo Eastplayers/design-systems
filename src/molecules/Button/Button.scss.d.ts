@@ -5,12 +5,12 @@ interface CssExports {
   'btn--disabled': string;
   'btn--ghost': string;
   'btn--lg': string;
-  'btn--link': string;
   'btn--md': string;
   'btn--primary': string;
   'btn--secondary': string;
   'btn--sm': string;
   'btn--xs': string;
+  'container': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

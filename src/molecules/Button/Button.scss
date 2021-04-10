@@ -16,13 +16,19 @@
 
   --buttonBorderRadius: #{rem(8)};
 
-  --buttonGhostBorder: rem(1) solid $gray300;
+  --buttonGhostBorder: #{rem(1) solid $gray300};
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btn {
   cursor: pointer;
   transition: background-color 0.3s ease-out;
-
+  padding: 12px 24px;
   border: {
     radius: var(--buttonBorderRadius);
     color: transparent;
@@ -40,7 +46,7 @@
     }
 
     &:hover {
-      background-color: $indigo600;
+      background-color: $indigo500;
     }
   }
 
@@ -80,19 +86,6 @@
     }
   }
 
-  &--link {
-    color: $indigo600;
-    border: none;
-    background-color: transparent;
-    &:focus {
-      color: $indigo700;
-    }
-
-    &:hover {
-      color: $indigo700;
-    }
-  }
-
   &--disabled {
     color: $gray400;
     background-color: $gray200;
@@ -105,22 +98,18 @@
   }
 
   &--lg {
-    min-width: var(--buttonLgMinWidth);
-    min-height: var(--buttonLgMinHeight);
+    padding: rem(12) rem(24);
   }
 
   &--md {
-    min-width: var(--buttonMdMinWidth);
-    min-height: var(--buttonMdMinHeight);
+    padding: rem(8) rem(16);
   }
 
   &--sm {
-    min-width: var(--buttonSmMinWidth);
-    min-height: var(--buttonSmMinHeight);
+    padding: rem(6) rem(16);
   }
 
   &--xs {
-    min-width: var(--buttonXsMinWidth);
-    min-height: var(--buttonXsMinHeight);
+    padding: rem(4) rem(12);
   }
 }
