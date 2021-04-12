@@ -22,7 +22,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
   const {
     id,
     width,
-    labelStyle,
+    labelStyle = LabelStyles.TOP_LABEL,
     label = "",
     disabled,
     className,
@@ -58,6 +58,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
     <div className={textareaClass} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
         <Label
+          id="top-label"
           className={styles["textarea-label"]}
           htmlFor={id || label}
           value={label}
@@ -67,6 +68,7 @@ const TextareaInput: React.FC<TextareaInputProps> = (props) => {
         <div className={styles["textarea-border-mid-part"]}>
           {containedLabel && (
             <Label
+              id="contained-label"
               htmlFor={id || label}
               value={label}
               className={styles["textarea-label"]}

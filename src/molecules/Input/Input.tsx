@@ -6,7 +6,7 @@ import { LabelStyles, Variants } from "../../atoms/InputFields/types";
 import { Label } from "../../atoms/Label";
 
 export interface TextInputProps extends React.HTMLProps<HTMLInputElement> {
-  labelStyle?: LabelStyles;
+  labelStyle?: string;
   error?: boolean;
   prefixIcon?: React.ReactNode;
   suffixIcon?: React.ReactNode;
@@ -46,7 +46,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
   const inputClass = classNames(
     {
       [styles["input-disabled"]]: disabled,
-      [styles["input-error"]]: !disabled && error,
+      [styles["input-error"]]: error,
       [styles["input-filled"]]: variant === Variants.FILLED,
       [styles["input-focused"]]: isFocus,
       [styles["input-leading"]]: leadingIcon,
@@ -64,23 +64,29 @@ const TextInput: React.FC<TextInputProps> = (props) => {
     <div className={inputClass} style={{ width: width, minWidth: 300 }}>
       {topLabel && (
         <Label
+          id="top-label"
           htmlFor={id || label}
           value={label}
           className={styles["input-label"]}
         />
       )}
       <div className={styles["input-border"]}>
-        <div className={styles["input-icon"]}>{leadingIcon}</div>
+        <div id="leadingIcon" className={styles["input-icon"]}>
+          {leadingIcon}
+        </div>
         <div className={styles["input-border-midpart"]}>
           {containedLabel && (
             <Label
+              id="contained-label"
               htmlFor={id || label}
               value={label}
               className={styles["input-label"]}
             />
           )}
           <div className={styles["input-border-midpart-content"]}>
-            <div className={styles["input-icon"]}>{prefixIcon}</div>
+            <div id="prefixIcon" className={styles["input-icon"]}>
+              {prefixIcon}
+            </div>
             <Input
               id={id}
               onFocus={onFocusHandler}
@@ -89,10 +95,14 @@ const TextInput: React.FC<TextInputProps> = (props) => {
               disabled={disabled}
               {...rest}
             />
-            <div className={styles["input-icon"]}>{suffixIcon}</div>
+            <div id="suffixIcon" className={styles["input-icon"]}>
+              {suffixIcon}
+            </div>
           </div>
         </div>
-        <div className={styles["input-icon"]}>{trailingIcon}</div>
+        <div id="trailingIcon" className={styles["input-icon"]}>
+          {trailingIcon}
+        </div>
       </div>
       <div className={styles["input-helper"]}>{helperText}</div>
     </div>
