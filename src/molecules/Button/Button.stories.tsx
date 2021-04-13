@@ -5,9 +5,10 @@ import "@storybook/addon-knobs/register";
 import { Button } from ".";
 import { ButtonProps } from "./Button";
 import { ButtonSizes, ButtonVariants } from "./types";
+import { Icon } from "../../atoms/Icon";
 
 export const SingleStory = (): React.ReactElement<ButtonProps> => {
-  const label = text("Label", "Button Title");
+  const label = text("Label", "Button text");
   const isDisabled = boolean("Disabled", false);
   const buttonSize = select("Size", ButtonSizes, ButtonSizes.L);
   const buttonVariant = select(
@@ -15,6 +16,8 @@ export const SingleStory = (): React.ReactElement<ButtonProps> => {
     ButtonVariants,
     ButtonVariants.Primary
   );
+  const prefix = boolean("Prefix Icon", true);
+  const suffix = boolean("Suffix Icon", false);
 
   return (
     <Button
@@ -22,6 +25,12 @@ export const SingleStory = (): React.ReactElement<ButtonProps> => {
       disabled={isDisabled}
       size={buttonSize}
       variant={buttonVariant}
+      prefixIcon={
+        prefix ? <Icon icon="video-library" color="white" /> : undefined
+      }
+      suffixIcon={
+        suffix ? <Icon icon="video-library" color="white" /> : undefined
+      }
     />
   );
 };

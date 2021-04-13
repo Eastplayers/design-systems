@@ -1,3 +1,5 @@
+@use "../../styles/main.scss" as *;
+@use "../../atoms/Text/Text.scss" as *;
 @import "../../styles/abstracts/functions";
 @import "../../styles/variables/colors";
 
@@ -22,6 +24,16 @@
 .btn {
   cursor: pointer;
   transition: background-color 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  #btn-prefix-icon, #btn-suffix-icon {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   border: {
     radius: var(--buttonBorderRadius);
@@ -105,21 +117,69 @@
   }
 
   &--lg {
+    @extend .heading-4;
+    #btn-prefix-icon {
+      margin-right: rem(12);
+    }
+    #btn-suffix-icon {
+      margin-left: rem(12);
+    }
+    svg {
+      width: rem(21);
+      height: rem(21);
+    }
+    padding: rem(9) rem(21);
     min-width: var(--buttonLgMinWidth);
     min-height: var(--buttonLgMinHeight);
   }
 
   &--md {
+    @extend .heading-4;
+    #btn-prefix-icon {
+      margin-right: rem(12);
+    }
+    #btn-suffix-icon {
+      margin-left: rem(12);
+    }
+    svg {
+      width: rem(18);
+      height: rem(18);
+    }
+    padding: rem(5) rem(13);
     min-width: var(--buttonMdMinWidth);
     min-height: var(--buttonMdMinHeight);
   }
 
   &--sm {
+    @extend .heading-5;
+    #btn-prefix-icon {
+      margin-right: rem(9);
+    }
+    #btn-suffix-icon {
+      margin-left: rem(9);
+    }
+    svg {
+      width: rem(16);
+      height: rem(16);
+    }
+    padding: rem(3) rem(13);
     min-width: var(--buttonSmMinWidth);
     min-height: var(--buttonSmMinHeight);
   }
 
   &--xs {
+    @extend .heading-6;
+    padding: rem(1) rem(9);
+    #btn-prefix-icon {
+      margin-right: rem(8);
+    }
+    #btn-suffix-icon {
+      margin-left: rem(8);
+    }
+    svg {
+      width: rem(16);
+      height: rem(16);
+    }
     min-width: var(--buttonXsMinWidth);
     min-height: var(--buttonXsMinHeight);
   }

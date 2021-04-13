@@ -5,13 +5,14 @@ import { ButtonSizes, ButtonVariants } from "./types";
 import { Text, FontTypes } from "../../atoms";
 
 import styles from "./Button.scss";
-
 export interface ButtonProps {
   label: string;
   size?: ButtonSizes;
   variant?: ButtonVariants;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  prefixIcon?: React.ReactNode;
+  suffixIcon?: React.ReactNode;
 }
 
 const ButtonFontMapping = new Map<ButtonSizes, FontTypes>([
@@ -27,7 +28,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     size = ButtonSizes.S,
     variant = ButtonVariants.Primary,
     disabled,
-    onClick
+    onClick,
+    prefixIcon,
+    suffixIcon
   } = props;
 
   const buttonClasses = classNames(styles.btn, {
@@ -44,7 +47,9 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button onClick={onClick} className={buttonClasses}>
+      {prefixIcon && <div id="btn-prefix-icon">{prefixIcon}</div>}
       <Text type={ButtonFontMapping.get(size)}>{label}</Text>
+      {suffixIcon && <div id="btn-suffix-icon">{suffixIcon}</div>}
     </button>
   );
 };
