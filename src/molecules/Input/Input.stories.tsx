@@ -10,7 +10,7 @@ import "@storybook/addon-knobs/register";
 import { TextInputProps } from "./Input";
 import { Input } from ".";
 import { TextInputType } from "../../atoms/InputFields/types";
-import { InputLabelStyles } from "./types";
+import { LabelStyles, Variants } from "../../atoms/InputFields/types";
 import { Icon } from "../../atoms/Icon";
 
 export const InputStory = (): React.ReactElement<TextInputProps> => {
@@ -19,13 +19,13 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
   const maxLength = number("Max length", 50);
   const placeholder = text("Placeholder", "Placeholder text");
   const type = select("Input Types", TextInputType, TextInputType.INPUT);
-  const filled = boolean("Filled Input", false);
+  const variant = select("Variant", Variants, Variants.OUTLINED);
   const disabled = boolean("Disabled", false);
   const error = boolean("Error", false);
   const labelStyle = select(
     "Label Style",
-    InputLabelStyles,
-    InputLabelStyles.CONTAINED_LABEL
+    LabelStyles,
+    LabelStyles.CONTAINED_LABEL
   );
   const helperText = text("Helper Text", "Helper Text");
   const leadingIcon = boolean("Leading icon", true);
@@ -37,7 +37,7 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
       <Input
         maxLength={maxLength}
         width={width}
-        filled={filled}
+        variant={variant}
         label={label}
         labelStyle={labelStyle}
         disabled={disabled}
@@ -46,14 +46,18 @@ export const InputStory = (): React.ReactElement<TextInputProps> => {
         error={error}
         helperText={helperText}
         prefixIcon={
-          prefixIcon ? <Icon color="#0F172A" icon="equalizer" size="18" /> : undefined
+          prefixIcon ? (
+            <Icon color="#0F172A" icon="equalizer" size="18" />
+          ) : undefined
         }
         suffixIcon={
-          suffixIcon ? <Icon icon="chevron-down"  size="18" /> : undefined
+          suffixIcon ? <Icon icon="chevron-down" size="18" /> : undefined
         }
         leadingIcon={leadingIcon ? <Icon icon="eye" size="24" /> : undefined}
         trailingIcon={
-          trailingIcon ? <Icon icon="search" size="24" color="#0F172A" /> : undefined
+          trailingIcon ? (
+            <Icon icon="search" size="24" color="#0F172A" />
+          ) : undefined
         }
       />
     </div>

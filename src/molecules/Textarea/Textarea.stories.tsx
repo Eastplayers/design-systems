@@ -9,28 +9,28 @@ import {
 import "@storybook/addon-knobs/register";
 import { TextareaInputProps } from "./Textarea";
 import { Textarea } from ".";
-import { InputLabelStyles } from "./types";
+import { LabelStyles, Variants } from "../../atoms/InputFields/types";
 
 export const TextareaStory = (): React.ReactElement<TextareaInputProps> => {
   const label = text("Label", "Label");
   const width = number("Width", 300);
+  const variant = select("Variant", Variants, Variants.OUTLINED);
   const placeholder = text("Placeholder", "Placeholder text");
   const resize = boolean("Resize", false);
-  const filled = boolean("Filled Input", false);
   const disabled = boolean("Disabled", false);
   const error = boolean("Error", false);
   const labelStyle = select(
     "Label Style",
-    InputLabelStyles,
-    InputLabelStyles.CONTAINED_LABEL
+    LabelStyles,
+    LabelStyles.CONTAINED_LABEL
   );
   const helperText = text("Helper Text", "Helper Text");
   return (
     <div style={{ width: width }}>
       <Textarea
+        variant={variant}
         resize={resize}
         width={width}
-        filled={filled}
         label={label}
         labelStyle={labelStyle}
         disabled={disabled}
